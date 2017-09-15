@@ -1,0 +1,285 @@
+<?php
+      《var_dump(); 识别数据类型
+	phpinfo();输出php相关信息
+	echo "s";输出
+	unset($url);删除一个变量；
+	define();      定义常量
+	array(2,3,4,5);数组
+       》
+	变量：$url；
+	常量：全局 无$符号 一般用大写字母
+	系统常量
+	_FILE_ 默认常量，是指PHP程序文件名及路径；
+	_LINE_  默认常量，是指PHP程序行数；
+		
+	自定义常量
+	define();
+	bool define(string $name,mixed $value 		[,boolcase_$insensitive])
+
+	第三参数 默认false （true 不区分大小写）
+	
+	define("COLOR","red");
+	echo COLOR."<br/>";   . 连接符;
+
+ 	*\ ' 跳过当前‘	转义字符
+	echo "0000\"11"
+	
+?>
+
+foreach
+<?php 
+$colors = array("red","green","blue","yellow"); 
+
+foreach ($colors as $value) {
+  echo "$value <br>";
+}
+?>
+关联数组
+
+<?php
+$age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+echo "Peter is " . $age['Peter'] . " years old.";
+?>
+
+
+关联数组遍历
+<?php
+$age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+
+foreach($age as $x=>$x_value) {
+   echo "Key=" . $x . ", Value=" . $x_value;
+   echo "<br>";
+}
+?>
+
+$GLOBALS— 引用全局作用域中可用的全部变量
+PHP 在名为 $GLOBALS[index] 的数组中存储了所有全局变量。变量的名字就是数组的键
+
+PHP $_SERVER
+
+$_SERVER 这种超全局变量保存关于报头、路径和脚本位置的信息。
+
+下面的例子展示了如何使用 $_SERVER 中的某些元素：
+echo $_SERVER['PHP_SELF'];
+
+
+描述
+
+$_SERVER['PHP_SELF'] 返回当前执行脚本的文件名。 
+$_SERVER['GATEWAY_INTERFACE'] 返回服务器使用的 CGI 规范的版本。 
+$_SERVER['SERVER_ADDR'] 返回当前运行脚本所在的服务器的 IP 地址。 
+$_SERVER['SERVER_NAME'] 返回当前运行脚本所在的服务器的主机名（比如 www.w3school.com.cn）。 
+$_SERVER['SERVER_SOFTWARE'] 返回服务器标识字符串（比如 Apache/2.2.24）。 
+$_SERVER['SERVER_PROTOCOL'] 返回请求页面时通信协议的名称和版本（例如，“HTTP/1.0”）。 
+$_SERVER['REQUEST_METHOD'] 返回访问页面使用的请求方法（例如 POST）。 
+$_SERVER['REQUEST_TIME'] 返回请求开始时的时间戳（例如 1577687494）。 
+$_SERVER['QUERY_STRING'] 返回查询字符串，如果是通过查询字符串访问此页面。 
+$_SERVER['HTTP_ACCEPT'] 返回来自当前请求的请求头。 
+$_SERVER['HTTP_ACCEPT_CHARSET'] 返回来自当前请求的 Accept_Charset 头（ 例如 utf-8,ISO-8859-1） 
+$_SERVER['HTTP_HOST'] 返回来自当前请求的 Host 头。 
+$_SERVER['HTTP_REFERER'] 返回当前页面的完整 URL（不可靠，因为不是所有用户代理都支持）。 
+$_SERVER['HTTPS'] 是否通过安全 HTTP 协议查询脚本。 
+$_SERVER['REMOTE_ADDR'] 返回浏览当前页面的用户的 IP 地址。 
+$_SERVER['REMOTE_HOST'] 返回浏览当前页面的用户的主机名。 
+$_SERVER['REMOTE_PORT'] 返回用户机器上连接到 Web 服务器所使用的端口号。 
+$_SERVER['SCRIPT_FILENAME'] 返回当前执行脚本的绝对路径。 
+$_SERVER['SERVER_ADMIN'] 该值指明了 Apache 服务器配置文件中的 SERVER_ADMIN 参数。 
+$_SERVER['SERVER_PORT'] Web 服务器使用的端口。默认值为 “80”。 
+$_SERVER['SERVER_SIGNATURE'] 返回服务器版本和虚拟主机名。 
+$_SERVER['PATH_TRANSLATED'] 当前脚本所在文件系统（非文档根目录）的基本路径。 
+$_SERVER['SCRIPT_NAME'] 返回当前脚本的路径。 
+$_SERVER['SCRIPT_URI'] 返回当前页面的 URI。 
+
+
+PHP $_REQUEST
+
+PHP $_REQUEST 用于收集 HTML 表单提交的数据。
+
+
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+Name: <input type="text" name="fname">
+<input type="submit">
+</form>
+
+<?php 
+$name = $_REQUEST['fname']; 
+echo $name; 
+?>
+
+
+PHP $_POST 广泛用于收集提交 method="post" 的 HTML 表单后的表单数据。$_POST 也常用于传递变量。
+
+PHP $_GET
+
+PHP $_GET 也可用于收集提交 HTML 表单 (method="get") 之后的表单数据。
+
+$_GET 也可以收集 URL 中的发送的数据。
+
+
+
+通过使用 htmlspecialchars() 函数能够避免 $_SERVER["PHP_SELF"] 被利用。
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+2.（通过 PHP stripslashes() 函数）删除用户输入数据中的反斜杠（\）
+
+防止表单注入攻击
+function test_input($data) {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+}
+?>
+验证填入信息
+
+preg_match() 函数检索字符串的模式，如果模式存在则返回 true，否则返回 false。
+(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)); 
+
+函数 
+ 
+1.strlen(); 返回字符串长度；
+2.strpos(); 函数用于检索字符串内指定的字符或文本。
+	    如果找到匹配，则会返回首个匹配的字符位置。            如果未找到匹配，则将返回 FALSE。
+3.count() 函数用于返回数组的长度（元素数）。
+4.sort() - 以升序对数组排序
+5.rsort() - 以降序对数组排序
+6.asort() - 根据值，以升序对关联数组进行排序
+7.ksort() - 根据键，以升序对关联数组进行排序
+8.arsort() - 根据值，以降序对关联数组进行排序
+9.krsort() - 根据键，以降序对关联数组进行排序
+10.PHP date() 函数把时间戳格式化为更易读的日期和时间。
+		date(format,timestamp)
+	echo "今天是 " . date("Y-m-d") . "<br>";
+	echo "今天是 " . date("l");
+版权所有 2008-<?php echo date("Y")?>
+获得简单的时间
+下面列出了一些常用于日期的字符：
+d - 表示月里的某天（01-31）
+m - 表示月（01-12）
+Y - 表示年（四位数）
+1 - 表示周里的某天
+
+下面是常用于时间的字符：
+h - 带有首位零的 12 小时小时格式
+i - 带有首位零的分钟
+s - 带有首位零的秒（00 -59）
+a - 小写的午前和午后（am 或 pm
+
+
+echo "当前时间是 " . date("h:i:sa");
+date_default_timezone_set("Asia/Shanghai");
+
+
+PHP readfile() 函数
+
+readfile() 函数读取文件，并把它写入输出缓冲。
+
+fopen() 的第一个参数包含被打开的文件名，第二个参数规定打开文件的模式。如果 fopen() 函数未能打开指定的文件，下面的例子会生成一段消息：
+
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+echo fread($myfile,filesize("webdictionary.txt"));
+fclose($myfile);
+?>
+
+
+r 打开文件为只读。文件指针在文件的开头开始。 
+w 打开文件为只写。删除文件的内容或创建一个新的文件，如果它不存在。文件指针在文件的开头开始。 
+a 打开文件为只写。文件中的现有数据会被保留。文件指针在文件结尾开始。创建新的文件，如果文件不存在。 
+x 创建新文件为只写。返回 FALSE 和错误，如果文件已存在。 
+r+ 打开文件为读/写、文件指针在文件开头开始。 
+w+ 打开文件为读/写。删除文件内容或创建新文件，如果它不存在。文件指针在文件开头开始。 
+a+ 打开文件为读/写。文件中已有的数据会被保留。文件指针在文件结尾开始。创建新文件，如果它不存在。 
+x+ 创建新文件为读/写。返回 FALSE 和错误，如果文件已存在。 
+
+PHP 读取文件 - fread()
+
+fread() 函数读取打开的文件。
+
+fread() 的第一个参数包含待读取文件的文件名，第二个参数规定待读取的最大字节数。
+
+如下 PHP 代码把 "webdictionary.txt" 文件读至结尾：
+fread($myfile,filesize("webdictionary.txt"));
+
+PHP 关闭文件 - fclose()
+PHP 读取单行文件 - fgets()
+
+fgets() 函数用于从文件读取单行。
+注释：调用 fgets() 函数之后，文件指针会移动到下一行。
+
+PHP 检查 End-Of-File - feof()
+
+feof() 函数检查是否已到达 "end-of-file" (EOF)。
+
+feof() 对于遍历未知长度的数据很有用。
+
+下例逐行读取 "webdictionary.txt" 文件，直到 end-of-file：
+
+PHP 读取单字符 - fgetc()
+
+fgetc() 函数用于从文件中读取单个字符。
+
+下例逐字符读取 "webdictionary.txt" 文件，直到 end-of-file：
+
+PHP 写入文件 - fwrite()
+
+fwrite() 函数用于写入文件。
+
+fwrite() 的第一个参数包含要写入的文件的文件名，第二个参数是被写的字符串。
+
+上传
+
+<form> 标签的 enctype 属性规定了在提交表单时要使用哪种内容类型。在表单需要二进制数据时，比如文件内容，请使用 "multipart/form-data"。
+
+<input> 标签的 type="file" 属性规定了应该把输入作为文件来处理。举例来说，当在浏览器中预览时，会看到输入框旁边有一个浏览按钮。
+
+注释：允许用户上传文件是一个巨大的安全风险。请仅仅允许可信的用户执行文件上传操作。
+
+
+
+<html>
+<body>
+
+<form action="upload_file.php" method="post"
+enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file" /> 
+<br />
+<input type="submit" name="submit" value="Submit" />
+</form>
+
+</body>
+</html>
+
+
+如何创建 cookie？
+
+setcookie() 函数用于设置 cookie。
+
+注释：setcookie() 函数必须位于 <html> 标签之前。
+
+语法
+setcookie(name, value, expire, path, domain);
+
+
+
+
+例子
+
+在下面的例子中，我们将创建名为 "user" 的 cookie，把为它赋值 "Alex Porter"。我们也规定了此 cookie 在一小时后过期：
+<?php 
+setcookie("user", "Alex Porter", time()+3600);
+?>
+
+<html>
+<body>
+
+</body>
+</html>
+
+注释：在发送 cookie 时，cookie 的值会自动进行 URL 编码，在取回时进行自动解码（为防止 URL 编码，请使用 setrawcookie() 取而代之）。
+
+
+
+

@@ -1,0 +1,245 @@
+<div id="contentBox"><table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>模块名</th>
+    <th>模块标题</th>
+    <th>排序</th>
+    <th>是否启用</th>
+    <th>是否显示</th>
+    <th width="100">操作</th>
+  </tr>
+  <foreach name="_all_node" item="item">
+
+  <eq name="item['id']" value="$_GET['id']">
+<form action="{:U('node_action')}" method="post">
+  <tr class="sort1">
+    <td><input name="id" type="hidden" value="{$item['id']}" />{$item['id']}</td>
+    <td><input name="name" type="text" value="{$item['name']}" size="20" /></td>
+    <td><input name="title" type="text" value="{$item['title']}" size="30" /></td>
+    <td align="center"><input name="orderby" type="text" value="{$item['orderby']}" size="5" /></td>
+    <td align="center">
+	
+<eq name="item['status']" value="1">
+<label>
+<input name="status" type="radio" value="1" checked="checked"  />
+启用
+<input type="radio" name="status" value="0" />
+不启用</label>
+<else />
+<label>
+<input name="status" type="radio" value="1" />
+启用
+<input type="radio" name="status" value="0"  checked="checked"  />
+不启用</label>
+</eq>
+
+	
+	
+	
+	
+	</td>
+    <td align="center">
+	
+<eq name="item['is_show']" value="1">	
+<label>
+<input name="is_show" type="radio" value="1" checked="checked" />
+显示
+<input type="radio" name="is_show" value="0" /> 
+不显示
+</label>
+<else />
+<label>
+<input name="is_show" type="radio" value="1" />
+显示
+<input type="radio" name="is_show" value="0" checked="checked" /> 
+不显示</label>
+
+</eq>
+	
+	
+	
+	
+	
+	
+	</td>
+    <td width="100" align="center"><label>
+      <input type="submit"  value="修改" /> 
+      <a href="{:U('')}">取消</a>    </label></td>
+  </tr>
+</form>
+
+  <else />
+  
+  <tr class="sort1">
+    <td>{$item['id']}</td>
+    <td><div class="table_h2">{$item['name']}</div></td>
+    <td><div class="table_h2">{$item['title']}</div></td>
+    <td align="center">{$item['orderby']}</td>
+    <td align="center">{$item['status']}&nbsp;</td>
+    <td align="center">{$item['is_show']}&nbsp;</td>
+    <td width="100" align="center"><a href="{:U('',array('id'=>$item['id']))}">编辑</a> | <a href="{:U('nodedel',array('id'=>$item['id']))}">删除</a></td>
+  </tr>
+  
+  </eq>
+  
+  
+<foreach name="item['_child']" item="item2">
+<eq name="item2['id']" value="$_GET['id']">
+<form action="{:U('node_action')}" method="post">
+  <tr>
+    <td><input name="id" type="hidden" value="{$item2['id']}" />{$item2['id']}</td>
+    <td><div class="table_h3"><input name="name" type="text" value="{$item2['name']}" size="20" /></div></td>
+    <td><input name="title" type="text" value="{$item2['title']}" size="30" /></td>
+    <td align="center"><input name="orderby" type="text" value="{$item2['orderby']}" size="5" /></td>
+    <td align="center">
+	
+<eq name="item2['status']" value="1">
+<label>
+<input name="status" type="radio" value="1" checked="checked"  />
+启用
+<input type="radio" name="status" value="0" />
+不启用</label>
+<else />
+<label>
+<input name="status" type="radio" value="1" />
+启用
+<input type="radio" name="status" value="0"  checked="checked"  />
+不启用</label>
+</eq>
+
+
+	
+	</td>
+    <td align="center">
+	
+<eq name="item2['is_show']" value="1">	
+<label>
+<input name="is_show" type="radio" value="1" checked="checked" />
+显示
+<input type="radio" name="is_show" value="0" /> 
+不显示
+</label>
+<else />
+<label>
+<input name="is_show" type="radio" value="1" />
+显示
+<input type="radio" name="is_show" value="0" checked="checked" /> 
+不显示</label>
+
+</eq>
+	
+	
+	
+	
+	
+	
+	</td>
+    <td width="100" align="center"><label>
+      <input type="submit"  value="修改" /> 
+      <a href="{:U('')}">取消</a>    </label></td>
+  </tr>
+</form>
+
+  <else />
+  
+  <tr>
+    <td>{$item2['id']}</td>
+    <td><div class="table_h3">{$item2['name']}</div></td>
+    <td><div class="table_h3">{$item2['title']}</div></td>
+    <td align="center">{$item2['orderby']}</td>
+    <td align="center">{$item2['status']}&nbsp;</td>
+    <td align="center">{$item2['is_show']}&nbsp;</td>
+    <td width="100" align="center"><a href="{:U('',array('id'=>$item2['id']))}">编辑</a> | <a href="{:U('nodedel',array('id'=>$item2['id']))}">删除</a></td>
+
+  </tr>
+  
+  </eq>
+
+  
+  
+  
+  
+  
+</foreach>
+  
+  
+  
+  
+  </foreach>
+</table>
+
+
+
+
+
+
+
+<form action="{:U('node_action')}" method="post">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>所属级</th>
+    <td><label>
+      <select name="pid">
+	  
+        <option value="1">本系统</option>
+<foreach name="_all_node" item="item">
+        <option value="{$item['id']}">-- {$item['name']}  - {$item['title']}</option>
+</foreach>
+	  
+      </select>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th width="150">模块名</th>
+    <td><label>
+      <input name="name" type="text" id="name" size="20" />
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>模块标题</th>
+    <td><label>
+      <input name="title" type="text" id="title" size="40" />
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>排序</th>
+    <td><label>
+      <input name="orderby" type="text" id="orderby" value="50" size="5" />
+    </label></td>
+    <td>请输入数字</td>
+  </tr>
+  <tr>
+    <th>是否启用</th>
+    <td><label>
+      <input name="status" type="radio" value="1" checked="checked" />
+    启用
+    <input type="radio" name="status" value="0" />
+不启用</label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>是否显示</th>
+    <td><label>
+    <input name="is_show" type="radio" value="1" checked="checked" />
+显示
+<input type="radio" name="is_show" value="0" /> 
+不显示
+</label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><label>
+      <input type="submit" name="Submit" value="提交" />
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+</form>
+</div>

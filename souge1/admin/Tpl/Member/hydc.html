@@ -1,0 +1,21 @@
+{__NOLAYOUT__}
+<?php
+header("Content-type:application/vnd.ms-excel");
+header("Content-Disposition:attachment;filename=会员导出-".date('Y-m-d',time()).".xls");
+?>
+
+<body>
+
+<table  border="0">
+<volist name="hydc" id="vo">
+  <tr>
+  	<td>会员用户名:</td>
+    <td>{$vo['username']}</td>
+    <td>上次登录时间:</td>
+    <td>{$vo['activetime']|date="Y-m-d",###}</td>
+  </tr>
+</volist>
+</table>
+
+</body>
+</html>

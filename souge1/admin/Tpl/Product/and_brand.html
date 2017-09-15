@@ -1,0 +1,39 @@
+<div id="contentBox">
+<div class="title1">关联品牌</div>
+
+<form method="post" action="{:U('and_brand_update')}">
+<input type="hidden" name="product_sort_id" value="{$_GET['tid']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th width="100">ID</th>
+    <th width="70">&nbsp;</th>
+    <th>名称</th>
+    <th>&nbsp;</th>
+    </tr>
+
+
+
+<foreach name="list" item="vo">
+  <tr class="t1">
+    <td width="100"><input name="brand_id[]" type="checkbox" id="checkbox_{$vo['id']}" value="{$vo['id']}"  />&nbsp;</td>
+    <td><img src="__UPLOADS__/prosort/{$vo['photo']}" width="50" /></td>
+    <td>{$vo['title']}&nbsp;</td>
+    <td><neq name="vo['photo']" value=""></neq></td>
+    </tr>
+	
+</foreach>
+</table>
+
+<input type="submit" class="btn" value="提交" />
+</form>
+</div>
+
+<script language="javascript">
+jQuery(document).ready(function($){
+	<php>
+	foreach ($brand_list as $v){
+	echo "$('#checkbox_".$v['brand_id']."').attr('checked',true);";
+	}
+	</php>
+});
+</script>

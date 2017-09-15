@@ -1,0 +1,54 @@
+<div id="contentBox">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th>ID</th>
+    <th>标题</th>
+    <th>API</th>
+    <th>卖家账号/合作者ID/KEY</th>
+    <th>异步/同步回调地址</th>
+    <th>操作</th>
+  </tr>
+<foreach name="list" item="vo">
+
+
+<eq name="vo['id']" value="$_GET['tid']">
+<form action="{:U('api_update')}" method="post">
+  <tr align="center">
+    <td>{$vo['id']}<input name="id" type="hidden" value="{$vo['id']}" /></td>
+    <td>{$vo['title']}</td>
+    <td>{$vo['api']}</td>
+    <td align="left"><input name="seller_email" type="text" value="{$vo['seller_email']}" /><br />
+    <input name="partner" type="text" value="{$vo['partner']}" />
+      <br />
+      <input name="key" type="text" value="{$vo['key']}" />
+      </td>
+    <td align="left"><input name="notify_url" type="text" value="{$vo['notify_url']}" /><br />
+      <input name="return_url" type="text" value="{$vo['return_url']}" /></td>
+    <td><input value="修改" type="submit" /><a href="{:U('')}">取消</a></td>
+  </tr>
+</form>
+<else />
+  <tr align="center">
+    <td>{$vo['id']}</td>
+    <td>{$vo['title']}</td>
+    <td>{$vo['api']}</td>
+    <td align="left">{$vo['seller_email']}<br />
+      {$vo['partner']}<br />
+      {$vo['key']}</td>
+    <td align="left">{$vo['notify_url']}<br />
+      {$vo['return_url']}</td>
+    <td><a href="{:U('',array('tid'=>$vo['id']))}">编辑</a></td>
+  </tr>
+</eq>
+</foreach>
+
+</table>
+<div align="center"><br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+非技术人员，不推荐修改此处，可能会造成网站无法支付的问题</div>
+</div>

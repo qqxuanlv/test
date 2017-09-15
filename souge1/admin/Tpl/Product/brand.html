@@ -1,0 +1,42 @@
+<div id="contentBox">
+
+<ul class="ul1">
+	<li><span class="btn1"><a href="{:U('edit_brand')}">添加品牌</a></span></li>
+</ul>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th width="100">ID</th>
+    <th>名称</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>操作</th>
+  </tr>
+
+
+
+<volist name="list" id="vo">
+  <tr class="t1">
+    <td width="100">{$vo['id']}&nbsp;</td>
+    <td>{$vo['name']}&nbsp;</td>
+    <td><neq name="vo['photo']" value=""><img src="__UPLOADS__/prosort/{$vo['photo']}" width="100" /></neq></td>
+    <td width="100">
+    
+
+    
+    
+    
+    </td>
+    <td width="100"><a href="{:U('edit_brand',array('id'=>$vo['id']))}">编辑</a> | <a href="{:U('del_brand',array('tid'=>$vo['id']))}">删除</a></td>
+  </tr>
+	<volist name="vo._child" id="vo2">
+	  <tr>
+		<td>{$vo2['id']}&nbsp;</td>
+		<td>┠{$vo2['name']}&nbsp;</td>
+		<td>&nbsp;</td>
+		<td width="100"></td>
+		<td width="100"><a href="{:U('edit_brand',array('id'=>$vo2['id']))}">编辑</a> | <a href="{:U('del_brand',array('tid'=>$vo2['id']))}">删除</a></td>
+	  </tr>
+	</volist>
+</volist>
+</table>
+</div>

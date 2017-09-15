@@ -1,0 +1,45 @@
+<div id="contentBox">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>快递方式</th>
+    <th>运费说明</th>
+    <th>设置其他城市运费规则</th>
+    <th>操作</th>
+  </tr>
+<foreach name="list" item="vo">
+
+
+<eq name="vo['id']" value="$_GET['tid']">
+<form action="{:U('freight_update')}" method="post">
+  <tr align="center">
+    <td>{$vo['id']}<input name="id" type="hidden" value="{$vo['id']}" /></td>
+    <td><input name="title" type="text" value="{$vo['title']}" /></td>
+    <td>默认运费<input name="moren_weight" value="{$vo['moren_weight']}" size="4" />Kg以内，<input name="moren_price" value="{$vo['moren_price']}" size="4" />元；每增加<input name="xuzhong_weight" value="{$vo['xuzhong_weight']}" size="4" />Kg，运费增加<input name="xuzhong_price" value="{$vo['xuzhong_price']}" size="4" />元<br />
+      官方网站：<input name="url" value="{$vo['url']}" size="60" /><br />
+      查询地址：<input name="query_url" value="{$vo['query_url']}" size="60" /></td>
+    <td>&nbsp;</td>
+    <td><input value="修改" type="submit" /><a href="{:U('')}">取消</a></td>
+  </tr>
+</form>
+<else />
+  <tr align="center">
+    <td>{$vo['id']}</td>
+    <td>{$vo['title']}</td>
+    <td>默认运费{$vo['moren_weight']}Kg以内，{$vo['moren_price']}元；每增加{$vo['xuzhong_weight']}Kg，运费增加{$vo['xuzhong_price']}元<br />
+      官方网站：{$vo['url']}<br />
+      查询地址：{$vo['query_url']}</td>
+    <td><a href="{:U('freight_city_rule',array('tid'=>$vo['id']))}">设置规则</a></td>
+    <td><a href="{:U('',array('tid'=>$vo['id']))}">编辑</a> | <a href="{:U('freight_del',array('tid'=>$vo['id']))}">删除</a></td>
+  </tr>
+</eq>
+</foreach>
+
+</table>
+
+
+<div><br />
+<br />
+<br />
+<span class="btn1"><a href="{:U('freight_add')}">新增快递方式</a></span></div>
+</div>

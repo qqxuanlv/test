@@ -1,0 +1,24 @@
+<div id="contentBox">
+<div class="page">
+{$page}
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>城市</th>
+    <th>排序</th>
+    <th width="100">操作</th>
+  </tr>
+  <volist name="list" id="item">
+  <tr>
+    <td>{$item['id']}&nbsp;</td>
+    <td><eq name="item['id']" value="$item['pid']">+<else />——</eq>{$item['title']}&nbsp;</td>
+    <td>{$item['orderby']}&nbsp;</td>
+    <td width="100"><a href="{:U('edit',array('tid'=>$item['id']))}">编辑</a> | <a href="{:U('del',array('tid'=>$item['id']))}">删除</a></td>
+  </tr>
+  </volist>
+</table>
+<div class="page">
+{$page}
+</div>
+</div>

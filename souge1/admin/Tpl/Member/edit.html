@@ -1,0 +1,75 @@
+<div id="contentBox">
+<form action="{:U('editupdate')}" method="post">
+<input name="tid" type="hidden" value="{$_GET['tid']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>用户名<span class="red">*</span></th>
+    <td><input name="username" type="text" id="username"  value="{$list['username']}" disabled="disabled" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>密码<span class="red">*</span></th>
+    <td><input name="password" type="password" id="password"  /></td>
+    <td class="td3">如不修改则留空</td>
+  </tr>
+  <tr>
+    <th>重复密码<span class="red">*</span></th>
+    <td><input name="password2" type="password" id="password2" /></td>
+    <td class="td3">如不修改则留空</td>
+  </tr>
+  <tr>
+    <th>姓名</th>
+    <td><input name="name" type="text" id="name" value="{$list['name']}" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>性别</th>
+    <td>
+    
+    <input name="sex" type="radio"  value="1" <eq name="list['sex']" value="1">checked="checked"</eq> />
+      男 
+      <input name="sex" type="radio" value="0" <eq name="list['sex']" value="0">checked="checked"</eq> />
+      女</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>车牌</th>
+    <td><input name="car" type="text" id="car" value="{$list['car']}" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>地址</th>
+    <td><input name="address" type="text" id="address" value="{$list['address']}" />	</td>
+    <td class="td3">如不修改则留空</td>
+  </tr>
+  <tr>
+    <th>邮编</th>
+    <td><input name="zipcode" type="text" id="zipcode" value="{$list['zipcode']}" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>电话</th>
+    <td><input name="tel" type="text" id="tel" value="{$list['tel']}" /></td>
+    <td class="td3">请在英文全角下输入</td>
+  </tr>
+  <tr>
+    <th>手机</th>
+    <td><input name="mobile" type="text" id="mobile" value="{$list['mobile']}" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>公司名</th>
+    <td><span>
+      <input name="company" type="text" id="company" value="{$list['company']}" />
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

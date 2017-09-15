@@ -1,0 +1,28 @@
+<div id="contentBox">
+<div class="title1">当前您已选择快递方式：{$show['title']}</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+
+    <th>规则名称</th>
+    <th>运费说明</th>
+    <th>操作</th>
+  </tr>
+<foreach name="list" item="vo">
+  <tr align="center">
+    <td>{$vo['id']}</td>
+
+    <td>{$vo['title']}</td>
+    <td>默认运费{$vo['moren_weight']}Kg以内，{$vo['moren_price']}元；每增加{$vo['xuzhong_weight']}Kg，运费增加{$vo['xuzhong_price']}元</td>
+    <td><a href="{:U('freight_city',array('tid'=>$_GET['tid'],'id'=>$vo['id']))}">编辑</a> | <a href="{:U('freight_del',array('tid'=>$vo['id']))}">删除</a></td>
+  </tr>
+</foreach>
+
+</table>
+
+
+<div><br />
+<br />
+<br />
+<span class="btn1"><a href="{:U('freight_city',array('tid'=>$_GET['tid']))}">添加规则</a></span></div>
+</div>

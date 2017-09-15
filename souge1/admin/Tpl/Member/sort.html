@@ -1,0 +1,66 @@
+<div id="contentBox">
+<span style="color:#F00f00; font-size:12px;">分类最多三级(支持导航扩展，但是类别名称不能重名)</span>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>类别名称</th>
+    <th width="100">操作</th>
+  </tr>
+  <volist name="list" id="item">
+  <tr>
+    <td>{$item['id']}&nbsp;</td>
+    <td>{$item['title']}&nbsp;</td>
+    <td width="100"><a href="{:U('sort',array('tid'=>$item['id']))}">编辑</a> | <a href="{:U('sortdel',array('tid'=>$item['id']))}">删除</a></td>
+  </tr>
+  
+  <foreach name="item['_child']" item="item2">
+  <tr>
+    <td>{$item2['id']}</td>
+    <td><div class="table_h4">{$item2['title']}</div></td>
+    <td width="100"><a href="{:U('sort',array('tid'=>$item2['id']))}">编辑</a> | <a href="{:U('sortdel',array('tid'=>$item2['id']))}">删除</a></td>
+  </tr>
+          <foreach name="item2['_child']" item="item3">
+          <tr>
+            <td>{$item3['id']}</td>
+            <td><div class="table_h4" style="padding-left:30px;">{$item3['title']}</div></td>
+            <td width="100"><a href="{:U('sort',array('tid'=>$item3['id']))}">编辑</a> | <a href="{:U('sortdel',array('tid'=>$item3['id']))}">删除</a></td>
+          </tr>
+          </foreach>  
+  </foreach>  
+  
+  </volist>
+</table>
+<form action="{:U('sortupdate')}" method="post">
+<input name="id" type="hidden" value="{$show['id']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  
+  <tr>
+    <td>请选择上级目录</td>
+    <td><label>
+      <select name="pid" >
+      <option value="0">根目录</option>
+      <foreach name="list" item="item">
+      <option value="{$item['id']}"> -- {$item['title']}</option>
+          <foreach name="item['_child']" item="item">
+          <option value="{$item['id']}"> &nbsp;&nbsp;&nbsp;&nbsp;-- {$item['title']}</option>
+          </foreach>
+      </foreach>
+      </select>
+    </label></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>模块类别<span class="red">*</span></td>
+    <td><input name="title" type="text" id="called"  value="{$show['title']}" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

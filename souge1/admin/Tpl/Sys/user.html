@@ -1,0 +1,23 @@
+<div id="contentBox">
+<div class="title1">搜索</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>用户名</th>
+    <th>密码</th>
+    <th>说明</th>
+    <th width="170">操作</th>
+  </tr>
+  <volist name="list" id="item">
+  <tr>
+    <td align="center">{$item['uid']}</td>
+    <td align="center">{$item['username']}</td>
+    <td align="center">************[已加密]</td>
+    <td align="center">{$item['note']}</td>
+    <td align="center"><a href="{:U('edit',array('tid'=>$item['id']))}">编辑</a> | <a href="{:U('reset',array('tid'=>$item['uid']))}">重置密码</a> | <a href="{:U('competence',array('tid'=>$item['uid']))}">分配权限</a></td>
+  </tr>
+  </volist>
+</table>
+
+</div>

@@ -1,0 +1,26 @@
+<div id="contentBox">
+<form action="{:U('poweredit')}" method="post">
+<input name="tid" type="hidden" value="{$_GET['tid']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>角色名<span class="red">*</span></th>
+    <td><input name="name" type="text" id="name"  value="{$list['name']}" disabled="disabled" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>导航权限设置<span class="red">*</span></th>
+    <td><volist name="menulist" id="vo">
+    <input type="checkbox" name="menurole" value="{$vo['rolenumber']}" />{$vo['called']}&nbsp;&nbsp;
+    </volist>
+    </td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

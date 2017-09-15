@@ -1,0 +1,301 @@
+<include file="Public:_editor2" />
+        
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/easyui/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/easyui/icon.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/easyui/demo.css">
+	<script type="text/javascript" src="__PUBLIC__/easyui/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/easyui/jquery.easyui.min.js"></script>
+	
+	<script type="text/javascript">
+		$(function(){
+			$('#tt2').tree({
+				checkbox: true,
+				url: '__URL__-jsontree',
+				//url: '__PUBLIC__/easyui/tree_data.php',
+				onClick:function(node){
+					$(this).tree('toggle', node.target);
+					//alert('you click '+node.text);
+				},
+				onContextMenu: function(e, node){
+					e.preventDefault();
+					$('#tt2').tree('select', node.target);
+					$('#mm').menu('show', {
+						left: e.pageX,
+						top: e.pageY
+					});
+				}
+			});
+		});
+		function reload(){
+			var node = $('#tt2').tree('getSelected');
+			if (node){
+				$('#tt2').tree('reload', node.target);
+			} else {
+				$('#tt2').tree('reload');
+			}
+		}
+		function getChildren(){
+			var node = $('#tt2').tree('getSelected');
+			if (node){
+				var children = $('#tt2').tree('getChildren', node.target);
+			} else {
+				var children = $('#tt2').tree('getChildren');
+			}
+			var s = '';
+			for(var i=0; i<children.length; i++){
+				s += children[i].text + ',';
+			}
+			alert(s);
+		}
+		function getChecked(){
+			var nodes = $('#tt2').tree('getChecked');
+			var s = '';
+			for(var i=0; i<nodes.length; i++){
+				if (s != '') s += ',';
+				s += nodes[i].id;
+			}
+			alert(s);
+			//return s;
+		}
+		function getSelected(){
+			var node = $('#tt2').tree('getSelected');
+			s=node.text;
+			alert(s);
+			return s;
+		}
+		function collapse(){
+			var node = $('#tt2').tree('getSelected');
+			$('#tt2').tree('collapse',node.target);
+		}
+		function expand(){
+			var node = $('#tt2').tree('getSelected');
+			$('#tt2').tree('expand',node.target);
+		}
+		function collapseAll(){
+			var node = $('#tt2').tree('getSelected');
+			if (node){
+				$('#tt2').tree('collapseAll', node.target);
+			} else {
+				$('#tt2').tree('collapseAll');
+			}
+		}
+		function expandAll(){
+			var node = $('#tt2').tree('getSelected');
+			if (node){
+				$('#tt2').tree('expandAll', node.target);
+			} else {
+				$('#tt2').tree('expandAll');
+			}
+		}
+		function append(){
+			var node = $('#tt2').tree('getSelected');
+			$('#tt2').tree('append',{
+				parent: (node?node.target:null),
+				data:[{
+					text:'new1',
+					checked:true
+				},{
+					text:'new2',
+					state:'closed',
+					children:[{
+						text:'subnew1'
+					},{
+						text:'subnew2'
+					}]
+				}]
+			});
+		}
+		function remove(){
+			var node = $('#tt2').tree('getSelected');
+			$('#tt2').tree('remove', node.target);
+		}
+		function update(){
+			var node = $('#tt2').tree('getSelected');
+			if (node){
+				node.text = '<span style="font-weight:bold">new text</span>';
+				node.iconCls = 'icon-save';
+				$('#tt2').tree('update', node);
+			}
+		}
+		function isLeaf(){
+			var node = $('#tt2').tree('getSelected');
+			var b = $('#tt2').tree('isLeaf', node.target);
+			alert(b)
+		}
+
+
+//$("form#add").submit( funct);
+/*			var nodes = $('#tt2').tree('getChecked');
+			var s = '';
+			for(var i=0; i<nodes.length; i++){
+				if (s != '') s += ',';
+				s += nodes[i].id;
+			}
+			$.post('__URL__-addupdate',s);*/
+			//alert(s);
+			//return s;
+function form_check()
+{
+  //alert('1');
+  
+var nodes = $('#tt2').tree('getChecked');
+			var s = '';
+			for(var i=0; i<nodes.length; i++){
+				if (s != '') s += ',';
+				s += nodes[i].id;
+			}
+$("#check_car_id").val(s);
+			
+
+}
+
+function opt_selectall(){
+$("#tt2.tree .tree-checkbox").removeClass("tree-checkbox0").addClass("tree-checkbox1");
+$("#opt_select_opt").html('<a href="javascript:opt_selectno()">[取消全选]</a>');
+
+
+}
+function opt_selectno(){
+$("#tt2.tree .tree-checkbox").removeClass("tree-checkbox1").addClass("tree-checkbox0");
+$("#opt_select_opt").html('<a href="javascript:opt_selectall()">[全选]</a>');
+
+}
+
+
+	</script>
+        
+<div id="contentBox">
+<form action="{:U('addupdate')}" method="post" id="add"  name="example" enctype="multipart/form-data" onsubmit="return form_check()">
+<input name="id" type="hidden" value="{$show['id']}" />
+<input name="otherid" id="check_car_id" type="hidden" value="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>请选择类别</th>
+    <td><select name="sortid" id="sortid">
+      <volist name="prosort" id="vo">
+      <option value="{$vo['id']}" <eq name="vo['id']" value="$show['sortid']">selected="selected"</eq> >{$vo['title']}</option>
+      </volist>
+    </select></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th valign="top">请选择车型<br />
+      <span id="opt_select_opt"><a href="javascript:opt_selectall()">[全选]</a></span></th>
+    <td>
+<ul id="tt2"></ul>
+
+	
+	</td>
+    <td valign="top" class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>请选择品牌</th>
+    <td>
+	<select name="brandid" id="select">
+      <volist name="brandsort" id="vo"> <option value="{$vo['id']}" 
+          <eq name="vo['id']" value="$show['sortid']">selected="selected"</eq>
+          >{$vo['title']}
+        </option>
+      </volist>
+    </select></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>优化提升</th>
+    <td><select name="youhuaid" id="select">
+	<option value="0">不选择</option>
+      <volist name="youhuasort" id="vo"> <option value="{$vo['id']}" 
+          <eq name="vo['id']" value="$show['youhuaid']">selected="selected"</eq>
+          >{$vo['title']}
+        </option>
+      </volist>
+    </select>&nbsp;</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>名称<span class="red">*</span></th>
+    <td><input name="name" type="text" id="name"  value="{$show['name']}" size="80" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>规格</th>
+    <td><input name="model" type="text" id="title"  value="{$show['model']}" size="20" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>单买商品价格</th>
+    <td><span>
+      <input name="price" type="text" id="model"  value="{$show['price']}" size="20" />
+    </span></td>
+    <td>支持小数点后面2位</td>
+  </tr>
+  <volist name="property" id="vo">
+  <tr>
+    <th>{$vo['title']}&nbsp;</th>
+    <td><span>
+		<input name="propertyid" type="hidden" id="model"  value="{$vo['id']}" size="20" />
+      <input name="property" type="text" id="model"  value="" size="20" />
+    </span></td>
+    <td>支持小数点后面2位</td>
+  </tr>
+  </volist>
+  <tr>
+    <th>产品主图<span class="red">*</span></th>
+    <td><input type="file" name="filename[]" /></td>
+    <td>必填</td>
+  </tr>
+  <tr>
+    <th>产品附图</th>
+    <td>
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" />
+&nbsp;</td>
+    <td>附图数量不设限制，如需更多，请在所有产品处上传</td>
+  </tr>
+  <tr>
+    <th>商品介绍</th>
+    <td><textarea name="content1" style="width:700px;height:200px;visibility:hidden;">{$show['content1']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>规格参数</th>
+    <td>
+    
+		<textarea name="content2" style="width:700px;height:200px;visibility:hidden;">{$show['content2']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>title</th>
+    <td><span>
+      <input name="title" type="text" id="title"  value="{$show['title']}" size="80" />
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th> keywords </th>
+    <td><span>
+      <input name="keywords" type="text" id="keywords"  value="{$show['keywords']}" size="80" />
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th> description </th>
+    <td><span>
+      <input name="description" type="text" id="description"  value="{$show['description']}" size="80" />
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit"  class="btn1" value="提 交" />(提交快捷键: Ctrl + Enter)</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+</div>

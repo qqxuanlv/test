@@ -1,0 +1,246 @@
+<div id="contentBox">
+<div id="normalorder" class="smart_detail">
+	<h2 >订单信息</h2>  
+    <div id="divorderhead" class="order_news">        
+	    订单号：{$show['id']} , 订单密码：{$show['verify']}
+	      <div class='order_flow'> <div class='order_flow_left'><span>
+	      <p  class='name'>提交订单时间</p>
+	      <p>{$show['addtime']|date="Y-m-d H:m:s",###}</p></span></div><div class='order_flow_arrive'>
+<span class="btn1"><a href="{:U('audit',array('tid'=>$show['id'],'pass'=>1))}">通过审核</a></span> <span class="btn1"><a href="{:U('audit',array('tid'=>$show['id'],'pass'=>2))}">审核拒绝</a></span>
+		  <span>
+		  <eq name="show['isaudit']" value='0'><p  class='name'>订单未审核</p></eq>
+		  <eq name="show['isaudit']" value='1'><p  class='name'>订单审核通过</p><p>{$show['audittime']|date="Y-m-d H:m:s",###}</p></eq>
+		  <eq name="show['isaudit']" value='2'><p  class='name'>订单审核拒绝</p><p>{$show['audittime']|date="Y-m-d H:m:s",###}</p></eq>
+		  
+		  </span>    	
+</eq>
+</div>
+		  <div class='clear'></div></div>    	
+
+
+	</div>
+
+	
+
+	   <div id="nousediv" style="height:10px"></div>
+
+
+	<div class="order_detail_frame">
+
+   
+
+	
+
+    <!--收货人信息修改开始-->
+
+    
+
+    <h2 >收货人信息</h2>        
+
+     <ul class="ditail_frame_p" id="receiver_label_content"  style="display:block">
+
+      <li><span id="label_name">{$show['name']}</span>，<span id="label_address">{$show['address']}，{$show['zipcode']}，{$show['mobile']} {$show['tel']}</span></li>
+
+    </ul>    
+
+    <ul class="ditail_frame_p ditail_frame_receive" id="receiver_input_content" style="display:none">
+
+      <li>收&nbsp;货&nbsp;人：<input name="" type="text" value='' id="input_name" maxlength="5" /><span id="warn_input_name" class="wrong" style="visibility:hidden">请填写收货人姓名</span></li>
+
+      <li>地&nbsp;&nbsp;&nbsp;&nbsp;址：中国，浙江，宁波市</li>
+
+      <li>手&nbsp;&nbsp;&nbsp;&nbsp;机：<input name="" type="text" value='15990533995' id="input_mobile" maxlength="15" /><span class="perhaps">或</span>固定电话：<input name="" type="text" value='' id="input_fixtel" maxlength="15" /><span class="wrong" id="warn_input_tel" style="visibility:hidden">请填写移动电话或者固定电话</span></li>
+
+      <li class="btn"><button name="savechg"  onclick="javascript:modify_connect_info('4589296966')">保存修改</button><span class="wrong" id="warn_modify_receiverinfo" style="visibility:hidden">您的订单已审核，无法进行修改。</span></li>        
+
+    </ul>
+
+		 
+
+		 
+
+		 
+
+	
+
+		 <h2>送货方式</h2>
+
+		 <ul  class="ditail_frame_p">
+
+		 <li>{$show['freight']} {$show['freightprice']}</li>
+
+		 </ul>
+
+		 
+
+		 
+
+	     <h2>付款方式</h2>
+
+		 <ul  class="ditail_frame_p">
+
+		 <li>{$payment} 
+                
+<if condition="($show['isfukuan'] eq 1)">
+<span class="green">[已付款]</span>
+<else />
+<span class="red">[未付款]</span>
+</if></li>
+
+		 
+
+		 
+
+		 </ul>
+
+	
+
+	
+
+	
+
+	<div class="ditail_frame ditail_frame_nopadding" id ='4589296966'>
+
+        <div class="business_bag">
+
+         
+
+          
+
+         
+
+            
+
+              <h2>商品清单</h2>
+
+              
+
+        
+
+              
+
+                      
+
+            
+
+          <!-- 分包裹订单 2 的开头///////////////////////////////////////////////////////////-->
+
+          
+
+        </div>       
+
+ 
+
+       
+
+    </div>
+
+    
+
+     
+
+      
+
+           
+
+    
+
+
+
+         
+
+                
+
+         
+
+         <div class="merch_bord">
+       <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tabl_gray_1">  	 
+			            <tr>
+			              <td class="tab_w">&nbsp;</td>
+			              <td class="tab_w1">商品名称</td>
+			              <td class='tab_w7'>说明</td>
+			              <td class='tab_w3'>价格</td>
+			              <td class='tab_w6'>数量</td>
+			              <td class='tab_w4'>小计</td>
+                </tr>
+				<volist name="show.Ordercart" id="vo">
+		              <tr><td class="tab_w"><a href="__ROOT__/Products-show-{$vo['productsid']}.html" target="_blank" ><img src="__UPLOADS__/pro/thumb/thumb_100_{$vo['photo']}" title="{$vo['productsname']}"/></a></td><td class="tab_w1"><a href="__ROOT__/Products-show-{$vo['productsid']}.html" target ='_blank' title='{$vo['productsname']}'>{$vo['productsname']}</a></td><td class='tab_w7'>{$vo['productsnote']}</td><td class='tab_w3'><span>￥{$vo['price']}</span></td><td class='tab_w6'>{$vo['productsnum']}</td><td class='tab_w4'>￥{$vo['price']*$vo['productsnum']}</td></tr>
+				</volist>
+		    </table>
+
+		 </div>
+
+		 
+
+	     <div class="ditail_frame_notop"><table class="tabl_other">  <tr>    <td>商品金额合计：<span>￥{$show['proprice']}</span></td>  </tr></table><div class="price_total">您需支付：<span>￥{$show['proprice']}</span> + 运费{$show['freightprice']} = {$show['proprice']+$show['freightprice']}</div>  </div>	
+
+	     
+
+        
+
+         	      
+
+	     
+
+	      
+
+         
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+	
+
+
+
+  <div class="ditail_pay"></div>
+
+  
+
+<!--
+      <h2  >发票信息</h2>
+
+ 
+
+    <ul class="ditail_frame_p" id="invoice_label_content"  style="display:block">
+
+      <li>发票抬头：<span id="label_invoice_title">{$show['invoicecompany']}</span></li>
+      <li>发票内容：<span id="label_invoice_content">{$show['invoicecontent']}</span></li>
+      <li>发票类型：<span id="label_invoice_content">{$show['invoicetype']}</span></li>
+
+       
+
+    </ul>
+-->
+    
+
+    <!--发票信息修改开始-->
+
+   
+
+      
+
+
+
+    
+
+    <!--退换货信息 开始-->
+
+
+	</div>
+</div>
+
+</div>

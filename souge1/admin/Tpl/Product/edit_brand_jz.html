@@ -1,0 +1,43 @@
+<div id="contentBox">
+<form action="{:U('edit_brand_jz_update')}" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="id" value="{$_GET['id']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>请选择类别</th>
+    <td><select name="sort" id="sortid">
+    <option value="0">未选择</option>
+      <foreach name="prosort" item="vo">
+        <optgroup label="{$vo['title']}">
+          <volist name="vo['_child']" id="vo2">
+          <optgroup label="{$vo2['title']}" ></optgroup>
+          	  <volist name="vo2['_child']" id="vo3">
+              <option value="{$vo3['id']}" <eq name="vo3['id']" value="$show['sort']">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp; {$vo3['title']}</option>
+              		<volist name="vo3['_child']" id="vo4">
+                  	<option value="{$vo4['id']}" <eq name="vo4['id']" value="$show['sort']">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {$vo4['title']}</option>
+                  	</volist>
+              </volist>
+          </optgroup>
+          </volist>
+          </optgroup>
+        </foreach>
+      </select></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>名称</td>
+    <td><input name="name" type="text" id="name" value="{$show['name']}"></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+
+</form>
+
+</div>

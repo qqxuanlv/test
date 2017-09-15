@@ -1,0 +1,54 @@
+<include file="Public:_editor" />
+<div id="contentBox">
+<form action="{:U('update')}" method="post"  name="example" enctype="multipart/form-data">
+<input name="id" type="hidden" value="{$show['id']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>姓名<span class="red">*</span></th>
+    <td>{$show['name']}</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>标题<span class="red">*</span></th>
+    <td>{$show['title']}</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>邮件<span class="red">*</span></th>
+    <td>{$show['email']}</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>留言时间<span class="red">*</span></th>
+    <td>{$show['addtime']|date="Y-m-d",###}</td>
+    <td>&nbsp;</td>
+  </tr>  
+  <tr>
+    <th>内容<span class="red">*</span></th>
+    <td>{$show['content']|stripslashes}</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>回复<span class="red">*</span></th>
+    <td><textarea name="content" style="width:700px;height:200px;visibility:hidden;">{$show['replay']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+   <tr>
+    <th>是否显示</th>
+    <td><label>
+     <select name="is_show" id="is_show">
+      <option value="0" <eq name="show['is_show']" value="0">selected="selected"</eq> >否</option>
+      <option value="1" <eq name="show['is_show']" value="1">selected="selected"</eq> >是</option>
+    </select>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="button" class="btn1" value="提 交" />(提交快捷键: Ctrl + Enter)</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

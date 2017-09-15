@@ -1,0 +1,51 @@
+<div id="contentBox">
+<form action="{:U('addphotoupdate')}" method="post" enctype="multipart/form-data">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>所属相册</th>
+    <td><select name="albumid" id="albumid">
+      <volist name="list" id="vo">
+      <option value="{$vo['id']}">{$vo['title']}</option>
+      </volist>
+    </select></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>图片<span class="red">*</span></th>
+    <td><input type="file" name="filename"/></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>小图片<span class="red">*</span></th>
+    <td><input type="file" name="profile"/></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>标题</th>
+    <td><input name="title" type="text" id="title"  value="" size="80" /></td>
+    <td>可选<br />
+      如该选项为空，则自动使用图片文件名</td>
+  </tr>
+  
+
+  <tr>
+    <th>链接</th>
+    <td><input name="url" type="text" id="url"  value="" size="80" /></td>
+    <td>可选</td>
+  </tr>
+  <tr>
+    <th>排序</th>
+    <td><span>
+      <input name="orderby" type="text" id="orderby"  value="0" size="5" />
+    </span></td>
+    <td>可选</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

@@ -1,0 +1,39 @@
+<div id="contentBox">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>链接名称</th>
+    <th>链接地址</th>
+    <th>操作</th>
+  </tr>
+<foreach name="list" item="vo">
+
+
+<eq name="vo['id']" value="$_GET['tid']">
+<form action="{:U('flink_update')}" method="post">
+  <tr align="center">
+    <td>{$vo['id']}<input name="id" type="hidden" value="{$vo['id']}" /></td>
+    <td><input name="title" type="text" value="{$vo['title']}" /></td>
+    <td><input name="link" type="text" value="{$vo['url']}" /></td>
+    <td>&nbsp;</td>
+    <td><input value="修改" type="submit" /><a href="{:U('')}">取消</a></td>
+  </tr>
+</form>
+<else />
+  <tr align="center">
+    <td>{$vo['id']}</td>
+    <td>{$vo['title']}</td>
+    <td>{$vo['url']}</td>
+    <td><a href="{:U('',array('tid'=>$vo['id']))}">编辑</a> | <a href="{:U('freight_del',array('tid'=>$vo['id']))}">删除</a></td>
+  </tr>
+</eq>
+</foreach>
+
+</table>
+
+
+<div><br />
+<br />
+<br />
+<span class="btn1"><a href="{:U('flink_add')}">新增友情链接</a></span></div>
+</div>

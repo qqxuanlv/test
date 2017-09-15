@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>客房管理</title>
+	<link rel="stylesheet" type="text/css" href="../../styles/formui.css" />
+	<link rel="stylesheet" type="text/css" href="../../styles/base.css"/>
+	<link rel="stylesheet" type="text/css" href="../../styles/admin-all.css" />
+	<link rel="stylesheet" type="text/css" href="../../styles/themes/gray/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../styles/ui-lightness/jquery-ui-1.8.22.custom.css" /> 
+	<link rel="stylesheet" type="text/css" href="../../styles/themes/icon.css"/>
+	<script type="text/javascript" src="../../scripts/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../../scripts/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../scripts/jquery-ui-1.8.22.custom.min.js"></script>
+	<script type="text/javascript" src="../../scripts/tb.js"></script>
+	<script type="text/javascript" src="../../scripts/acc.js"></script>
+</head>
+<body>
+	<div class="alert alert-info"><b>当前位置<b class="tip"></b>客房信息<b class="tip"></b>客房管理</b></div>
+	<form action="roomManage.html" method="post">
+		<table class="tbform">
+	        <tbody>
+	            <tr>
+					<td  class="tdl">客房类型：</td>
+	                <td>
+						<select  name="roomType" style="width:180px;">
+							<option value="">全部</option>
+							
+							<option value="1">单人间</option>
+							
+							<option value="2">标准间</option>
+							
+							<option value="3">商务间</option>
+							
+							<option value="4">豪华间</option>
+							
+						</select>
+					</td>
+					<td  class="tdl">客房状态：</td>
+	                <td>
+						<select  name="roomStatus" style="width:180px;">
+							<option value="">全部</option>
+							
+							<option value="2">可入住</option>
+							
+							<option value="1">未打扫</option>
+							
+							<option value="3">已入住</option>
+							
+						</select>
+					</td>
+					<td  class="tdl">客房号：</td>
+					<td><input name="roomNo" /></td>
+					<td><input type="submit" class="btn"  value="查询"/></td>
+					<td><a id="add" href="roomAdd.html" class="easyui-linkbutton" data-options="iconCls:'icon-back'">新增</a></td>
+	            </tr>
+	        </tbody>
+	    </table>
+    </form>
+	<table class="tb" id="list">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>客房号</th>
+				<th>客房楼层</th>
+				<th>客房类型</th>
+				<th>客房价格</th>
+				<th>客房状态</th>
+				<th width="20%">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+					
+			<tr>
+				<td>1</td>
+				<td>101</td>
+				<td>1</td>
+				<td>单人间</td>
+				<td>138</td>
+				<td>可入住</td>
+				<td>	
+					<a href="roomAlter.html?roomId=1" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">编辑</a>
+					<a href="roomDel.html?roomId=1" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">删除</a>
+				</td>
+			</tr>
+			
+					
+			<tr>
+				<td>2</td>
+				<td>102</td>
+				<td>1</td>
+				<td>单人间</td>
+				<td>138</td>
+				<td>可入住</td>
+				<td>	
+					<a href="roomAlter.html?roomId=3" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">编辑</a>
+					<a href="roomDel.html?roomId=3" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">删除</a>
+				</td>
+			</tr>
+			
+					
+			<tr>
+				<td>3</td>
+				<td>103</td>
+				<td>1</td>
+				<td>单人间</td>
+				<td>138</td>
+				<td>可入住</td>
+				<td>	
+					<a href="roomAlter.html?roomId=5" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">编辑</a>
+					<a href="roomDel.html?roomId=5" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">删除</a>
+				</td>
+			</tr>
+			
+					
+			<tr>
+				<td>4</td>
+				<td>201</td>
+				<td>2</td>
+				<td>标准间</td>
+				<td>165</td>
+				<td>可入住</td>
+				<td>	
+					<a href="roomAlter.html?roomId=6" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">编辑</a>
+					<a href="roomDel.html?roomId=6" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">删除</a>
+				</td>
+			</tr>
+			
+			
+		</tbody>
+		<tfoot>
+			<tr>
+			<table class="tb" >
+				<tr class="pager">
+					<th width="100%">
+					</th>
+				</tr>
+			</table>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>

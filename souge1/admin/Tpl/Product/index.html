@@ -1,0 +1,98 @@
+<div id="contentBox">
+<div class="title1">产品搜索</div>
+<form action="{:U()}" method="get">
+<input type="hidden" value="{:ACTION_NAME}" name="a" />
+<input type="hidden" value="{:MODULE_NAME}" name="m" />
+<table border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>产品名</td>
+    <td><label>
+      <input name="keyword" type="text" id="keyword" value="{$_GET['keyword']}" />
+    </label></td>
+    <td><label>
+      <input type="submit" value="提交" />
+    </label></td>
+  </tr>
+</table>
+
+</form>
+
+<div class="page">
+{$page}
+</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>图片</th>
+    <th>产品名</th>
+    <th>排序</th>
+    <th width="50" align="center"><a href="{:U('index',array('order'=>'issales'))}">上架</a></th>
+    <th width="50" align="center"><a href="{:U('index',array('order'=>'iscomm'))}">推荐</a></th>
+    <th width="50" align="center"><a href="{:U('index',array('order'=>'ishot'))}">热销</a></th>
+    <th width="50" align="center"><a href="{:U('index',array('order'=>'ispromotion'))}">促销</a></th>
+    <th width="100">管理附图</th>
+    <th width="100">操作</th>
+  </tr>
+  <volist name="list" id="item">
+  <tr>
+    <td>{$item['id']}&nbsp;</td>
+    <td>
+	<div class="attphoto"><a href="__UPLOADS__/pro/{$item['photo']}" target="_blank"><img src="__UPLOADS__/pro/thumb/thumb_100_{$item['photo']}" /></a></div>
+	<div class="attphoto">
+<volist name="item['attphoto']" id="p">
+<a href="__UPLOADS__/pro/{$p['photo']}" target="_blank"><img src="__UPLOADS__/pro/thumb/thumb_100_{$p['photo']}" /></a></volist>
+	</div>	</td>
+    <td>
+      {$item['name']}
+
+      </td>
+    <td>{$item['orderby']}&nbsp;</td>
+    <td align="center">
+
+    
+    <eq name="item['issales']" value="1">
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'issales','v'=>0))}">是</a>
+    <else />
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'issales','v'=>1))}">否</a>
+    </eq>    
+    
+    
+    </td>
+    <td align="center">
+
+    
+    <eq name="item['iscomm']" value="1">
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'iscomm','v'=>0))}">是</a>
+    <else />
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'iscomm','v'=>1))}">否</a>
+    </eq>    
+    
+    </td>
+    <td align="center">
+
+    
+    <eq name="item['ishot']" value="1">
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'ishot','v'=>0))}">是</a>
+    <else />
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'ishot','v'=>1))}">否</a>
+    </eq>    
+    
+    </td>
+    <td align="center">
+    <eq name="item['ispromotion']" value="1">
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'ispromotion','v'=>0))}">是</a>
+    <else />
+    <a href="{:U('status',array('tid'=>$item['id'],'f'=>'ispromotion','v'=>1))}">否</a>
+    </eq>
+    
+    </td>
+    <td width="100"><a href="{:U('attedit',array('tid'=>$item['id']))}">管理附图</a></td>
+    <td width="100"><a href="{:U('edit',array('tid'=>$item['id'],'language'=>$item['language']))}">编辑</a> | <a href="{:U('del',array('tid'=>$item['id']))}" onclick="if(!confirm('你确定要删除吗？')){return false;}">删除</a></td>
+  </tr>
+  </volist>
+</table>
+<div class="page">
+{$page}
+</div>
+</div>

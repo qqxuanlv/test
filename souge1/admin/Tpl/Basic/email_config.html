@@ -1,0 +1,85 @@
+<div id="contentBox">
+<form action="{:U('email_config_update')}" method="post"  name="example" enctype="multipart/form-data">
+<input name="id" type="hidden" value="1" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <td width="150">邮件账号<span class="red">*</span></td>
+    <td class="td2"><input name="smtp_user" type="text" id="smtp_user"  value="{$show['smtp_user']}" size="80" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>邮件密码</td>
+    <td><label>
+      <input name="smtp_pass" type="password" id="smtp_pass" value="{$show['smtp_pass']}" size="80" />
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>SMTP服务器</td>
+    <td><input name="smtp_host" type="text" id="smtp_host" value="{$show['smtp_host']}" size="80" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>SMTP端口</td>
+    <td><input name="smtp_port" type="text" id="smtp_port" value="{$show['smtp_port']}" size="80" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>加密协议</td>
+    <td><select name="smtp_secure" id="smtp_secure">
+      <option value="" <eq name="show['smtp_secure']" value="">selected="selected"</eq>>不加密</option>
+      <option value="tls" <eq name="show['smtp_secure']" value="tls">selected="selected"</eq>>TLS加密</option>
+      <option value="ssl" <eq name="show['smtp_secure']" value="ssl">selected="selected"</eq>>SSL加密</option>
+    </select></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>启用 SMTP 验证功能</td>
+    <td><label>
+      <select name="smtp_auth" id="smtp_auth">
+        <option value="true" <eq name="show['smtp_auth']" value="true">selected="selected"</eq>>开启</option>
+        <option value="false" <eq name="show['smtp_auth']" value="false">selected="selected"</eq>>关闭</option>
+      </select>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>发件人地址</td>
+    <td><input name="from_email" type="text" id="from_email" value="{$show['from_email']}" size="80" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>发件人姓名</td>
+    <td><input name="from_name" type="text" id="from_name" value="{$show['from_name']}" size="80" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>回件人地址</td>
+    <td><input name="reply_email" type="text" id="reply_email" value="{$show['reply_email']}" size="80" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>回件人姓名</td>
+    <td><input name="reply_name" type="text" id="reply_name" value="{$show['reply_name']}" size="80" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+      
+      <input name="test_on" type="checkbox" value="yes"  />
+      
+      发送测试邮件</td>
+    <td><span class="td2">
+      <input name="test_email" type="text" id="test_email" size="80" value="{$show['test_email']}"  />
+      请输入测试邮件地址</span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="button" class="btn1" value="提 交" />(提交快捷键: Ctrl + Enter)</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

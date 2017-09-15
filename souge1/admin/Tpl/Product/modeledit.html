@@ -1,0 +1,112 @@
+<div id="contentBox">
+<div class="title1">{$page_show['name']}</div>
+<div class="title2">
+<span>您可以选择：</span>
+<a href="{:U('Product/edit',array('tid'=>$_GET['tid']))}">修改该产品</a> | 
+
+<a href="{:U('Product/attedit',array('tid'=>$_GET['tid']))}">管理附图</a> | 
+<a href="{:U('Product/modeledit',array('tid'=>$_GET['tid']))}">管理规格</a> | 
+<a href="{:U('Product/property_edit',array('tid'=>$_GET['tid']))}">管理属性</a> | 
+
+<a href="{:U('Product/index')}">返回产品列表</a>
+
+</div>
+<div class="title1">目前已有的规格</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>规格</th>
+    <th>描述</th>
+    <th>价格</th>
+    <th>包装方式</th>
+    <th>包装内数量</th>
+    <th>重量/Kg</th>
+    <th>操作</th>
+  </tr>
+<foreach name="list" item="item">
+<eq name="item['id']" value="$_GET['id']">
+<form method="post" action="{:U('modelupdate')}">
+<input name="id" value="{$item['id']}" type="hidden" />
+  <tr>
+    <td><input name="model" value="{$item['model']}" /></td>
+    <td><input name="size" value="{$item['size']}" /></td>
+    <td><input name="price" value="{$item['price']}" /></td>
+    <td><select name="package">
+      <foreach name="package_list" item="item2">
+        <option value="{$item2['title']}" <eq name="item2['title']" value="$item['package']">selected="selected"</eq>>{$item2['title']}</option>
+      </foreach>
+    </select></td>
+    <td><input name="num" id="num" value="{$item['num']}" /></td>
+    <td><input name="weight" type="text" value="{$item['weight']}" size="10" /></td>
+    <td><input value="修改" type="submit" /><a href="{:U('',array('tid'=>$item['productsid']))}">取消</a></td>
+  </tr>
+</form>
+<else />
+  <tr>
+    <td>{$item['model']}</td>
+    <td>{$item['size']}</td>
+    <td>{$item['price']}</td>
+    <td>{$item['package']}</td>
+    <td>{$item['num']}</td>
+    <td>{$item['weight']}</td>
+    <td><a href="{:U('',array('tid'=>$item['productsid'],'id'=>$item['id']))}">编辑</a> | <a href="{:U('modeldel',array('id'=>$item['id']))}">删除</a></td>
+  </tr>
+</eq>
+</foreach>
+</table>
+
+<div class="title1">增加规格</div>
+<form action="{:U('modelupdate')}" method="post" >
+<input name="productsid" type="hidden" value="{$_GET['tid']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable2" class="table table-hover">
+  <tr>
+    <th width="150">规格</th>
+    <td><label>
+      <!--<input type="text" name="model"  />-->
+      <select name="model">
+      <option value="尺码">尺码</option>
+      <option value="颜色">颜色</option>
+      <option value="袖长">袖长</option>
+      </select>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>描述</th>
+    <td><input type="text" name="size" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>单价</th>
+    <td><input name="price" type="text" value="0.00" size="10" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th width="150">包装方式</th>
+    <td><select name="package">
+    <foreach name="package_list" item="item">
+    	<option value="{$item['title']}">{$item['title']}</option>
+    </foreach>
+    </select></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th width="150">包装内数量</th>
+    <td><input name="num" type="text" value="1" size="10" id="num" />
+      数量最少为1</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>重量</th>
+    <td><input name="weight" type="text" value="0" size="10" />
+      Kg</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" value="提交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

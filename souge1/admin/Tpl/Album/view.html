@@ -1,0 +1,28 @@
+<div id="contentBox">
+  <div class="page">
+{$page}
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>图片</th>
+    <th>内容</th>
+    <th>添加时间</th>
+    <th width="100">操作</th>
+  </tr>
+  <volist name="list" id="item">
+  <tr>
+    <td>{$item['id']}</td>
+    <td><a href="__UPLOADS__/album/{$item['filename']}" target="_blank"><img src="__UPLOADS__/album/{$item['filename']}" width="150" /></a>&nbsp;</td>
+    <td>{$item['title']}<br />
+{$item['url']}<br />
+{$item['profile']}</td>
+    <td>{$item['addtime']|date="Y-m-d H:m:s",###}</td>
+    <td width="100"><a href="{:U('editphoto',array('tid'=>$item['id']))}">修改</a> | <a href="{:U('deletephoto',array('tid'=>$item['id']))}">删除</a></td>
+  </tr>
+  </volist>
+</table>
+<div class="page">
+{$page}
+</div>
+</div>

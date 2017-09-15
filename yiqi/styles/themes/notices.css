@@ -1,0 +1,18 @@
+A:link {
+	COLOR: #555555; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #555555; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #555555; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #6f9822; TEXT-DECORATION: none
+}
+.text {
+	FONT-SIZE: 12px; COLOR: #555555; FONT-FAMILY: ""; TEXT-DECORATION: none
+}
+.STYLE1 {font-size: 13px}
+.STYLE2 {font-size: 12px}
+.STYLE3 {font-size: 11px}

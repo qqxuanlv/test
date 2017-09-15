@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/layout.css" type="text/css" rel="stylesheet" />
+<link href="css/base.css" type="text/css" rel="stylesheet" />
+<link href="css/typography.css" type="text/css" rel="stylesheet" />
+  <meta content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <!--禁用iphone默认的数字拨号功能-->
+    <meta name="format-detection" content="telephone=no" />
+    <!--end-->
+    <!--默认的apple工具栏和菜单栏yes or no-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--end-->
+    <!--控制状态栏显示-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<body>
+<div class="nav"> 
+    <div class="header">
+       <div class="logo"><img src="images/logo.jpg" width="100%" /></div>
+       <div class="head_right"><img src="images/tx.jpg" /><span>会员名</span></div>
+       <div class="clear"></div>
+    </div> 
+    <div class="banner"><img src="images/banner.jpg" width="100%" /></div>
+    
+    <script type="text/javascript">
+/*
+EASY TABS 1.2 Produced and Copyright by Koller Juergen
+www.kollermedia.at | www.austria-media.at
+Need Help? http:/www.kollermedia.at/archive/2007/07/10/easy-tabs-12-now-with-autochange
+You can use this Script for private and commercial Projects, but just leave the two credit lines, thank you.
+*/
+
+//EASY TABS 1.2 - MENU SETTINGS
+//Set the id names of your tablinks (without a number at the end)
+var tablink_idname = new Array("tablink","anotherlink")
+//Set the id names of your tabcontentareas (without a number at the end)
+var tabcontent_idname = new Array("tabcontent","anothercontent") 
+//Set the number of your tabs in each menu
+var tabcount = new Array("2","6")
+//Set the Tabs wich should load at start (In this Example:Menu 1 -> Tab 2 visible on load, Menu 2 -> Tab 5 visible on load)
+var loadtabs = new Array("1","5")  
+//Set the Number of the Menu which should autochange (if you dont't want to have a change menu set it to 0)
+var autochangemenu = 2;
+//the speed in seconds when the tabs should change
+var changespeed = 3;
+//should the autochange stop if the user hover over a tab from the autochangemenu? 0=no 1=yes
+var stoponhover = 0;
+//END MENU SETTINGS
+
+
+/*Swich EasyTabs Functions - no need to edit something here*/
+function easytabs(menunr, active) {if (menunr == autochangemenu){currenttab=active;}if ((menunr == autochangemenu)&&(stoponhover==1)) {stop_autochange()} else if ((menunr == autochangemenu)&&(stoponhover==0))  {counter=0;} menunr = menunr-1;for (i=1; i <= tabcount[menunr]; i++){document.getElementById(tablink_idname[menunr]+i).className='tab'+i;document.getElementById(tabcontent_idname[menunr]+i).style.display = 'none';}document.getElementById(tablink_idname[menunr]+active).className='tab'+active+' tabactive';document.getElementById(tabcontent_idname[menunr]+active).style.display = 'block';}var timer; counter=0; var totaltabs=tabcount[autochangemenu-1];var currenttab=loadtabs[autochangemenu-1];function start_autochange(){counter=counter+1;timer=setTimeout("start_autochange()",1000);if (counter == changespeed+1) {currenttab++;if (currenttab>totaltabs) {currenttab=1}easytabs(autochangemenu,currenttab);restart_autochange();}}function restart_autochange(){clearTimeout(timer);counter=0;start_autochange();}function stop_autochange(){clearTimeout(timer);counter=0;}
+
+window.onload=function(){
+var menucount=loadtabs.length; var a = 0; var b = 1; do {easytabs(b, loadtabs[a]);  a++; b++;}while (b<=menucount);
+if (autochangemenu!=0){start_autochange();}
+}
+</script>
+    <div class="main">
+        <div class="tab">
+            <ul>
+              <li><a href="#" onmouseover="easytabs('1', '1');" onfocus="easytabs('1', '1');" onclick="return false;"  title="" id="tablink1">发帖</a></li>
+              <li><a href="#" onmouseover="easytabs('1', '2');" onfocus="easytabs('1', '2');" onclick="return false;"  title="" id="tablink2">留言</a></li>
+            </ul>
+        </div>
+        <div style="height:20px; background:#f5f5f5; width:100%"></div>
+        <div id="tabcontent1">
+            <table class="biao">
+               <tr>
+                  <td><input type="text" placeholder="标题" class="text" /></td>
+               </tr>
+               <tr>
+                  <td><select class="select">
+                    <option>所属类别</option>
+                  </select></td>
+               </tr>
+               <tr>
+                  <td><textarea class="area">内容</textarea></td>
+               </tr>
+                <tr>
+                  <td style="text-align:center"><input type="submit" value="发布" class="btn" /></td>
+               </tr>
+            </table>
+            
+        </div>
+        <div id="tabcontent2">Tabcontent 2</div>
+        
+        
+        <div class="gg"><img src="images/pic.jpg" width="100%" /></div>
+        
+        <div class="foot_link">
+            <p><A href="">会员名</A>|<a href="">退出</a></p>
+            <p><A href="">标准版</A>|<a href="">触屏版</a>|<a href="">电脑版</a>|<a href="">客户端</a></p>
+        </div>
+        
+        <div class="footer">
+            <div style="font-size:30px; margin-bottom:15px">THANL YOU</div>
+            <div>感谢你选择我们</div>
+        </div>
+        
+    </div>
+    
+    
+</div> 
+</body>
+</html>
+
+
+
+
+
+
+

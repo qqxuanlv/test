@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>汽车管理系统</title>
+    <link rel="stylesheet" type="text/css" href="styles/admin-all.css" />
+    <link rel="stylesheet" type="text/css" href="styles/base.css" />
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles/ui-lightness/jquery-ui-1.8.22.custom.css" />
+	 <link rel="stylesheet" type="text/css" href="styles/login.css" />
+	 <script type="text/javascript" src="jq/jquery.min.js"></script>
+</head>
+<body>
+	<div class="warp">
+		<!--头部开始-->
+        <div class="top_c">
+        </div>
+		<!--头部结束-->
+		<div class="row-fluid">
+			<h1><font color="#586683">汽车管理系统</font></h1>
+		
+				<p>
+					<label>帐&nbsp;&nbsp;&nbsp;号：<input name="username" type="text" id="uname" /><div id="div_message1"></div></label>
+				</p>
+				<p>
+					<label>密&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" id="pwd" /></label>
+				</p>
+				<p class="tip">&nbsp;</p>
+				<hr />
+				<input type="button" id="Login_btn" value=" 登 录 " class="btn btn-primary btn-large login" />
+				&nbsp;&nbsp;&nbsp;<input type="button"  value=" 取 消 " class="btn btn-large" />
+			
+		</div>
+		<!--底部开始-->
+        <div class="bottom_c">Copyrigh2t &copy;2015</div>
+        <!--底部结束-->
+	</div>
+	<script type="text/javascript">
+	$(function(){
+	var username1="";
+	var	userpass1="";
+				
+		$("#Login_btn").click(function(){
+			 username1=$("#uname").val();
+			 userpass1=$("#pwd").val();
+			if(username1==""&&userpass1=="")
+			{	
+				
+				alert("账号密码不能为空");
+			}
+			else
+			{
+			
+				$.ajax({
+					url:"php/LoginGm.php",
+					method:"POST",
+					data:{"username1":username1,"userpass1":userpass1},
+					success:function(data)
+					{
+						if(data!=0||data!=1)
+						{
+						$("#uname").val("");
+						$("#pwd").val("");
+						$("#uname").focus();
+							alert("账号密码不对")
+							
+						}else
+						{
+							$("#uname").val("");
+							$("#pwd").val("");
+							var username="";
+							var	userpass="";
+							var m=data;
+							window.location=decodeURI("view/html/home.php?qx="+m);
+						}
+						
+					}
+					
+				})
+			}
+			
+			
+		})
+			
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	})
+		
+
+			
+	
+	</script>
+	
+	
+	
+</body>
+</html>

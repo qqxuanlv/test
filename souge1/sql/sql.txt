@@ -1,0 +1,2789 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.9.2
+-- http://www.phpmyadmin.net
+--
+-- 主机: 127.0.0.1:3306
+-- 生成日期: 2016 年 04 月 10 日 22:46
+-- 服务器版本: 5.1.28
+-- PHP 版本: 5.2.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- 数据库: `wangyuanjing`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_aid`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_aid` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `content` text,
+  `key` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_aid`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_album`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_album` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `orderby` smallint(5) unsigned DEFAULT NULL,
+  `addtime` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- 导出表中的数据 `smart_album`
+--
+
+INSERT INTO `smart_album` (`id`, `title`, `orderby`, `addtime`) VALUES
+(1, '广告', 0, 1414636957),
+(2, '首页-banner', 0, 1414636966),
+(3, '首页-跑步机-广告', 0, 1421030073),
+(4, '首页-健身机-广告', 0, 1421201369),
+(5, '首页-椭圆机-广告 ', 0, 1421201655),
+(6, '首页-按摩椅-广告', 0, 1421201681),
+(7, '首页-综合机-广告', 0, 1421201691),
+(8, '首页-游乐设施-广告', 0, 1421825754),
+(9, '首页-休闲娱乐区-广告', 0, 1421825773);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_album_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_album_photo` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `albumid` int(10) unsigned DEFAULT NULL,
+  `filename` varchar(100) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `url` varchar(200) DEFAULT NULL,
+  `profile` varchar(100) DEFAULT NULL,
+  `orderby` int(10) unsigned DEFAULT NULL,
+  `addtime` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+
+--
+-- 导出表中的数据 `smart_album_photo`
+--
+
+INSERT INTO `smart_album_photo` (`id`, `albumid`, `filename`, `title`, `url`, `profile`, `orderby`, `addtime`) VALUES
+(1, 3, '54b332d8b921e.png', 'QQ截图20150112103451', '', NULL, 0, 1421030104),
+(2, 3, '54b333dc38c53.png', 'QQ截图20150112103451', '', NULL, 1, 1421030378),
+(4, 3, '54b334001db68.png', 'QQ截图20150112103451', '', NULL, 2, 1421030400),
+(5, 3, '54b334066f972.png', 'QQ截图20150112103451', '', NULL, 3, 1421030406),
+(6, 1, '54b766977f7c2.png', '2F', '', NULL, 0, 1421305495),
+(7, 1, '54b767f5b4d53.png', '2F-家用跑步机', '', NULL, 0, 1421305845),
+(8, 1, '54b76c57ce0da.png', '2F-家用健身机', '', NULL, 0, 1421306967),
+(9, 1, '54b7725140928.png', '2F-家用椭圆机', '', NULL, 0, 1421308497),
+(11, 1, '54b77be8470b4.png', '3F', '', NULL, 0, 1421310952),
+(12, 1, '54b77fdb58b08.png', '3F-按摩椅', '', NULL, 0, 1421311963),
+(13, 1, '54b77ff16a7a5.png', '3F-按摩器', '', NULL, 0, 1421311985),
+(14, 1, '54b8b9085f9c5.png', '4F', '', NULL, 0, 1421392136),
+(15, 1, '54b8b9c3a4e7e.png', '4F-商用跑步机', '', NULL, 0, 1421392323),
+(16, 1, '54b8b9db7f6b6.png', '4F-商用健身车', '', NULL, 0, 1421392347),
+(17, 1, '54b8b9e80a6f4.png', '4F-商用椭圆机', '', NULL, 0, 1421392360),
+(18, 1, '54bf56f9e8a2a.png', '5F', '', NULL, 0, 1421826017),
+(19, 1, '54bf5708e0663.png', '5F-游乐设施', '', NULL, 0, 1421826046),
+(20, 1, '54bf580fa0873.png', '6F', '', NULL, 0, 1421826063),
+(21, 1, '54bf581fdd6ce.png', '6F-娱乐休闲区', '', NULL, 0, 1421826079);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_api`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_api` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `api` varchar(50) DEFAULT NULL,
+  `seller_email` varchar(255) DEFAULT NULL,
+  `partner` varchar(255) DEFAULT NULL,
+  `key` varchar(255) DEFAULT NULL,
+  `notify_url` varchar(255) DEFAULT NULL,
+  `return_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_api`
+--
+
+INSERT INTO `smart_api` (`id`, `title`, `api`, `seller_email`, `partner`, `key`, `notify_url`, `return_url`) VALUES
+(1, '支付宝接口', 'ALIPAY', '2402827978@qq.com', '2088011313457342', '8emprmqa4yr65bvtqqoxbghro5mcntev', 'http://yunqianyuan.testweb8.iecworld.com/aipute_2012/Alipay-notify_url', 'http://yunqianyuan.testweb8.iecworld.com/aipute_2012/Alipay-return_url');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_baoyang`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_baoyang` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sortid` int(10) unsigned DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `shoubao` varchar(255) DEFAULT NULL,
+  `erbao` varchar(255) DEFAULT NULL,
+  `jiange` varchar(255) DEFAULT NULL,
+  `content` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_baoyang`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `company` varchar(255) DEFAULT NULL,
+  `tel` varchar(255) DEFAULT NULL,
+  `tel2` varchar(30) NOT NULL,
+  `fax` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `qq` varchar(255) DEFAULT NULL,
+  `qq2` varchar(255) DEFAULT NULL,
+  `address` varchar(255) NOT NULL,
+  `website` varchar(200) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `keyword` varchar(255) DEFAULT NULL,
+  `description` varchar(3000) DEFAULT NULL,
+  `fapiaocanshu` varchar(3000) NOT NULL,
+  `hot_keywords` varchar(500) DEFAULT NULL,
+  `anzhuangfuwu` varchar(3000) NOT NULL,
+  `content` text,
+  `ispriceshow` int(11) NOT NULL DEFAULT '0' COMMENT '产品价格显示0不显示1显示',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_basic`
+--
+
+INSERT INTO `smart_basic` (`id`, `company`, `tel`, `tel2`, `fax`, `mobile`, `qq`, `qq2`, `address`, `website`, `title`, `keyword`, `description`, `fapiaocanshu`, `hot_keywords`, `anzhuangfuwu`, `content`, `ispriceshow`) VALUES
+(1, '创体', '', '', '', '', '2250243254', '', '创体', '', '创体', '创体', '创体', '二次方', '', '创体', '创体', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_bank`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_bank` (
+  `id` tinyint(4) unsigned NOT NULL AUTO_INCREMENT,
+  `bank` varchar(255) DEFAULT NULL,
+  `account` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_basic_bank`
+--
+
+INSERT INTO `smart_basic_bank` (`id`, `bank`, `account`, `name`) VALUES
+(1, '工商银行宁波分行', '33900024511214512', '张三');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_city`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_city` (
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `orderby` tinyint(4) DEFAULT '0',
+  `pid` tinyint(4) DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  `language` varchar(4) NOT NULL DEFAULT 'en',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=783 ;
+
+--
+-- 导出表中的数据 `smart_basic_city`
+--
+
+INSERT INTO `smart_basic_city` (`id`, `orderby`, `pid`, `title`, `language`) VALUES
+(1, 1, 1, '北京市', 'cn'),
+(2, 1, 2, '天津市', 'cn'),
+(3, 1, 3, '上海市', 'cn'),
+(4, 1, 4, '重庆市', 'cn'),
+(5, 1, 5, '石家庄市', 'cn'),
+(6, 2, 5, '唐山市', 'cn'),
+(7, 3, 5, '秦皇岛市', 'cn'),
+(8, 4, 5, '邯郸市', 'cn'),
+(9, 5, 5, '邢台市', 'cn'),
+(10, 6, 5, '保定市', 'cn'),
+(11, 7, 5, '张家口市', 'cn'),
+(12, 8, 5, '承德市', 'cn'),
+(13, 9, 5, '沧州市', 'cn'),
+(14, 10, 5, '廊坊市', 'cn'),
+(15, 11, 5, '衡水市', 'cn'),
+(16, 1, 6, '太原市', 'cn'),
+(17, 2, 6, '大同市', 'cn'),
+(18, 3, 6, '阳泉市', 'cn'),
+(19, 4, 6, '长治市', 'cn'),
+(20, 5, 6, '晋城市', 'cn'),
+(21, 6, 6, '朔州市', 'cn'),
+(22, 7, 6, '晋中市', 'cn'),
+(23, 8, 6, '运城市', 'cn'),
+(24, 9, 6, '忻州市', 'cn'),
+(25, 10, 6, '临汾市', 'cn'),
+(26, 11, 6, '吕梁市', 'cn'),
+(27, 1, 7, '台北市', 'cn'),
+(28, 2, 7, '高雄市', 'cn'),
+(29, 3, 7, '基隆市', 'cn'),
+(30, 4, 7, '台中市', 'cn'),
+(31, 5, 7, '台南市', 'cn'),
+(32, 6, 7, '新竹市', 'cn'),
+(33, 7, 7, '嘉义市', 'cn'),
+(34, 8, 7, '台北县', 'cn'),
+(35, 9, 7, '宜兰县', 'cn'),
+(36, 10, 7, '桃园县', 'cn'),
+(37, 11, 7, '新竹县', 'cn'),
+(38, 12, 7, '苗栗县', 'cn'),
+(39, 13, 7, '台中县', 'cn'),
+(40, 14, 7, '彰化县', 'cn'),
+(41, 15, 7, '南投县', 'cn'),
+(42, 16, 7, '云林县', 'cn'),
+(43, 17, 7, '嘉义县', 'cn'),
+(44, 18, 7, '台南县', 'cn'),
+(45, 19, 7, '高雄县', 'cn'),
+(46, 20, 7, '屏东县', 'cn'),
+(47, 21, 7, '澎湖县', 'cn'),
+(48, 22, 7, '台东县', 'cn'),
+(49, 23, 7, '花莲县', 'cn'),
+(50, 1, 8, '沈阳市', 'cn'),
+(51, 2, 8, '大连市', 'cn'),
+(52, 3, 8, '鞍山市', 'cn'),
+(53, 4, 8, '抚顺市', 'cn'),
+(54, 5, 8, '本溪市', 'cn'),
+(55, 6, 8, '丹东市', 'cn'),
+(56, 7, 8, '锦州市', 'cn'),
+(57, 8, 8, '营口市', 'cn'),
+(58, 9, 8, '阜新市', 'cn'),
+(59, 10, 8, '辽阳市', 'cn'),
+(60, 11, 8, '盘锦市', 'cn'),
+(61, 12, 8, '铁岭市', 'cn'),
+(62, 13, 8, '朝阳市', 'cn'),
+(63, 14, 8, '葫芦岛市', 'cn'),
+(64, 1, 9, '长春市', 'cn'),
+(65, 2, 9, '吉林市', 'cn'),
+(66, 3, 9, '四平市', 'cn'),
+(67, 4, 9, '辽源市', 'cn'),
+(68, 5, 9, '通化市', 'cn'),
+(69, 6, 9, '白山市', 'cn'),
+(70, 7, 9, '松原市', 'cn'),
+(71, 8, 9, '白城市', 'cn'),
+(72, 9, 9, '延边朝鲜族自治州', 'cn'),
+(73, 1, 10, '哈尔滨市', 'cn'),
+(74, 2, 10, '齐齐哈尔市', 'cn'),
+(75, 3, 10, '鹤岗市', 'cn'),
+(76, 4, 10, '双鸭山市', 'cn'),
+(77, 5, 10, '鸡西市', 'cn'),
+(78, 6, 10, '大庆市', 'cn'),
+(79, 7, 10, '伊春市', 'cn'),
+(80, 8, 10, '牡丹江市', 'cn'),
+(81, 9, 10, '佳木斯市', 'cn'),
+(82, 10, 10, '七台河市', 'cn'),
+(83, 11, 10, '黑河市', 'cn'),
+(84, 12, 10, '绥化市', 'cn'),
+(85, 13, 10, '大兴安岭地区', 'cn'),
+(86, 1, 11, '南京市', 'cn'),
+(87, 2, 11, '无锡市', 'cn'),
+(88, 3, 11, '徐州市', 'cn'),
+(89, 4, 11, '常州市', 'cn'),
+(90, 5, 11, '苏州市', 'cn'),
+(91, 6, 11, '南通市', 'cn'),
+(92, 7, 11, '连云港市', 'cn'),
+(93, 8, 11, '淮安市', 'cn'),
+(94, 9, 11, '盐城市', 'cn'),
+(95, 10, 11, '扬州市', 'cn'),
+(96, 11, 11, '镇江市', 'cn'),
+(97, 12, 11, '泰州市', 'cn'),
+(98, 13, 11, '宿迁市', 'cn'),
+(99, 1, 12, '杭州市', 'cn'),
+(100, 2, 12, '宁波市', 'cn'),
+(101, 3, 12, '温州市', 'cn'),
+(102, 4, 12, '嘉兴市', 'cn'),
+(103, 5, 12, '湖州市', 'cn'),
+(104, 6, 12, '绍兴市', 'cn'),
+(105, 7, 12, '金华市', 'cn'),
+(106, 8, 12, '衢州市', 'cn'),
+(107, 9, 12, '舟山市', 'cn'),
+(108, 10, 12, '台州市', 'cn'),
+(109, 11, 12, '丽水市', 'cn'),
+(110, 1, 13, '合肥市', 'cn'),
+(111, 2, 13, '芜湖市', 'cn'),
+(112, 3, 13, '蚌埠市', 'cn'),
+(113, 4, 13, '淮南市', 'cn'),
+(114, 5, 13, '马鞍山市', 'cn'),
+(115, 6, 13, '淮北市', 'cn'),
+(116, 7, 13, '铜陵市', 'cn'),
+(117, 8, 13, '安庆市', 'cn'),
+(118, 9, 13, '黄山市', 'cn'),
+(119, 10, 13, '滁州市', 'cn'),
+(120, 11, 13, '阜阳市', 'cn'),
+(121, 12, 13, '宿州市', 'cn'),
+(122, 13, 13, '巢湖市', 'cn'),
+(123, 14, 13, '六安市', 'cn'),
+(124, 15, 13, '亳州市', 'cn'),
+(125, 16, 13, '池州市', 'cn'),
+(126, 17, 13, '宣城市', 'cn'),
+(127, 1, 14, '福州市', 'cn'),
+(128, 2, 14, '厦门市', 'cn'),
+(129, 3, 14, '莆田市', 'cn'),
+(130, 4, 14, '三明市', 'cn'),
+(131, 5, 14, '泉州市', 'cn'),
+(132, 6, 14, '漳州市', 'cn'),
+(133, 7, 14, '南平市', 'cn'),
+(134, 8, 14, '龙岩市', 'cn'),
+(135, 9, 14, '宁德市', 'cn'),
+(136, 1, 15, '南昌市', 'cn'),
+(137, 2, 15, '景德镇市', 'cn'),
+(138, 3, 15, '萍乡市', 'cn'),
+(139, 4, 15, '九江市', 'cn'),
+(140, 5, 15, '新余市', 'cn'),
+(141, 6, 15, '鹰潭市', 'cn'),
+(142, 7, 15, '赣州市', 'cn'),
+(143, 8, 15, '吉安市', 'cn'),
+(144, 9, 15, '宜春市', 'cn'),
+(145, 10, 15, '抚州市', 'cn'),
+(146, 11, 15, '上饶市', 'cn'),
+(147, 1, 16, '济南市', 'cn'),
+(148, 2, 16, '青岛市', 'cn'),
+(149, 3, 16, '淄博市', 'cn'),
+(150, 4, 16, '枣庄市', 'cn'),
+(151, 5, 16, '东营市', 'cn'),
+(152, 6, 16, '烟台市', 'cn'),
+(153, 7, 16, '潍坊市', 'cn'),
+(154, 8, 16, '济宁市', 'cn'),
+(155, 9, 16, '泰安市', 'cn'),
+(156, 10, 16, '威海市', 'cn'),
+(157, 11, 16, '日照市', 'cn'),
+(158, 12, 16, '莱芜市', 'cn'),
+(159, 13, 16, '临沂市', 'cn'),
+(160, 14, 16, '德州市', 'cn'),
+(161, 15, 16, '聊城市', 'cn'),
+(162, 16, 16, '滨州市', 'cn'),
+(163, 17, 16, '菏泽市', 'cn'),
+(164, 1, 17, '郑州市', 'cn'),
+(165, 2, 17, '开封市', 'cn'),
+(166, 3, 17, '洛阳市', 'cn'),
+(167, 4, 17, '平顶山市', 'cn'),
+(168, 5, 17, '安阳市', 'cn'),
+(169, 6, 17, '鹤壁市', 'cn'),
+(170, 7, 17, '新乡市', 'cn'),
+(171, 8, 17, '焦作市', 'cn'),
+(172, 9, 17, '濮阳市', 'cn'),
+(173, 10, 17, '许昌市', 'cn'),
+(174, 11, 17, '漯河市', 'cn'),
+(175, 12, 17, '三门峡市', 'cn'),
+(176, 13, 17, '南阳市', 'cn'),
+(177, 14, 17, '商丘市', 'cn'),
+(178, 15, 17, '信阳市', 'cn'),
+(179, 16, 17, '周口市', 'cn'),
+(180, 17, 17, '驻马店市', 'cn'),
+(181, 18, 17, '济源市', 'cn'),
+(182, 1, 18, '武汉市', 'cn'),
+(183, 2, 18, '黄石市', 'cn'),
+(184, 3, 18, '十堰市', 'cn'),
+(185, 4, 18, '荆州市', 'cn'),
+(186, 5, 18, '宜昌市', 'cn'),
+(187, 6, 18, '襄樊市', 'cn'),
+(188, 7, 18, '鄂州市', 'cn'),
+(189, 8, 18, '荆门市', 'cn'),
+(190, 9, 18, '孝感市', 'cn'),
+(191, 10, 18, '黄冈市', 'cn'),
+(192, 11, 18, '咸宁市', 'cn'),
+(193, 12, 18, '随州市', 'cn'),
+(194, 13, 18, '仙桃市', 'cn'),
+(195, 14, 18, '天门市', 'cn'),
+(196, 15, 18, '潜江市', 'cn'),
+(197, 16, 18, '神农架林区', 'cn'),
+(198, 17, 18, '恩施土家族苗族自治州', 'cn'),
+(199, 1, 19, '长沙市', 'cn'),
+(200, 2, 19, '株洲市', 'cn'),
+(201, 3, 19, '湘潭市', 'cn'),
+(202, 4, 19, '衡阳市', 'cn'),
+(203, 5, 19, '邵阳市', 'cn'),
+(204, 6, 19, '岳阳市', 'cn'),
+(205, 7, 19, '常德市', 'cn'),
+(206, 8, 19, '张家界市', 'cn'),
+(207, 9, 19, '益阳市', 'cn'),
+(208, 10, 19, '郴州市', 'cn'),
+(209, 11, 19, '永州市', 'cn'),
+(210, 12, 19, '怀化市', 'cn'),
+(211, 13, 19, '娄底市', 'cn'),
+(212, 14, 19, '湘西土家族苗族自治州', 'cn'),
+(213, 1, 20, '广州市', 'cn'),
+(214, 2, 20, '深圳市', 'cn'),
+(215, 3, 20, '珠海市', 'cn'),
+(216, 4, 20, '汕头市', 'cn'),
+(217, 5, 20, '韶关市', 'cn'),
+(218, 6, 20, '佛山市', 'cn'),
+(219, 7, 20, '江门市', 'cn'),
+(220, 8, 20, '湛江市', 'cn'),
+(221, 9, 20, '茂名市', 'cn'),
+(222, 10, 20, '肇庆市', 'cn'),
+(223, 11, 20, '惠州市', 'cn'),
+(224, 12, 20, '梅州市', 'cn'),
+(225, 13, 20, '汕尾市', 'cn'),
+(226, 14, 20, '河源市', 'cn'),
+(227, 15, 20, '阳江市', 'cn'),
+(228, 16, 20, '清远市', 'cn'),
+(229, 17, 20, '东莞市', 'cn'),
+(230, 18, 20, '中山市', 'cn'),
+(231, 19, 20, '潮州市', 'cn'),
+(232, 20, 20, '揭阳市', 'cn'),
+(233, 21, 20, '云浮市', 'cn'),
+(234, 1, 21, '兰州市', 'cn'),
+(235, 2, 21, '金昌市', 'cn'),
+(236, 3, 21, '白银市', 'cn'),
+(237, 4, 21, '天水市', 'cn'),
+(238, 5, 21, '嘉峪关市', 'cn'),
+(239, 6, 21, '武威市', 'cn'),
+(240, 7, 21, '张掖市', 'cn'),
+(241, 8, 21, '平凉市', 'cn'),
+(242, 9, 21, '酒泉市', 'cn'),
+(243, 10, 21, '庆阳市', 'cn'),
+(244, 11, 21, '定西市', 'cn'),
+(245, 12, 21, '陇南市', 'cn'),
+(246, 13, 21, '临夏回族自治州', 'cn'),
+(247, 14, 21, '甘南藏族自治州', 'cn'),
+(248, 1, 22, '成都市', 'cn'),
+(249, 2, 22, '自贡市', 'cn'),
+(250, 3, 22, '攀枝花市', 'cn'),
+(251, 4, 22, '泸州市', 'cn'),
+(252, 5, 22, '德阳市', 'cn'),
+(253, 6, 22, '绵阳市', 'cn'),
+(254, 7, 22, '广元市', 'cn'),
+(255, 8, 22, '遂宁市', 'cn'),
+(256, 9, 22, '内江市', 'cn'),
+(257, 10, 22, '乐山市', 'cn'),
+(258, 11, 22, '南充市', 'cn'),
+(259, 12, 22, '眉山市', 'cn'),
+(260, 13, 22, '宜宾市', 'cn'),
+(261, 14, 22, '广安市', 'cn'),
+(262, 15, 22, '达州市', 'cn'),
+(263, 16, 22, '雅安市', 'cn'),
+(264, 17, 22, '巴中市', 'cn'),
+(265, 18, 22, '资阳市', 'cn'),
+(266, 19, 22, '阿坝藏族羌族自治州', 'cn'),
+(267, 20, 22, '甘孜藏族自治州', 'cn'),
+(268, 21, 22, '凉山彝族自治州', 'cn'),
+(269, 1, 23, '贵阳市', 'cn'),
+(270, 2, 23, '六盘水市', 'cn'),
+(271, 3, 23, '遵义市', 'cn'),
+(272, 4, 23, '安顺市', 'cn'),
+(273, 5, 23, '铜仁地区', 'cn'),
+(274, 6, 23, '毕节地区', 'cn'),
+(275, 7, 23, '黔西南布依族苗族自治州', 'cn'),
+(276, 8, 23, '黔东南苗族侗族自治州', 'cn'),
+(277, 9, 23, '黔南布依族苗族自治州', 'cn'),
+(278, 1, 24, '海口市', 'cn'),
+(279, 2, 24, '三亚市', 'cn'),
+(280, 3, 24, '五指山市', 'cn'),
+(281, 4, 24, '琼海市', 'cn'),
+(282, 5, 24, '儋州市', 'cn'),
+(283, 6, 24, '文昌市', 'cn'),
+(284, 7, 24, '万宁市', 'cn'),
+(285, 8, 24, '东方市', 'cn'),
+(286, 9, 24, '澄迈县', 'cn'),
+(287, 10, 24, '定安县', 'cn'),
+(288, 11, 24, '屯昌县', 'cn'),
+(289, 12, 24, '临高县', 'cn'),
+(290, 13, 24, '白沙黎族自治县', 'cn'),
+(291, 14, 24, '昌江黎族自治县', 'cn'),
+(292, 15, 24, '乐东黎族自治县', 'cn'),
+(293, 16, 24, '陵水黎族自治县', 'cn'),
+(294, 17, 24, '保亭黎族苗族自治县', 'cn'),
+(295, 18, 24, '琼中黎族苗族自治县', 'cn'),
+(296, 1, 25, '昆明市', 'cn'),
+(297, 2, 25, '曲靖市', 'cn'),
+(298, 3, 25, '玉溪市', 'cn'),
+(299, 4, 25, '保山市', 'cn'),
+(300, 5, 25, '昭通市', 'cn'),
+(301, 6, 25, '丽江市', 'cn'),
+(302, 7, 25, '思茅市', 'cn'),
+(303, 8, 25, '临沧市', 'cn'),
+(304, 9, 25, '文山壮族苗族自治州', 'cn'),
+(305, 10, 25, '红河哈尼族彝族自治州', 'cn'),
+(306, 11, 25, '西双版纳傣族自治州', 'cn'),
+(307, 12, 25, '楚雄彝族自治州', 'cn'),
+(308, 13, 25, '大理白族自治州', 'cn'),
+(309, 14, 25, '德宏傣族景颇族自治州', 'cn'),
+(310, 15, 25, '怒江傈傈族自治州', 'cn'),
+(311, 16, 25, '迪庆藏族自治州', 'cn'),
+(312, 1, 26, '西宁市', 'cn'),
+(313, 2, 26, '海东地区', 'cn'),
+(314, 3, 26, '海北藏族自治州', 'cn'),
+(315, 4, 26, '黄南藏族自治州', 'cn'),
+(316, 5, 26, '海南藏族自治州', 'cn'),
+(317, 6, 26, '果洛藏族自治州', 'cn'),
+(318, 7, 26, '玉树藏族自治州', 'cn'),
+(319, 8, 26, '海西蒙古族藏族自治州', 'cn'),
+(320, 1, 27, '西安市', 'cn'),
+(321, 2, 27, '铜川市', 'cn'),
+(322, 3, 27, '宝鸡市', 'cn'),
+(323, 4, 27, '咸阳市', 'cn'),
+(324, 5, 27, '渭南市', 'cn'),
+(325, 6, 27, '延安市', 'cn'),
+(326, 7, 27, '汉中市', 'cn'),
+(327, 8, 27, '榆林市', 'cn'),
+(328, 9, 27, '安康市', 'cn'),
+(329, 10, 27, '商洛市', 'cn'),
+(330, 1, 28, '南宁市', 'cn'),
+(331, 2, 28, '柳州市', 'cn'),
+(332, 3, 28, '桂林市', 'cn'),
+(333, 4, 28, '梧州市', 'cn'),
+(334, 5, 28, '北海市', 'cn'),
+(335, 6, 28, '防城港市', 'cn'),
+(336, 7, 28, '钦州市', 'cn'),
+(337, 8, 28, '贵港市', 'cn'),
+(338, 9, 28, '玉林市', 'cn'),
+(339, 10, 28, '百色市', 'cn'),
+(340, 11, 28, '贺州市', 'cn'),
+(341, 12, 28, '河池市', 'cn'),
+(342, 13, 28, '来宾市', 'cn'),
+(343, 14, 28, '崇左市', 'cn'),
+(344, 1, 29, '拉萨市', 'cn'),
+(345, 2, 29, '那曲地区', 'cn'),
+(346, 3, 29, '昌都地区', 'cn'),
+(347, 4, 29, '山南地区', 'cn'),
+(348, 5, 29, '日喀则地区', 'cn'),
+(349, 6, 29, '阿里地区', 'cn'),
+(350, 7, 29, '林芝地区', 'cn'),
+(351, 1, 30, '银川市', 'cn'),
+(352, 2, 30, '石嘴山市', 'cn'),
+(353, 3, 30, '吴忠市', 'cn'),
+(354, 4, 30, '固原市', 'cn'),
+(355, 5, 30, '中卫市', 'cn'),
+(356, 1, 31, '乌鲁木齐市', 'cn'),
+(357, 2, 31, '克拉玛依市', 'cn'),
+(358, 3, 31, '石河子市　', 'cn'),
+(359, 4, 31, '阿拉尔市', 'cn'),
+(360, 5, 31, '图木舒克市', 'cn'),
+(361, 6, 31, '五家渠市', 'cn'),
+(362, 7, 31, '吐鲁番市', 'cn'),
+(363, 8, 31, '阿克苏市', 'cn'),
+(364, 9, 31, '喀什市', 'cn'),
+(365, 10, 31, '哈密市', 'cn'),
+(366, 11, 31, '和田市', 'cn'),
+(367, 12, 31, '阿图什市', 'cn'),
+(368, 13, 31, '库尔勒市', 'cn'),
+(369, 14, 31, '昌吉市　', 'cn'),
+(370, 15, 31, '阜康市', 'cn'),
+(371, 16, 31, '米泉市', 'cn'),
+(372, 17, 31, '博乐市', 'cn'),
+(373, 18, 31, '伊宁市', 'cn'),
+(374, 19, 31, '奎屯市', 'cn'),
+(375, 20, 31, '塔城市', 'cn'),
+(376, 21, 31, '乌苏市', 'cn'),
+(377, 22, 31, '阿勒泰市', 'cn'),
+(378, 1, 32, '呼和浩特市', 'cn'),
+(379, 2, 32, '包头市', 'cn'),
+(380, 3, 32, '乌海市', 'cn'),
+(381, 4, 32, '赤峰市', 'cn'),
+(382, 5, 32, '通辽市', 'cn'),
+(383, 6, 32, '鄂尔多斯市', 'cn'),
+(384, 7, 32, '呼伦贝尔市', 'cn'),
+(385, 8, 32, '巴彦淖尔市', 'cn'),
+(386, 9, 32, '乌兰察布市', 'cn'),
+(387, 10, 32, '锡林郭勒盟', 'cn'),
+(388, 11, 32, '兴安盟', 'cn'),
+(389, 12, 32, '阿拉善盟', 'cn'),
+(390, 1, 33, '澳门特别行政区', 'cn'),
+(391, 1, 34, '香港特别行政区', 'cn'),
+(392, 0, 35, 'Beijing city', 'en'),
+(393, 0, 36, 'Tianjin city', 'en'),
+(394, 0, 37, 'Shanghai city', 'en'),
+(395, 0, 38, 'Chongqing city', 'en'),
+(396, 0, 39, 'Shijiazhuang city', 'en'),
+(397, 0, 39, 'Tangshan city', 'en'),
+(398, 0, 39, 'Qinhuangdao city', 'en'),
+(399, 0, 39, 'Handan city', 'en'),
+(400, 0, 39, 'Xingtai city', 'en'),
+(401, 0, 39, 'Baoding city', 'en'),
+(402, 0, 39, 'Zhangjiakou city', 'en'),
+(403, 0, 39, 'Chengde city', 'en'),
+(404, 0, 39, 'Cangzhou city', 'en'),
+(405, 0, 39, 'Langfang city', 'en'),
+(406, 0, 40, 'Taiyuan city', 'en'),
+(407, 0, 40, 'Datong city', 'en'),
+(408, 0, 40, 'Yangquan city', 'en'),
+(409, 0, 40, 'Changzhi city', 'en'),
+(410, 0, 40, 'Jincheng city', 'en'),
+(411, 0, 40, 'Shuozhou city', 'en'),
+(412, 0, 40, 'Jinzhou city', 'en'),
+(413, 0, 40, 'Yuncheng city', 'en'),
+(414, 0, 40, 'Xinzhou city', 'en'),
+(415, 0, 40, 'Linfen city', 'en'),
+(416, 0, 40, 'Lvliang city', 'en'),
+(417, 0, 41, 'Taibei city', 'en'),
+(418, 0, 41, 'Gaoxiong city', 'en'),
+(419, 0, 41, 'Jilong city', 'en'),
+(420, 0, 41, 'Taizhong city', 'en'),
+(421, 0, 41, 'Tainan city', 'en'),
+(422, 0, 41, 'Xinzhu city', 'en'),
+(423, 0, 41, 'Jiayi city', 'en'),
+(424, 0, 41, 'Taibei County', 'en'),
+(425, 0, 41, 'Yilan County', 'en'),
+(426, 0, 41, 'Taoyuan County', 'en'),
+(427, 0, 41, 'Xinzhu County', 'en'),
+(428, 0, 41, 'Miaoli County', 'en'),
+(429, 0, 41, 'Taizhong County', 'en'),
+(430, 0, 41, 'Zhanghua County', 'en'),
+(431, 0, 41, 'Nantou County', 'en'),
+(432, 0, 41, 'Yunlin County', 'en'),
+(433, 0, 41, 'Jiayi County', 'en'),
+(434, 0, 41, 'Tainan County', 'en'),
+(435, 0, 41, 'Gaoxiong County', 'en'),
+(436, 0, 41, 'Pingdong County', 'en'),
+(437, 0, 41, 'Penghu County', 'en'),
+(438, 0, 41, 'Taidong County', 'en'),
+(439, 0, 41, 'Hualian County', 'en'),
+(440, 0, 42, 'Shenyang city', 'en'),
+(441, 0, 42, 'Dalian city', 'en'),
+(442, 0, 42, 'Anshan city', 'en'),
+(443, 0, 42, 'Fushun city', 'en'),
+(444, 0, 42, 'Benxi city', 'en'),
+(445, 0, 42, 'Dandong city', 'en'),
+(446, 0, 42, 'Jinzhou city', 'en'),
+(447, 0, 42, 'Yingkou city', 'en'),
+(448, 0, 42, 'Fuxin city', 'en'),
+(449, 0, 42, 'Liaoyang city', 'en'),
+(450, 0, 42, 'Panjin city', 'en'),
+(451, 0, 42, 'Tieling city', 'en'),
+(452, 0, 42, 'Chaoyang city', 'en'),
+(453, 0, 42, 'Huludao city', 'en'),
+(454, 0, 43, 'Changchun city', 'en'),
+(455, 0, 43, 'Jilin city', 'en'),
+(456, 0, 43, 'Siping city', 'en'),
+(457, 0, 43, 'Liaoyuan city', 'en'),
+(458, 0, 43, 'Tonghua city', 'en'),
+(459, 0, 43, 'Baishan city', 'en'),
+(460, 0, 43, 'Songyuan city', 'en'),
+(461, 0, 43, 'Baicheng city', 'en'),
+(462, 0, 43, 'The Yanbian Korean Autonomous Prefecture', 'en'),
+(463, 0, 44, 'Haerbin city', 'en'),
+(464, 0, 44, 'Qiqihaer city', 'en'),
+(465, 0, 44, 'Hegang city', 'en'),
+(466, 0, 44, 'Shuangyashan city', 'en'),
+(467, 0, 44, 'Jixi city', 'en'),
+(468, 0, 44, 'Daqing city', 'en'),
+(469, 0, 44, 'Yichun city', 'en'),
+(470, 0, 44, 'Mudanjiang city', 'en'),
+(471, 0, 44, 'Jiamusi city', 'en'),
+(472, 0, 44, 'Qitaihe city', 'en'),
+(473, 0, 44, 'Heihe city', 'en'),
+(474, 0, 44, 'Suihua city', 'en'),
+(475, 0, 44, 'Greater Khingan Range area', 'en'),
+(476, 0, 45, 'Nanjing city', 'en'),
+(477, 0, 45, 'Wuxi city', 'en'),
+(478, 0, 45, 'Xuzhou city', 'en'),
+(479, 0, 45, 'Changzhou city', 'en'),
+(480, 0, 45, 'Suzhou city', 'en'),
+(481, 0, 45, 'Nantong city', 'en'),
+(482, 0, 45, 'Lianyungang city', 'en'),
+(483, 0, 45, 'Huaian city', 'en'),
+(484, 0, 45, 'Yancheng city', 'en'),
+(485, 0, 45, 'Yangzhou city', 'en'),
+(486, 0, 45, 'Zhenjiang city', 'en'),
+(487, 0, 45, 'Taizhou city', 'en'),
+(488, 0, 45, 'Suqian city', 'en'),
+(489, 0, 46, 'Hangzhou city', 'en'),
+(490, 0, 46, 'Ningbo city', 'en'),
+(491, 0, 46, 'Wenzhou city', 'en'),
+(492, 0, 46, 'Jiaxing city', 'en'),
+(493, 0, 46, 'Huzhou city', 'en'),
+(494, 0, 46, 'Shaoxing city', 'en'),
+(495, 0, 46, 'Jinhua city', 'en'),
+(496, 0, 46, 'Quzhou city', 'en'),
+(497, 0, 46, 'Zhoushan city', 'en'),
+(498, 0, 46, 'Taizhou city', 'en'),
+(499, 0, 46, 'Lishui city', 'en'),
+(500, 0, 47, 'Hefei city', 'en'),
+(501, 0, 47, 'Wuhu city', 'en'),
+(502, 0, 47, 'Bangbu city', 'en'),
+(503, 0, 47, 'Huainan city', 'en'),
+(504, 0, 47, 'Maanshan city', 'en'),
+(505, 0, 47, 'Huaibei city', 'en'),
+(506, 0, 47, 'Tongling city', 'en'),
+(507, 0, 47, 'Anqing city', 'en'),
+(508, 0, 47, 'Huangshan city', 'en'),
+(509, 0, 47, 'Chuzhou city', 'en'),
+(510, 0, 47, 'Fuyang city', 'en'),
+(511, 0, 47, 'Suzhou city', 'en'),
+(512, 0, 47, 'Chaohu city', 'en'),
+(513, 0, 47, 'Liuan city', 'en'),
+(514, 0, 47, 'Haozhou city', 'en'),
+(515, 0, 47, 'Chizhou city', 'en'),
+(516, 0, 47, 'Xuancheng city', 'en'),
+(517, 0, 48, 'Fuzhou  city', 'en'),
+(518, 0, 48, 'Xiamen city', 'en'),
+(519, 0, 48, 'Putian city', 'en'),
+(520, 0, 48, 'Sanming city', 'en'),
+(521, 0, 48, 'Quanzhou city', 'en'),
+(522, 0, 48, 'Zhangzhou city', 'en'),
+(523, 0, 48, 'Nanping city', 'en'),
+(524, 0, 48, 'Longyan city', 'en'),
+(525, 0, 48, 'Ningde city', 'en'),
+(526, 0, 49, 'Nanchang city', 'en'),
+(527, 0, 49, 'Jingdezhen city', 'en'),
+(528, 0, 49, 'Pingxiang city', 'en'),
+(529, 0, 49, 'Jiujiang city', 'en'),
+(530, 0, 49, 'Xinyu city', 'en'),
+(531, 0, 49, 'Yingtan city', 'en'),
+(532, 0, 49, 'Ganzhou city', 'en'),
+(533, 0, 49, 'Jian city', 'en'),
+(534, 0, 49, 'Yichun city', 'en'),
+(535, 0, 49, 'Fuzhou city', 'en'),
+(536, 0, 49, 'Shangrao city', 'en'),
+(537, 0, 50, 'Jinan city', 'en'),
+(538, 0, 50, 'Qingdao city', 'en'),
+(539, 0, 50, 'Zibo city', 'en'),
+(540, 0, 50, 'Zaozhuang city', 'en'),
+(541, 0, 50, 'Dongying city', 'en'),
+(542, 0, 50, 'Yantai city', 'en'),
+(543, 0, 50, 'Weifang city', 'en'),
+(544, 0, 50, 'Jining city', 'en'),
+(545, 0, 50, 'Taian city', 'en'),
+(546, 0, 50, 'Weihai city', 'en'),
+(547, 0, 50, 'Rizhao city', 'en'),
+(548, 0, 50, 'Laiwu city', 'en'),
+(549, 0, 50, 'Linyi city', 'en'),
+(550, 0, 50, 'Dezhou city', 'en'),
+(551, 0, 50, 'Binzhou city', 'en'),
+(552, 0, 50, 'Heze city', 'en'),
+(553, 0, 51, 'Zhengzhou city', 'en'),
+(554, 0, 51, 'Kaifeng city', 'en'),
+(555, 0, 51, 'Luoyang city', 'en'),
+(556, 0, 51, 'Pingdingshan city', 'en'),
+(557, 0, 51, 'Anyang city', 'en'),
+(558, 0, 51, 'Hebi city', 'en'),
+(559, 0, 51, 'Xinxiang city', 'en'),
+(560, 0, 51, 'Jiaozuo city', 'en'),
+(561, 0, 51, 'Puyang city', 'en'),
+(562, 0, 51, 'Xuchang city', 'en'),
+(563, 0, 51, 'Luohe city', 'en'),
+(564, 0, 51, 'Sanmenxia city', 'en'),
+(565, 0, 51, 'Nanyang city', 'en'),
+(566, 0, 51, 'Shangqiu city', 'en'),
+(567, 0, 51, 'Xinyang city', 'en'),
+(568, 0, 51, 'Zhoukou city', 'en'),
+(569, 0, 51, 'Zhumadian city', 'en'),
+(570, 0, 51, 'Jiyuan city', 'en'),
+(571, 0, 52, 'Wuhan city', 'en'),
+(572, 0, 52, 'Huangshi city', 'en'),
+(573, 0, 52, 'Shiyan city', 'en'),
+(574, 0, 52, 'Jingzhou city', 'en'),
+(575, 0, 52, 'Yichang city', 'en'),
+(576, 0, 52, 'Xiangfan city', 'en'),
+(577, 0, 52, 'Ezhou city', 'en'),
+(578, 0, 52, 'Jingmen city', 'en'),
+(579, 0, 52, 'Xiaogan city', 'en'),
+(580, 0, 52, 'Huanggang city', 'en'),
+(581, 0, 52, 'Xianning city', 'en'),
+(582, 0, 52, 'Suizhou city', 'en'),
+(583, 0, 52, 'Xiantao city', 'en'),
+(584, 0, 52, 'Tianmen city', 'en'),
+(585, 0, 52, 'Qianjiang city', 'en'),
+(586, 0, 52, 'Shennongjia Forest Region', 'en'),
+(587, 0, 52, 'Tujia and Miao Autonomous Prefecture of Enshi', 'en'),
+(588, 0, 53, 'Changsha city', 'en'),
+(589, 0, 53, 'Zhuzhou city', 'en'),
+(590, 0, 53, 'Xiangtan city', 'en'),
+(591, 0, 53, 'Hengyang city', 'en'),
+(592, 0, 53, 'Shaoyang city', 'en'),
+(593, 0, 53, 'Yueyang city', 'en'),
+(594, 0, 53, 'Changde city', 'en'),
+(595, 0, 53, 'Zhangjiajie city', 'en'),
+(596, 0, 53, 'Yiyang city', 'en'),
+(597, 0, 53, 'Chenzhou city', 'en'),
+(598, 0, 53, 'Yongzhou city', 'en'),
+(599, 0, 53, 'Huaihua city', 'en'),
+(600, 0, 53, 'Loudi city', 'en'),
+(601, 0, 53, 'Tujia and Miao Autonomous Prefecture of Xiangxi', 'en'),
+(602, 0, 54, 'Guangzhou city', 'en'),
+(603, 0, 54, 'Shenzhen city', 'en'),
+(604, 0, 54, 'Zhuhai city', 'en'),
+(605, 0, 54, 'Shantou city', 'en'),
+(606, 0, 54, 'Shaoguan city', 'en'),
+(607, 0, 54, 'Foshan city', 'en'),
+(608, 0, 54, 'Jiangmen city', 'en'),
+(609, 0, 54, 'Zhanjiang city', 'en'),
+(610, 0, 54, 'Maoming city', 'en'),
+(611, 0, 54, 'Zhaoqing city', 'en'),
+(612, 0, 54, 'Huizhou city', 'en'),
+(613, 0, 54, 'Meizhou city', 'en'),
+(614, 0, 54, 'Shanwei city', 'en'),
+(615, 0, 54, 'Heyuan city', 'en'),
+(616, 0, 54, 'Yangjiang city', 'en'),
+(617, 0, 54, 'Qingyuan city', 'en'),
+(618, 0, 54, 'Dongguan city', 'en'),
+(619, 0, 54, 'Zhongshan city', 'en'),
+(620, 0, 54, 'Chaozhou city', 'en'),
+(621, 0, 54, 'Jieyang city', 'en'),
+(622, 0, 54, 'Yunfu city', 'en'),
+(623, 0, 55, 'Lanzhou city', 'en'),
+(624, 0, 55, 'Jinzhou city', 'en'),
+(625, 0, 55, 'Baiyin city', 'en'),
+(626, 0, 55, 'Tianshui city', 'en'),
+(627, 0, 55, 'Jiayuguan city', 'en'),
+(628, 0, 55, 'Wuwei city', 'en'),
+(629, 0, 55, 'Zhangye city', 'en'),
+(630, 0, 55, 'Pingliang city', 'en'),
+(631, 0, 55, 'Jiuquan city', 'en'),
+(632, 0, 55, 'Qingyang city', 'en'),
+(633, 0, 55, 'Dingxi city', 'en'),
+(634, 0, 55, 'Longnan city', 'en'),
+(635, 0, 55, 'Linxia Hui Autonomous Prefecture', 'en'),
+(636, 0, 55, 'Gannan Tibetan Autonomous Prefecture', 'en'),
+(637, 0, 56, 'Chengdu city', 'en'),
+(638, 0, 56, 'Zigong city', 'en'),
+(639, 0, 56, 'Panzhihua city', 'en'),
+(640, 0, 56, 'Luzhou city', 'en'),
+(641, 0, 56, 'Deyang city', 'en'),
+(642, 0, 56, 'Mianyang city', 'en'),
+(643, 0, 56, 'Guangyuan city', 'en'),
+(644, 0, 56, 'Suining city', 'en'),
+(645, 0, 56, 'Neijiang city', 'en'),
+(646, 0, 56, 'Leshan city', 'en'),
+(647, 0, 56, 'Nanchong city', 'en'),
+(648, 0, 56, 'Meishan city', 'en'),
+(649, 0, 56, 'Yibin city', 'en'),
+(650, 0, 56, 'Guangan city', 'en'),
+(651, 0, 56, 'Dazhou city', 'en'),
+(652, 0, 56, 'Yaan city', 'en'),
+(653, 0, 56, 'Bazhong city', 'en'),
+(654, 0, 56, 'Ziyang city', 'en'),
+(655, 0, 56, 'Aba Zhou', 'en'),
+(656, 0, 56, 'Ganzi Tibetan Autonomous Prefecture', 'en'),
+(657, 0, 56, 'Liangshan Yi Autonomous Prefecture', 'en'),
+(658, 0, 57, 'Guiyang city', 'en'),
+(659, 0, 57, 'Liupanshui city', 'en'),
+(660, 0, 57, 'Zunyi city', 'en'),
+(661, 0, 57, 'Anshun city', 'en'),
+(662, 0, 57, 'Tongren area', 'en'),
+(663, 0, 57, 'Bijie area', 'en'),
+(664, 0, 57, 'Buyi and Miao Autonomous Prefecture in southwestern Guizhou', 'en'),
+(665, 0, 57, 'Qiandongnan Miao and Dong Autonomous Prefecture', 'en'),
+(666, 0, 57, 'Buyi and Miao Autonomous Prefecture of Qiannan', 'en'),
+(667, 0, 58, 'Haikou city', 'en'),
+(668, 0, 58, 'Sanya city', 'en'),
+(669, 0, 58, 'Wuzhishan city', 'en'),
+(670, 0, 58, 'Qionghai city', 'en'),
+(671, 0, 58, 'Danzhou city', 'en'),
+(672, 0, 58, 'Wenchang city', 'en'),
+(673, 0, 58, 'Wanning city', 'en'),
+(674, 0, 58, 'Dongfang city', 'en'),
+(675, 0, 58, 'Chengmai County', 'en'),
+(676, 0, 58, 'Dingan County', 'en'),
+(677, 0, 58, 'Tunchang County', 'en'),
+(678, 0, 58, 'Lingao County', 'en'),
+(679, 0, 58, 'Baisha Li Autonomous County', 'en'),
+(680, 0, 58, 'Changjiang Li Autonomous County', 'en'),
+(681, 0, 58, 'Ledong Li Autonomous County', 'en'),
+(682, 0, 58, 'Li and Miao Autonomous County of Baoting', 'en'),
+(683, 0, 58, 'Qiongzhong Li and Miao Autonomous County', 'en'),
+(684, 0, 59, 'Kunming city', 'en'),
+(685, 0, 59, 'Qujing city', 'en'),
+(686, 0, 59, 'Yuxi city', 'en'),
+(687, 0, 59, 'Baoshan city', 'en'),
+(688, 0, 59, 'Zhaotong city', 'en'),
+(689, 0, 59, 'Lijiang city', 'en'),
+(690, 0, 59, 'Simao city', 'en'),
+(691, 0, 59, 'Lincang city', 'en'),
+(692, 0, 59, 'Wenshan Zhuang and Miao Autonomous Prefecture', 'en'),
+(693, 0, 59, 'Honghe Hani and Yi Autonomous Prefecture', 'en'),
+(694, 0, 59, 'Xishuangbanna Dai Autonomous Prefecture', 'en'),
+(695, 0, 59, 'Chuxiong Yi Autonomous Prefecture', 'en'),
+(696, 0, 59, 'Dali Bai Nationality Autonomous Prefecture', 'en'),
+(697, 0, 59, 'Dehong Dai Jingpo Autonomous Prefecture', 'en'),
+(698, 0, 59, 'Nu River Lisu Nationality Autonomous Prefecture', 'en'),
+(699, 0, 59, 'Diqing Tibetan Autonomous Prefecture', 'en'),
+(700, 0, 60, 'Xining city', 'en'),
+(701, 0, 60, 'Haidong Prefecture', 'en'),
+(702, 0, 60, 'Haibei Tibetan Autonomous Prefecture', 'en'),
+(703, 0, 60, 'Huangnan Tibetan Autonomous Prefecture', 'en'),
+(704, 0, 60, 'Hainan Tibetan Autonomous Prefecture', 'en'),
+(705, 0, 60, 'Guoluo Tibetan Autonomous Prefecture', 'en'),
+(706, 0, 60, 'Yushu Tibetan Autonomous Prefecture', 'en'),
+(707, 0, 60, 'The Mongolia Tibetan Autonomous Prefecture of Haixi state', 'en'),
+(708, 0, 61, 'Xian city', 'en'),
+(709, 0, 61, 'Tongchuan city', 'en'),
+(710, 0, 61, 'Baoji city', 'en'),
+(711, 0, 61, 'Xianyang city', 'en'),
+(712, 0, 61, 'Weinan city', 'en'),
+(713, 0, 61, 'Yanan city', 'en'),
+(714, 0, 61, 'Hanzhong city', 'en'),
+(715, 0, 61, 'Yulin city', 'en'),
+(716, 0, 61, 'Ankuang city', 'en'),
+(717, 0, 61, 'Shangluo city', 'en'),
+(718, 0, 62, 'Nanning city', 'en'),
+(719, 0, 62, 'Liuzhou city', 'en'),
+(720, 0, 62, 'Guilin city', 'en'),
+(721, 0, 62, 'Wuzhou city', 'en'),
+(722, 0, 62, 'Beihai city', 'en'),
+(723, 0, 62, 'Fangchenggang city', 'en'),
+(724, 0, 62, 'Qinzhou city', 'en'),
+(725, 0, 62, 'Guigang city', 'en'),
+(726, 0, 62, 'Yulin city', 'en'),
+(727, 0, 62, 'Baise city', 'en'),
+(728, 0, 62, 'Hezhou city', 'en'),
+(729, 0, 62, 'Hechi city', 'en'),
+(730, 0, 62, 'Laibin city', 'en'),
+(731, 0, 62, 'Chongzuo city', 'en'),
+(732, 0, 63, 'Lasa city', 'en'),
+(733, 0, 63, 'Nagqu area', 'en'),
+(734, 0, 63, 'Changdu area', 'en'),
+(735, 0, 63, 'Shannan area', 'en'),
+(736, 0, 63, 'Shigatse area', 'en'),
+(737, 0, 63, 'Ali area', 'en'),
+(738, 0, 63, 'Linzhi area', 'en'),
+(739, 0, 64, 'Yinchuan city', 'en'),
+(740, 0, 64, 'Shizuishan city', 'en'),
+(741, 0, 64, 'Wuzhong city', 'en'),
+(742, 0, 64, 'Guyuan city', 'en'),
+(743, 0, 64, 'Zhongwei city', 'en'),
+(744, 0, 65, 'Wulumuqi city', 'en'),
+(745, 0, 65, 'Wulamayi city', 'en'),
+(746, 0, 65, 'Shihezi city', 'en'),
+(747, 0, 65, 'Alaer city', 'en'),
+(748, 0, 65, 'Tumushuke city', 'en'),
+(749, 0, 65, 'Wujiaqu city', 'en'),
+(750, 0, 65, 'Tulufan city', 'en'),
+(751, 0, 65, 'Akesu city', 'en'),
+(752, 0, 65, 'Kashi city', 'en'),
+(753, 0, 65, 'Hami city', 'en'),
+(754, 0, 65, 'Hetian city', 'en'),
+(755, 0, 65, 'Atushen city', 'en'),
+(756, 0, 65, 'Kuerle city', 'en'),
+(757, 0, 65, 'Changji city', 'en'),
+(758, 0, 65, 'Fukang city', 'en'),
+(759, 0, 65, 'Miquan city', 'en'),
+(760, 0, 65, 'Bole city', 'en'),
+(761, 0, 65, 'Yining city', 'en'),
+(762, 0, 65, 'Kuitun city', 'en'),
+(763, 0, 65, 'Tacheng city', 'en'),
+(764, 0, 65, 'Wusu city', 'en'),
+(765, 0, 65, 'Aletai city', 'en'),
+(766, 0, 66, 'Huhehaote city', 'en'),
+(767, 0, 66, 'Baotou city', 'en'),
+(768, 0, 66, 'Wuhai city', 'en'),
+(769, 0, 66, 'Chifeng city', 'en'),
+(770, 0, 66, 'Tongliao city', 'en'),
+(771, 0, 66, 'Eersuosi city', 'en'),
+(772, 0, 66, 'Hulunbeier city', 'en'),
+(773, 0, 66, 'Bayannaoer city', 'en'),
+(774, 0, 66, 'Wulanchabu city', 'en'),
+(775, 0, 66, 'Xilinguole Meng', 'en'),
+(776, 0, 66, 'XinganMeng', 'en'),
+(777, 0, 66, 'AlashanMeng', 'en'),
+(778, 0, 67, 'The Macao Special Administrative Region', 'en'),
+(779, 0, 68, 'The Hongkong Special Administrative Region', 'en'),
+(780, 0, 39, 'Hengshui city', 'en'),
+(781, 0, 50, 'Liaocheng city', 'en'),
+(782, 0, 58, 'Lingshui Li Autonomous County', 'en');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_freight`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_freight` (
+  `id` tinyint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `moren_price` tinyint(4) DEFAULT '0',
+  `moren_weight` tinyint(4) DEFAULT '1',
+  `xuzhong_price` tinyint(4) DEFAULT '0',
+  `xuzhong_weight` tinyint(4) DEFAULT '1',
+  `url` varchar(255) DEFAULT NULL,
+  `query_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_basic_freight`
+--
+
+INSERT INTO `smart_basic_freight` (`id`, `title`, `moren_price`, `moren_weight`, `xuzhong_price`, `xuzhong_weight`, `url`, `query_url`) VALUES
+(2, '顺风快递', 1, 1, 1, 1, 'http://www.qq.com', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_invoice`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_invoice` (
+  `id` tinyint(4) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_basic_invoice`
+--
+
+INSERT INTO `smart_basic_invoice` (`id`, `title`) VALUES
+(1, '普通发票'),
+(2, '增值税发票');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_package`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_package` (
+  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 导出表中的数据 `smart_basic_package`
+--
+
+INSERT INTO `smart_basic_package` (`id`, `title`) VALUES
+(1, '盒'),
+(2, '包'),
+(3, '箱');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_payment`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_payment` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `api` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `note` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- 导出表中的数据 `smart_basic_payment`
+--
+
+INSERT INTO `smart_basic_payment` (`id`, `api`, `title`, `note`) VALUES
+(2, 'ALIPAY', '支付宝在线支付', NULL),
+(4, 'DAIDZQB', '电子钱包', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_price`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_price` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `min` int(11) DEFAULT '0',
+  `max` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_basic_price`
+--
+
+INSERT INTO `smart_basic_price` (`id`, `min`, `max`) VALUES
+(1, 0, 100),
+(2, 101, 1000);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_province`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_province` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `language` varchar(4) NOT NULL DEFAULT 'en',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
+
+--
+-- 导出表中的数据 `smart_basic_province`
+--
+
+INSERT INTO `smart_basic_province` (`id`, `title`, `language`) VALUES
+(1, '北京市', 'cn'),
+(2, '天津市', 'cn'),
+(3, '上海市', 'cn'),
+(4, '重庆市', 'cn'),
+(5, '河北省', 'cn'),
+(6, '山西省', 'cn'),
+(7, '台湾省', 'cn'),
+(8, '辽宁省', 'cn'),
+(9, '吉林省', 'cn'),
+(10, '黑龙江省', 'cn'),
+(11, '江苏省', 'cn'),
+(12, '浙江省', 'cn'),
+(13, '安徽省', 'cn'),
+(14, '福建省', 'cn'),
+(15, '江西省', 'cn'),
+(16, '山东省', 'cn'),
+(17, '河南省', 'cn'),
+(18, '湖北省', 'cn'),
+(19, '湖南省', 'cn'),
+(20, '广东省', 'cn'),
+(21, '甘肃省', 'cn'),
+(22, '四川省', 'cn'),
+(23, '贵州省', 'cn'),
+(24, '海南省', 'cn'),
+(25, '云南省', 'cn'),
+(26, '青海省', 'cn'),
+(27, '陕西省', 'cn'),
+(28, '广西壮族自治区', 'cn'),
+(29, '西藏自治区', 'cn'),
+(30, '宁夏回族自治区', 'cn'),
+(31, '新疆维吾尔自治区', 'cn'),
+(32, '内蒙古自治区', 'cn'),
+(33, '澳门特别行政区', 'cn'),
+(34, '香港特别行政区', 'cn'),
+(35, 'Beijing Municipality', 'en'),
+(36, 'Tianjin Municipality', 'en'),
+(37, 'Shanghai Municipality', 'en'),
+(38, 'Chongqing Municipality', 'en'),
+(39, 'Hebei Province', 'en'),
+(40, 'Shanxi Province', 'en'),
+(41, 'Taiwan Province', 'en'),
+(42, 'Liaoning Province', 'en'),
+(43, 'Jilin Province', 'en'),
+(44, 'Heilongjiang Province', 'en'),
+(45, 'Jiangsu Province', 'en'),
+(46, 'Zhejiang Province', 'en'),
+(47, 'Anhui Province', 'en'),
+(48, 'Fujian Province', 'en'),
+(49, 'Jiangxi Province', 'en'),
+(50, 'Shandong Province', 'en'),
+(51, 'Henan Province', 'en'),
+(52, 'Hubei Province', 'en'),
+(53, 'Hunan Province', 'en'),
+(54, 'Guangdong Province', 'en'),
+(55, 'Gansu Province', 'en'),
+(56, 'Sichuan Province', 'en'),
+(57, 'Guizhou Province', 'en'),
+(58, 'Hainan Province', 'en'),
+(59, 'Yunnan Province', 'en'),
+(60, 'Qinghai Province', 'en'),
+(61, 'ShanXi Province', 'en'),
+(62, 'The Guangxi Zhuang Autonomous Region', 'en'),
+(63, 'Xizang(Tibet) Autonomous Region', 'en'),
+(64, 'The Ningxia Hui Autonomous Region', 'en'),
+(65, 'The Xinjiang(Sinkiang) Uygur Autonomous Region', 'en'),
+(66, 'The Inner Mongolia Autonomous Region', 'en'),
+(67, 'The Macao Special Administrative Region', 'en'),
+(68, 'Hong Kong SAR', 'en');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_basic_question`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_basic_question` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_basic_question`
+--
+
+INSERT INTO `smart_basic_question` (`id`, `title`) VALUES
+(1, '您父母的姓名？'),
+(2, '您的姓名？');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_car`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_car` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `pid` int(10) unsigned DEFAULT '0',
+  `path` varchar(300) DEFAULT NULL,
+  `orderby` int(11) DEFAULT NULL,
+  `countnum` smallint(5) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_car`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_cart`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_cart` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `guestid` varchar(50) DEFAULT NULL,
+  `uid` int(10) unsigned DEFAULT NULL,
+  `productsid` int(10) unsigned DEFAULT NULL,
+  `price` float(9,2) DEFAULT NULL,
+  `productsnum` int(10) unsigned DEFAULT '1',
+  `productsname` varchar(255) DEFAULT NULL,
+  `productsnote` varchar(255) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL,
+  `isdone` tinyint(4) DEFAULT '0',
+  `weight` float NOT NULL DEFAULT '0',
+  `addtime` int(11) unsigned DEFAULT NULL,
+  `chima` varchar(12) DEFAULT NULL,
+  `yanse` varchar(12) DEFAULT NULL,
+  `xiuchang` varchar(12) DEFAULT NULL,
+  `language` varchar(2) NOT NULL DEFAULT 'cn',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 导出表中的数据 `smart_cart`
+--
+
+INSERT INTO `smart_cart` (`id`, `guestid`, `uid`, `productsid`, `price`, `productsnum`, `productsname`, `productsnote`, `photo`, `isdone`, `weight`, `addtime`, `chima`, `yanse`, `xiuchang`, `language`) VALUES
+(3, NULL, 11, 2, 0.00, 1, '产品测试1', NULL, '543a9a01352f7.jpg', 0, 0, NULL, NULL, NULL, NULL, 'cn');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_city`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_city` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `orderby` smallint(5) unsigned DEFAULT NULL,
+  `pid` int(10) unsigned DEFAULT NULL,
+  `level` smallint(5) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
+
+--
+-- 导出表中的数据 `smart_city`
+--
+
+INSERT INTO `smart_city` (`id`, `title`, `orderby`, `pid`, `level`) VALUES
+(31, '苏州', 111, 31, 1),
+(32, '昆山市', 112, 32, 1),
+(33, '高新区', 1, 31, 2),
+(37, '平江区', 2, 31, 2),
+(95, '无锡市', 0, 95, 1),
+(38, '吴中区', 3, 31, 2),
+(39, '沧浪区', 4, 31, 2),
+(40, '相城区', 5, 31, 2),
+(41, '园区', 6, 31, 2),
+(42, '金阊区', 7, 31, 2),
+(43, '虎丘区', 8, 31, 2),
+(44, '昆山地区', 9, 31, 2),
+(45, '玉山镇', 1, 32, 2),
+(46, '巴城镇', 2, 32, 2),
+(47, '周市镇', 3, 32, 2),
+(48, '陆家镇', 4, 32, 2),
+(49, '花桥镇', 5, 32, 2),
+(50, '淀山湖镇', 6, 32, 2),
+(51, '张浦镇', 7, 32, 2),
+(52, '周庄镇', 8, 32, 2),
+(53, '千灯镇', 9, 32, 2),
+(54, '锦溪镇', 10, 32, 2),
+(55, '昆山开发区', 11, 32, 2),
+(56, '常熟市', 113, 56, 1),
+(57, '虞山镇', 1, 56, 2),
+(58, '梅李镇', 2, 56, 2),
+(59, '海虞镇', 3, 56, 2),
+(60, '碧溪镇', 4, 56, 2),
+(61, '古里镇', 5, 56, 2),
+(62, '沙家浜镇', 6, 56, 2),
+(63, '支塘镇', 7, 56, 2),
+(64, '董浜镇', 8, 56, 2),
+(65, '辛庄镇', 9, 56, 2),
+(66, '尚胡镇', 10, 56, 2),
+(67, '吴江市', 114, 67, 1),
+(68, '松陵镇', 1, 67, 2),
+(69, '同里镇', 2, 67, 2),
+(70, '平望镇', 3, 67, 2),
+(71, '盛泽镇', 4, 67, 2),
+(72, '横扇镇', 5, 67, 2),
+(73, '七都镇', 6, 67, 2),
+(74, '震泽镇', 7, 67, 2),
+(75, '桃源镇', 8, 67, 2),
+(76, '汾湖镇', 9, 67, 2),
+(77, '张家港市', 115, 77, 1),
+(78, '杨舍镇', 1, 77, 2),
+(79, '塘桥镇', 2, 77, 2),
+(80, '金港镇', 3, 77, 2),
+(81, '锦丰镇', 4, 77, 2),
+(82, '乐余镇', 5, 77, 2),
+(83, '凤凰镇', 6, 77, 2),
+(84, '南丰镇', 7, 77, 2),
+(85, '大新镇', 8, 77, 2),
+(86, '太仓市', 116, 86, 1),
+(87, '城厢镇', 1, 86, 2),
+(88, '沙溪镇', 2, 86, 2),
+(89, '浏河镇', 3, 86, 2),
+(90, '浮桥镇', 4, 86, 2),
+(91, '璜泾镇', 5, 86, 2),
+(92, '双凤镇', 6, 86, 2),
+(93, '娄东街道', 7, 86, 2),
+(94, '经济开发区', 8, 86, 2),
+(96, '惠山区', 0, 95, 2);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_content`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_content` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text,
+  `addtime` int(11) DEFAULT NULL,
+  `title` varchar(128) NOT NULL,
+  `language` varchar(4) DEFAULT 'cn',
+  `jbid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_content`
+--
+
+INSERT INTO `smart_content` (`id`, `content`, `addtime`, `title`, `language`, `jbid`) VALUES
+(1, '', 1460305578, '用户分享', NULL, NULL),
+(2, '', 1460305587, '天文发展史', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_coupons`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_coupons` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `money` decimal(5,0) DEFAULT NULL,
+  `is_use` tinyint(4) DEFAULT '0',
+  `use_time` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_coupons`
+--
+
+INSERT INTO `smart_coupons` (`id`, `title`, `money`, `is_use`, `use_time`, `uid`) VALUES
+(1, '兑换抵用券', 100, 1, 1372151592, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_email_config`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_email_config` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `email_list` varchar(255) DEFAULT NULL,
+  `smtp_host` varchar(255) DEFAULT NULL,
+  `smtp_port` varchar(255) DEFAULT NULL,
+  `smtp_user` varchar(255) DEFAULT NULL,
+  `smtp_pass` varchar(255) DEFAULT NULL,
+  `reply_email` varchar(255) DEFAULT NULL,
+  `reply_name` varchar(255) DEFAULT NULL,
+  `from_email` varchar(255) DEFAULT NULL,
+  `from_name` varchar(255) DEFAULT NULL,
+  `smtp_secure` varchar(10) DEFAULT NULL,
+  `smtp_auth` varchar(10) DEFAULT NULL,
+  `test_email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_email_config`
+--
+
+INSERT INTO `smart_email_config` (`id`, `email_list`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `reply_email`, `reply_name`, `from_email`, `from_name`, `smtp_secure`, `smtp_auth`, `test_email`) VALUES
+(1, 'baibgyve@163.com', 'smtp.qq.com', '25', '2250243254@qq.com', 'qq/2250243254', 'cn_2250243254@qq.com', '2250243254@qq.com', '2250243254@qq.com', '2250243254', '', 'false', '2250243254@qq.com');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_fahuo_info`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_fahuo_info` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `orderid` int(11) DEFAULT NULL,
+  `fahuoren` varchar(255) DEFAULT NULL,
+  `kuaidi` varchar(255) DEFAULT NULL,
+  `danhao` varchar(255) DEFAULT NULL,
+  `shijian` varchar(255) DEFAULT NULL,
+  `addtime` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_fahuo_info`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_favorites`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_favorites` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(10) unsigned DEFAULT NULL,
+  `productsid` int(10) unsigned DEFAULT NULL,
+  `addtime` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_favorites`
+--
+
+INSERT INTO `smart_favorites` (`id`, `uid`, `productsid`, `addtime`) VALUES
+(1, 11, 2, 1413273085);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_feedback`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_feedback` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(10) unsigned DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `addtime` int(10) unsigned DEFAULT NULL,
+  `isshouli` tinyint(4) DEFAULT '0',
+  `contact` text,
+  `productsid` int(11) NOT NULL,
+  `name1` varchar(32) NOT NULL COMMENT '名字',
+  `name2` varchar(32) NOT NULL COMMENT '姓名',
+  `email` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_feedback`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_flink`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_flink` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) NOT NULL,
+  `url` varchar(50) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_flink`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_freight_rule`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_freight_rule` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `freight_id` tinyint(4) DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  `moren_price` tinyint(4) DEFAULT '1',
+  `moren_weight` tinyint(4) DEFAULT '1',
+  `xuzhong_price` tinyint(4) DEFAULT '1',
+  `xuzhong_weight` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- 导出表中的数据 `smart_freight_rule`
+--
+
+INSERT INTO `smart_freight_rule` (`id`, `freight_id`, `title`, `moren_price`, `moren_weight`, `xuzhong_price`, `xuzhong_weight`) VALUES
+(7, 2, '北京', 1, 121, 1, 12),
+(10, 2, '天津', 12, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_freight_rule_city`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_freight_rule_city` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `freight_id` tinyint(4) DEFAULT '0',
+  `rule_id` int(11) DEFAULT NULL,
+  `city_id` smallint(6) DEFAULT NULL,
+  `moren_price` tinyint(4) DEFAULT '1',
+  `moren_weight` tinyint(4) DEFAULT '1',
+  `xuzhong_price` tinyint(4) DEFAULT '1',
+  `xuzhong_weight` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_freight_rule_city`
+--
+
+INSERT INTO `smart_freight_rule_city` (`id`, `freight_id`, `rule_id`, `city_id`, `moren_price`, `moren_weight`, `xuzhong_price`, `xuzhong_weight`) VALUES
+(1, 2, 7, 1, 1, 121, 1, 12),
+(2, 2, 10, 2, 12, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_history`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_history` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `guestid` varchar(50) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `productsid` int(10) unsigned DEFAULT NULL,
+  `addtime` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_history`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_info`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_info` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `content` text,
+  `addtime` int(11) NOT NULL,
+  `fujian` varchar(50) NOT NULL COMMENT '附件',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 导出表中的数据 `smart_info`
+--
+
+INSERT INTO `smart_info` (`id`, `title`, `content`, `addtime`, `fujian`) VALUES
+(1, 'aaaa下载啦', '', 1383199907, '5271f4a3aae8d.docx'),
+(2, '32332', '', 1383199839, '5271f45f23248.docx'),
+(3, '123', '', 1386836968, '52a973e825a9f.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_integral`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_integral` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `orderid` int(11) DEFAULT NULL,
+  `price` float(9,2) DEFAULT NULL,
+  `value` int(11) DEFAULT '0',
+  `addtime` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- 导出表中的数据 `smart_integral`
+--
+
+INSERT INTO `smart_integral` (`id`, `uid`, `orderid`, `price`, `value`, `addtime`) VALUES
+(1, 1, NULL, 176.00, 18, 1340784076),
+(2, 2, NULL, 190.00, 19, 1340785528),
+(3, 1, 13, 50.00, 5, 1354843765),
+(4, 1, 10, 6.00, 1, 1354847562),
+(5, 1, 1000000007, 0.01, 0, 1356931016),
+(6, 1, 16, 160.00, 16, 1356931087);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_local`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_local` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cityid` int(10) unsigned DEFAULT NULL,
+  `areaid` int(10) unsigned DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `zipcode` varchar(6) DEFAULT NULL,
+  `tel` varchar(50) DEFAULT NULL,
+  `mobile` varchar(50) DEFAULT NULL,
+  `orderby` smallint(5) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_local`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_member`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_member` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `realname` varchar(15) DEFAULT NULL,
+  `car` varchar(15) DEFAULT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  `addtime` int(11) unsigned DEFAULT NULL,
+  `activetime` int(11) unsigned DEFAULT NULL,
+  `loginnum` int(11) unsigned DEFAULT '0',
+  `name` varchar(50) DEFAULT NULL,
+  `sex` tinyint(1) DEFAULT '0',
+  `address` varchar(200) DEFAULT NULL,
+  `zipcode` varchar(10) DEFAULT NULL,
+  `tel` varchar(50) DEFAULT NULL,
+  `tel1` varchar(16) NOT NULL,
+  `tel2` varchar(32) NOT NULL,
+  `mobile` varchar(50) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  `question` varchar(255) NOT NULL,
+  `answer` varchar(255) NOT NULL,
+  `fax` varchar(255) NOT NULL,
+  `order_all_money` decimal(9,2) DEFAULT '0.00',
+  `order_coupons_money` double(9,0) DEFAULT '0',
+  `order_coupons_num` smallint(6) DEFAULT '0',
+  `isvip` int(11) NOT NULL DEFAULT '0',
+  `Money` float(9,2) NOT NULL DEFAULT '0.00',
+  `is_dingyue` tinyint(1) NOT NULL DEFAULT '0',
+  `qq` varchar(16) NOT NULL,
+  `weixin` varchar(32) NOT NULL,
+  `photo` varchar(128) NOT NULL,
+  `msn` varchar(32) NOT NULL,
+  `wangwang` varchar(32) NOT NULL,
+  `birthday` int(11) NOT NULL,
+  `like` varchar(255) NOT NULL,
+  `province_id` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- 导出表中的数据 `smart_member`
+--
+
+INSERT INTO `smart_member` (`id`, `username`, `password`, `realname`, `car`, `email`, `addtime`, `activetime`, `loginnum`, `name`, `sex`, `address`, `zipcode`, `tel`, `tel1`, `tel2`, `mobile`, `company`, `question`, `answer`, `fax`, `order_all_money`, `order_coupons_money`, `order_coupons_num`, `isvip`, `Money`, `is_dingyue`, `qq`, `weixin`, `photo`, `msn`, `wangwang`, `birthday`, `like`, `province_id`, `city_id`) VALUES
+(11, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '管理员', NULL, '2250243254@qq.com', 1382511691, 1423842793, 150, '管理员', 1, '55', '6', '2', '3', '4', '1', '', '', '', '2', 0.00, 0, 0, 1, 0.00, 1, '3', '1', '5417d4d10d33f.png', '', '', 0, '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_member_address`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_member_address` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(10) unsigned DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `province_id` tinyint(4) DEFAULT '0',
+  `city_id` smallint(6) DEFAULT '0',
+  `address` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `tel` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `zipcode` varchar(255) DEFAULT NULL,
+  `ismoren` tinyint(4) DEFAULT '0' COMMENT '是否默认',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- 导出表中的数据 `smart_member_address`
+--
+
+INSERT INTO `smart_member_address` (`id`, `uid`, `name`, `province_id`, `city_id`, `address`, `mobile`, `tel`, `email`, `zipcode`, `ismoren`) VALUES
+(1, 11, 'r', 2, 2, 'r', 'r', '1-200', NULL, 'r', 0),
+(7, 19, '111', 1, 1, '111', '111', '111-1111', '111', NULL, 0),
+(12, 11, 'zz', 13, 116, 'zz', 'zz', 'zz-zz', NULL, 'zz', 0),
+(13, 11, 'vv', 1, 1, 'vv', 'vv', '-', NULL, 'vv', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_member_company`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_member_company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `company` varchar(64) NOT NULL,
+  `zhizhao` varchar(128) NOT NULL,
+  `idcard` varchar(128) NOT NULL,
+  `address` varchar(128) NOT NULL,
+  `mobile` varchar(16) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `email` varchar(16) NOT NULL,
+  `tel` varchar(16) NOT NULL,
+  `fax` varchar(16) NOT NULL,
+  `isshenhe` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- 导出表中的数据 `smart_member_company`
+--
+
+INSERT INTO `smart_member_company` (`id`, `uid`, `addtime`, `company`, `zhizhao`, `idcard`, `address`, `mobile`, `name`, `email`, `tel`, `fax`, `isshenhe`) VALUES
+(1, 15, 0, '00', '营业执照、组织机构代码证、税务登记证任选其一', '身份证正反面', '', '', '', '', '', '', 0),
+(2, 16, 0, '777', '营业执照、组织机构代码证、税务登记证任选其一', '身份证正反面', '', '', '', '', '', '', 0),
+(3, 19, 0, '', '营业执照、组织机构代码证、税务登记证任选其一', '身份证正反面', '', '', '', '', '', '', 0),
+(4, 11, 1408889088, '1', '53f9f10013ca3.jpg', '53f9f100149c6.jpg', '2', '3', '4', '5', '6', '7', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_member_menu`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_member_menu` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) NOT NULL,
+  `pid` tinyint(4) NOT NULL,
+  `path` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 导出表中的数据 `smart_member_menu`
+--
+
+INSERT INTO `smart_member_menu` (`id`, `title`, `pid`, `path`) VALUES
+(1, '会员专区', 0, ''),
+(2, '会员单位', 1, ''),
+(3, '业务介绍', 1, ''),
+(4, '会员名录', 1, ''),
+(5, '会员通告', 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_message`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_message` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `add_uid` int(11) DEFAULT '0',
+  `to_uid` int(11) DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `addtime` int(11) DEFAULT NULL,
+  `is_sys` tinyint(1) DEFAULT '0',
+  `is_read` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_message`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_money_records`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_money_records` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL DEFAULT '0',
+  `money` float(9,2) NOT NULL DEFAULT '0.00',
+  `balance` float(9,2) NOT NULL DEFAULT '0.00',
+  `type` varchar(255) NOT NULL,
+  `start` int(11) NOT NULL DEFAULT '0',
+  `NoteTime` int(11) NOT NULL,
+  `orderid` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_money_records`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_news`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_news` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sortid` varchar(32) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `title2` varchar(200) NOT NULL,
+  `photo` varchar(50) NOT NULL,
+  `content` text,
+  `addtime` int(11) DEFAULT NULL,
+  `keyword` varchar(500) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `hits` int(11) DEFAULT '0',
+  `orderby` int(10) unsigned DEFAULT '100',
+  `is_first` smallint(1) NOT NULL DEFAULT '0',
+  `is_hot` smallint(1) NOT NULL DEFAULT '0',
+  `is_huan` tinyint(1) NOT NULL DEFAULT '0',
+  `fujian` varchar(50) NOT NULL,
+  `from` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+
+--
+-- 导出表中的数据 `smart_news`
+--
+
+INSERT INTO `smart_news` (`id`, `sortid`, `title`, `title2`, `photo`, `content`, `addtime`, `keyword`, `description`, `hits`, `orderby`, `is_first`, `is_hot`, `is_huan`, `fujian`, `from`) VALUES
+(1, '1', '公司简介', '', '', '公司简介公司简介公司简介公司简介', 1460305123, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(2, '1', '企业文化', '', '', '企业文化企业文化企业文化', 1460305130, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(3, '1', '企业荣誉', '', '', '企业荣誉企业荣誉企业荣誉', 1460305135, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(4, '1', '品牌实力', '', '', '品牌实力品牌实力品牌实力', 1460305140, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(5, '1', '假冒产品举报', '', '', '假冒产品举报假冒产品举报假冒产品举报', 1460305144, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(6, '2', '常见问题', '', '', '常见问题常见问题常见问题', 1460305164, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(7, '2', '隐私声明', '', '', '隐私声明隐私声明隐私声明', 1460305174, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(8, '2', '用户协议', '', '', '用户协议用户协议用户协议', 1460305184, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(9, '2', '购物须知', '', '', '购物须知购物须知购物须知', 1460305192, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(10, '2', '购物流程', '', '', '购物流程购物流程购物流程', 1460305199, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(11, '2', '注册新用户', '', '', '注册新用户注册新用户注册新用户', 1460305206, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(12, '3', '在线咨询预约', '', '', '在线咨询预约在线咨询预约在线咨询预约', 1460305231, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(13, '3', '电话咨询', '', '', '电话咨询电话咨询电话咨询', 1460305238, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(14, '3', '填写表单预约', '', '', '填写表单预约填写表单预约填写表单预约', 1460305246, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(15, '4', '收货指南', '', '', '收货指南收货指南收货指南<br />\r\n<span style=\\"background-color:#717071;\\"></span>', 1460305292, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(16, '4', '物流配送', '', '', '物流配送物流配送物流配送', 1460305364, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(17, '5', '退货政策', '', '', '退货政策退货政策退货政策', 1460305402, NULL, '', 0, 0, 0, 0, 0, '', ''),
+(18, '5', '免责声明', '', '', '免责声明免责声明免责声明', 1460305411, NULL, '', 0, 0, 0, 0, 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_news_sort`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_news_sort` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `pid` smallint(5) DEFAULT '0',
+  `path` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- 导出表中的数据 `smart_news_sort`
+--
+
+INSERT INTO `smart_news_sort` (`id`, `title`, `pid`, `path`) VALUES
+(1, '关于我们', 0, ''),
+(2, '新手指南', 0, ''),
+(3, '联系我们', 0, ''),
+(4, '配送安装', 0, ''),
+(5, '售后保障', 0, ''),
+(6, '买家分享', 0, ''),
+(7, '观星攻略', 0, ''),
+(8, '新手指导', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_online`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_online` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  `content` text NOT NULL,
+  `replay` text NOT NULL,
+  `email` varchar(32) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `reptime` int(11) NOT NULL,
+  `is_show` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_online`
+--
+
+INSERT INTO `smart_online` (`id`, `name`, `title`, `content`, `replay`, `email`, `addtime`, `reptime`, `is_show`) VALUES
+(2, '1', '2', '问题', '答案', '1', 0, 1383298050, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_order`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(10) unsigned DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `carnumb` varchar(255) DEFAULT NULL,
+  `province_id` tinyint(4) DEFAULT '0',
+  `city_id` smallint(6) DEFAULT '0',
+  `address` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `tel` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `zipcode` varchar(255) DEFAULT NULL,
+  `payment` varchar(20) DEFAULT NULL COMMENT '支付方式',
+  `proprice` float(9,2) DEFAULT NULL COMMENT '产品金额',
+  `preferentialprice` int(11) DEFAULT '0' COMMENT '优惠金额',
+  `freight` varchar(30) DEFAULT NULL COMMENT '配送方式',
+  `freightprice` float(9,2) DEFAULT NULL COMMENT '运费',
+  `service` int(11) DEFAULT NULL COMMENT '服务商',
+  `invoicetype` varchar(255) DEFAULT NULL,
+  `invoicecompany` varchar(255) DEFAULT NULL,
+  `invoicecontent` varchar(255) DEFAULT NULL,
+  `addtime` int(11) unsigned DEFAULT NULL,
+  `isaudit` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `audittime` int(11) unsigned NOT NULL,
+  `isfahuo` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `isfukuan` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `isshouhuo` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `order_sys_note` varchar(500) DEFAULT NULL,
+  `order_sys_title` varchar(255) DEFAULT NULL,
+  `verify` varchar(10) DEFAULT NULL,
+  `shouhuotime` varchar(255) NOT NULL,
+  `isquxiao` int(11) NOT NULL DEFAULT '0' COMMENT '是否取消',
+  `weight` float NOT NULL DEFAULT '0',
+  `language` varchar(2) NOT NULL DEFAULT 'cn',
+  `ordertype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:普通/2:团购',
+  `activity` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_order`
+--
+
+INSERT INTO `smart_order` (`id`, `uid`, `name`, `carnumb`, `province_id`, `city_id`, `address`, `mobile`, `tel`, `email`, `zipcode`, `payment`, `proprice`, `preferentialprice`, `freight`, `freightprice`, `service`, `invoicetype`, `invoicecompany`, `invoicecontent`, `addtime`, `isaudit`, `audittime`, `isfahuo`, `isfukuan`, `isshouhuo`, `order_sys_note`, `order_sys_title`, `verify`, `shouhuotime`, `isquxiao`, `weight`, `language`, `ordertype`, `activity`) VALUES
+(1, 11, 'vv', NULL, 1, 1, 'vv', 'vv', '-', NULL, 'vv', NULL, 0.00, 0, '0', 0.00, NULL, NULL, NULL, NULL, 1423848047, 0, 0, 0, 0, 0, NULL, NULL, 'QEwIrrkVhf', '', 0, 0, 'cn', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_order_cart`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_order_cart` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `guestid` varchar(50) DEFAULT NULL,
+  `uid` int(10) unsigned DEFAULT NULL,
+  `productsid` int(10) unsigned DEFAULT NULL,
+  `price` float(9,2) DEFAULT NULL,
+  `productsnum` int(10) unsigned DEFAULT NULL,
+  `productsname` varchar(255) DEFAULT NULL,
+  `productsnote` varchar(255) DEFAULT NULL,
+  `modelid` int(11) DEFAULT '0',
+  `photo` varchar(50) DEFAULT NULL,
+  `model` varchar(255) DEFAULT NULL,
+  `addtime` int(11) unsigned DEFAULT NULL,
+  `isdone` tinyint(4) DEFAULT '0',
+  `orderid` int(10) unsigned DEFAULT '0',
+  `modelnum` int(11) NOT NULL DEFAULT '1',
+  `weight` float NOT NULL DEFAULT '0',
+  `chima` varchar(12) DEFAULT NULL,
+  `yanse` varchar(12) DEFAULT NULL,
+  `xiuchang` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_order_cart`
+--
+
+INSERT INTO `smart_order_cart` (`id`, `guestid`, `uid`, `productsid`, `price`, `productsnum`, `productsname`, `productsnote`, `modelid`, `photo`, `model`, `addtime`, `isdone`, `orderid`, `modelnum`, `weight`, `chima`, `yanse`, `xiuchang`) VALUES
+(1, NULL, 11, 3, 0.00, 1, '产品测试', NULL, 0, NULL, NULL, 1423848047, 0, 1, 1, 0, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_order_pay`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_order_pay` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `body` varchar(1000) DEFAULT NULL,
+  `buyer_email` varchar(255) DEFAULT NULL,
+  `buyer_id` varchar(255) DEFAULT NULL,
+  `exterface` varchar(255) DEFAULT NULL,
+  `is_success` varchar(10) DEFAULT NULL,
+  `notify_id` varchar(255) DEFAULT NULL,
+  `notify_time` datetime DEFAULT NULL,
+  `notify_type` varchar(255) DEFAULT NULL,
+  `out_trade_no` varchar(255) DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  `seller_email` varchar(255) DEFAULT NULL,
+  `seller_id` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `total_fee` float(9,2) DEFAULT NULL,
+  `trade_no` varchar(255) DEFAULT NULL,
+  `trade_status` varchar(255) DEFAULT NULL,
+  `sign` varchar(255) DEFAULT NULL,
+  `sign_type` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_order_pay`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sortid` int(10) unsigned DEFAULT NULL,
+  `dai_sortid` int(11) NOT NULL,
+  `sortid_two` int(11) NOT NULL,
+  `brandid` varchar(32) DEFAULT NULL,
+  `brand_jz_id` int(11) NOT NULL,
+  `sex` tinyint(1) DEFAULT NULL,
+  `price` decimal(9,2) DEFAULT NULL,
+  `market_price` decimal(5,2) DEFAULT NULL,
+  `vipprice` decimal(9,2) NOT NULL DEFAULT '0.00',
+  `length` varchar(16) DEFAULT NULL COMMENT '长度',
+  `weight` float(4,2) DEFAULT '0.00',
+  `interface` varchar(16) DEFAULT NULL COMMENT '接口',
+  `stock` smallint(6) DEFAULT '0',
+  `specification` varchar(50) DEFAULT NULL,
+  `harvest_time` varchar(255) DEFAULT NULL,
+  `sales_num` int(11) DEFAULT '0',
+  `path` varchar(200) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL,
+  `content1` text,
+  `content2` text,
+  `content3` text,
+  `content4` text,
+  `content5` text,
+  `content6` varchar(255) DEFAULT NULL,
+  `addtime` int(11) unsigned DEFAULT NULL,
+  `orderby` smallint(5) unsigned DEFAULT NULL,
+  `hits` int(11) DEFAULT '0',
+  `title` varchar(500) DEFAULT NULL,
+  `keywords` varchar(800) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `ishot` tinyint(1) DEFAULT '0',
+  `ispromotion` tinyint(1) DEFAULT '0',
+  `issales` tinyint(1) DEFAULT '1',
+  `iscomm` tinyint(1) DEFAULT '0',
+  `isassemble` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否套装',
+  `isvip` tinyint(1) NOT NULL DEFAULT '0',
+  `size` varchar(64) DEFAULT NULL COMMENT '商品编号',
+  `composition` varchar(64) DEFAULT NULL COMMENT '成分',
+  `pdf` varchar(64) DEFAULT NULL,
+  `manuals` varchar(64) DEFAULT NULL COMMENT '产品手册',
+  `language` varchar(4) DEFAULT 'cn',
+  `jbid` int(11) DEFAULT NULL COMMENT '关联产品',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `author` int(11) NOT NULL DEFAULT '0',
+  `activity` varchar(255) NOT NULL DEFAULT '0',
+  `hdprice` float(6,2) DEFAULT NULL,
+  `endtime` int(11) DEFAULT NULL,
+  `seller_number` varchar(32) DEFAULT NULL,
+  `search_id` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- 导出表中的数据 `smart_products`
+--
+
+INSERT INTO `smart_products` (`id`, `sortid`, `dai_sortid`, `sortid_two`, `brandid`, `brand_jz_id`, `sex`, `price`, `market_price`, `vipprice`, `length`, `weight`, `interface`, `stock`, `specification`, `harvest_time`, `sales_num`, `path`, `name`, `photo`, `content1`, `content2`, `content3`, `content4`, `content5`, `content6`, `addtime`, `orderby`, `hits`, `title`, `keywords`, `description`, `ishot`, `ispromotion`, `issales`, `iscomm`, `isassemble`, `isvip`, `size`, `composition`, `pdf`, `manuals`, `language`, `jbid`, `status`, `author`, `activity`, `hdprice`, `endtime`, `seller_number`, `search_id`) VALUES
+(3, 16, 16, 1, '3', 0, NULL, 999.99, NULL, 0.00, NULL, 0.00, NULL, 10, NULL, NULL, 0, '0,1,3,16', '产品测试', '54b8c6e213346.png', '售后服务', '商品简介', '商品详情', '详细参数', NULL, '', 1421395682, 0, 0, '', '', '', 0, 0, 1, 0, 0, 0, '111', NULL, NULL, NULL, 'cn', 0, 1, 0, '0', 0.00, 0, NULL, ''),
+(4, 16, 16, 3, '5', 1, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0, NULL, NULL, 0, '0,1,3,16', '11111', '54be1bef2dd83.png', '', '', '', '', NULL, '', 1421745135, 0, 0, '', '', '', 0, 0, 1, 0, 0, 0, '1111', NULL, NULL, NULL, 'cn', 0, 1, 0, '0', 0.00, 0, NULL, '0,0');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_and_brand`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_and_brand` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `english_name` varchar(64) NOT NULL,
+  `img` varchar(64) DEFAULT NULL,
+  `sort` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `orderby` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 导出表中的数据 `smart_products_and_brand`
+--
+
+INSERT INTO `smart_products_and_brand` (`id`, `name`, `pid`, `english_name`, `img`, `sort`, `content`, `orderby`) VALUES
+(5, '跑步机品牌1', 0, '', NULL, '3,4', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_and_brand_jz`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_and_brand_jz` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `sort` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_products_and_brand_jz`
+--
+
+INSERT INTO `smart_products_and_brand_jz` (`id`, `name`, `sort`) VALUES
+(1, '品牌机种1', 16);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_and_property`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_and_property` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `productsid` int(11) DEFAULT NULL,
+  `propertyid` int(11) DEFAULT NULL,
+  `valueid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_products_and_property`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_attphoto`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_attphoto` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `productsid` int(10) unsigned DEFAULT '0',
+  `photo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_products_attphoto`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_comment`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_comment` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `productsid` int(10) unsigned DEFAULT NULL,
+  `uid` int(11) unsigned DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `buytime` int(11) unsigned DEFAULT NULL,
+  `type` tinyint(4) DEFAULT '1',
+  `content` text,
+  `addtime` int(11) unsigned DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `title` varchar(20) DEFAULT NULL,
+  `xing` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_products_comment`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_model`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_model` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `productsid` int(11) DEFAULT NULL,
+  `model` varchar(255) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `price` decimal(9,2) DEFAULT NULL,
+  `package` varchar(50) DEFAULT NULL,
+  `num` smallint(6) DEFAULT '1',
+  `weight` float(5,2) DEFAULT '0.00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_products_model`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_property_sort`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_property_sort` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `product_sortid` int(11) DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_products_property_sort`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_property_value`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_property_value` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `sortid` int(11) DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_products_property_value`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_products_search_option`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_products_search_option` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `sortid` int(11) NOT NULL,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- 导出表中的数据 `smart_products_search_option`
+--
+
+INSERT INTO `smart_products_search_option` (`id`, `name`, `sortid`, `pid`) VALUES
+(1, '测试1', 3, 0),
+(3, '测试2', 3, 0),
+(7, '11', 3, 1),
+(6, '11', 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_product_sort`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_product_sort` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `pid` int(10) unsigned DEFAULT '0',
+  `path` varchar(300) DEFAULT NULL,
+  `orderby` int(11) unsigned DEFAULT '0',
+  `level` smallint(6) DEFAULT '0',
+  `countnum` smallint(5) unsigned DEFAULT '0',
+  `typeid` smallint(5) unsigned DEFAULT '1',
+  `photo` varchar(50) NOT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `is_changyong` tinyint(1) DEFAULT '0',
+  `language` varchar(4) DEFAULT 'cn',
+  `jbid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=163 ;
+
+--
+-- 导出表中的数据 `smart_product_sort`
+--
+
+INSERT INTO `smart_product_sort` (`id`, `title`, `pid`, `path`, `orderby`, `level`, `countnum`, `typeid`, `photo`, `status`, `is_changyong`, `language`, `jbid`) VALUES
+(1, '产品', 0, '0', 0, 1, 7, 1, '', 1, 0, 'cn', NULL),
+(2, '积分兑换产品', 0, '0', 0, 1, 0, 1, '', 1, 0, 'cn', NULL),
+(3, '跑步机', 1, '0-1', 0, 2, 2, 1, '', 1, 0, 'cn', NULL),
+(4, '按摩椅', 1, '0-1', 0, 2, 4, 1, '', 1, 0, 'cn', NULL),
+(5, '健身车', 1, '0-1', 0, 2, 4, 1, '', 1, 0, 'cn', NULL),
+(6, '椭圆机', 1, '0-1', 0, 2, 2, 1, '', 1, 0, 'cn', NULL),
+(13, '商用有氧器材', 1, '0-1', 0, 2, 9, 1, '', 1, 0, 'cn', NULL),
+(92, '商用健身车', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(16, '热销跑步机', 3, '0-1-3', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(17, '家用跑步机', 3, '0-1-3', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(21, '按摩器', 4, '0-1-4', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(51, '热销椭圆机', 6, '0-1-6', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(56, '家用椭圆机', 6, '0-1-6', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(61, '热销立式车', 5, '0-1-5', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(65, '热销卧式车', 5, '0-1-5', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(69, '热线动感单车', 5, '0-1-5', 99, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(72, '家用健身车', 5, '0-1-5', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(150, '热销按摩器', 4, '0-1-4', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(87, '商用跑步机', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(97, '商用动感单车', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(102, '商用踏步机', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(106, '商用划船器', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(154, '单站训练器', 114, '0-1-114', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(114, '商用力量器材', 1, '0-1', 0, 2, 7, 1, '', 1, 0, 'cn', NULL),
+(115, '自由力量系列', 114, '0-1-114', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(158, '双功能训练器', 114, '0-1-114', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(124, '户外游乐设备', 1, '0-1', 0, 2, 3, 1, '', 1, 0, 'cn', NULL),
+(125, '游乐设施', 124, '0-1-124', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(128, '户外路径', 124, '0-1-124', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(130, '创体休闲类', 124, '0-1-124', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(155, '热销商用跑步机', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(152, '热销按摩椅', 4, '0-1-4', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(151, '按摩椅', 4, '0-1-4', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(153, '商用椭圆机', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(156, '热销商用椭圆机', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(157, '热销商用健身车', 13, '0-1-13', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(159, '综合机', 114, '0-1-114', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(160, '热销自由力量', 114, '0-1-114', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(161, '热销单站训练器', 114, '0-1-114', 0, 3, 0, 1, '', 1, 0, 'cn', NULL),
+(162, '热销双功能训练器', 114, '0-1-114', 0, 3, 0, 1, '', 1, 0, 'cn', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_product_sort_level`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_product_sort_level` (
+  `id` tinyint(4) unsigned NOT NULL AUTO_INCREMENT,
+  `level` tinyint(4) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_product_sort_level`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_product_sort_type`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_product_sort_type` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `selecttype` tinyint(1) unsigned DEFAULT NULL COMMENT '1单选，2多选',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_product_sort_type`
+--
+
+INSERT INTO `smart_product_sort_type` (`id`, `title`, `selecttype`) VALUES
+(1, '11', 110);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_product_type`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_product_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `sortid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- 导出表中的数据 `smart_product_type`
+--
+
+INSERT INTO `smart_product_type` (`id`, `name`, `sortid`) VALUES
+(1, '经济型', 3),
+(3, '适用型', 3),
+(4, '专业型', 3),
+(5, '多功能', 3),
+(6, '进口', 3),
+(7, '经济型', 4),
+(8, '舒适型', 4),
+(9, '3D按摩椅', 4),
+(10, '高端型', 4),
+(11, '按摩小件', 4);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_recommendation`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_recommendation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `toemail` varchar(50) NOT NULL,
+  `subject` varchar(128) NOT NULL,
+  `content` text NOT NULL,
+  `lastname` varchar(8) NOT NULL,
+  `firstname` varchar(8) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `productsid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_recommendation`
+--
+
+INSERT INTO `smart_recommendation` (`id`, `toemail`, `subject`, `content`, `lastname`, `firstname`, `email`, `addtime`, `productsid`) VALUES
+(1, '2250243254@qq.com', 'hh', 'hh', '', '', '', 1388626987, 4);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_sys_access`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_sys_access` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` smallint(6) unsigned NOT NULL,
+  `node_id` smallint(6) unsigned NOT NULL,
+  `module` varchar(50) DEFAULT NULL,
+  `pid` smallint(5) unsigned DEFAULT NULL,
+  `level` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `groupId` (`role_id`),
+  KEY `nodeId` (`node_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_sys_access`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_sys_menu`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_sys_menu` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `called` varchar(32) NOT NULL,
+  `rolenumber` varchar(8) NOT NULL DEFAULT 'M0' COMMENT '权限编号',
+  `link` text NOT NULL,
+  `mould` varchar(64) NOT NULL,
+  `sid` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_sys_menu`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_sys_node`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_sys_node` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `remark` varchar(255) DEFAULT NULL,
+  `pid` smallint(6) unsigned NOT NULL,
+  `level` tinyint(1) unsigned NOT NULL,
+  `orderby` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `level` (`level`),
+  KEY `pid` (`pid`),
+  KEY `status` (`status`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=155 ;
+
+--
+-- 导出表中的数据 `smart_sys_node`
+--
+
+INSERT INTO `smart_sys_node` (`id`, `name`, `title`, `status`, `remark`, `pid`, `level`, `orderby`) VALUES
+(1, 'admin', 'admin项目', 1, '', 0, 1, 0),
+(101, 'add', '添加优惠券', 1, NULL, 98, 3, 50),
+(99, 'index', '所有优惠券', 1, NULL, 98, 3, 50),
+(6, 'Index', '首页', 1, NULL, 1, 2, 0),
+(7, 'index', '系统信息', 1, NULL, 6, 3, 0),
+(94, 'sort?type=1', '产品类别', 1, NULL, 30, 3, 50),
+(11, 'Member', '会员', 1, NULL, 1, 2, 3),
+(12, 'index', '所有会员', 1, NULL, 11, 3, 0),
+(13, 'add', '添加会员', 1, NULL, 11, 3, 0),
+(98, 'Coupon', '优惠券', 1, NULL, 1, 3, 50),
+(97, 'email_config', '邮件配置', 1, NULL, 36, 3, 50),
+(17, 'News', '模块', 1, NULL, 1, 2, 5),
+(18, 'index', '所有信息', 1, NULL, 17, 3, 0),
+(19, 'edit', '新增/编辑信息', 1, NULL, 17, 3, 0),
+(20, 'Info', '下载', 0, NULL, 1, 2, 6),
+(21, 'index', '所有下载', 1, NULL, 20, 3, 0),
+(22, 'edit', '新增/编辑下载', 1, NULL, 20, 3, 0),
+(23, 'Album', '相册', 1, NULL, 1, 2, 9),
+(24, 'index', '所有相册', 1, NULL, 23, 3, 0),
+(25, 'edit', '新增/编辑相册', 1, NULL, 23, 3, 0),
+(26, 'sort', '模块分类', 1, NULL, 17, 3, 0),
+(102, 'price', '价格区间', 1, NULL, 36, 3, 50),
+(30, 'Product', '产品', 1, NULL, 1, 2, 2),
+(31, 'index', '所有产品', 1, NULL, 30, 3, 0),
+(32, 'add', '新增产品', 1, NULL, 30, 3, 0),
+(33, 'sort', '产品类别', 0, NULL, 30, 3, 0),
+(34, 'sortadd', '新增产品类别', 0, NULL, 30, 3, 0),
+(35, 'edit', '编辑产品', 0, NULL, 30, 3, 0),
+(36, 'Basic', '配置', 1, NULL, 1, 2, 90),
+(37, 'index', '网站信息', 1, NULL, 36, 3, 0),
+(39, 'Order', '订单', 1, NULL, 1, 2, 0),
+(40, 'index', '网站订单', 1, NULL, 39, 3, 0),
+(45, 'fahuo', '订单发货', 0, NULL, 39, 3, 0),
+(46, 'orderview', '订单详情', 0, NULL, 39, 3, 0),
+(47, 'audit', '订单审核', 0, NULL, 39, 3, 0),
+(48, 'addphoto', '上传相片', 1, NULL, 23, 3, 0),
+(49, 'password', '修改密码', 1, NULL, 36, 3, 0),
+(50, 'tuihuanlist', '退换货申请', 1, NULL, 39, 3, 0),
+(51, 'feedbacklist', '产品问题反馈', 0, NULL, 39, 3, 0),
+(107, 'bank', '银行账户', 1, NULL, 36, 3, 50),
+(53, 'freight', '运费配置', 1, NULL, 36, 3, 0),
+(90, 'Sys', '系统', 1, NULL, 1, 2, 100),
+(91, 'node', '系统模块', 1, NULL, 90, 3, 0),
+(92, 'node_action', '模块更新操作', 0, NULL, 90, 3, 0),
+(93, 'nodedel', '模块删除[执行]', 0, NULL, 90, 3, 0),
+(108, 'message', '留言', 1, NULL, 11, 3, 50),
+(109, 'messageadd', '留言添加', 1, NULL, 11, 3, 50),
+(115, 'Zhaoshang', '单页', 1, NULL, 1, 2, 0),
+(117, 'index', '单页列表', 1, NULL, 115, 3, 50),
+(118, 'add', '添加单页', 1, NULL, 115, 3, 50),
+(119, 'protype', '产品类型', 1, NULL, 30, 3, 50),
+(120, 'role', '角色管理', 0, NULL, 11, 3, 50),
+(121, 'sort', '会员菜单', 0, NULL, 11, 3, 50),
+(152, 'brand', '产品品牌', 1, NULL, 30, 3, 50),
+(127, 'School', '认证', 0, NULL, 1, 2, 50),
+(128, 'sort', '认证菜单', 1, NULL, 127, 3, 50),
+(129, 'Online', '反馈', 1, NULL, 1, 2, 50),
+(130, 'index', '留言反馈', 1, NULL, 129, 3, 50),
+(131, 'index', '认证信息', 1, NULL, 127, 3, 50),
+(132, 'edit', '信息添加', 1, NULL, 127, 3, 50),
+(133, 'flink', '友情链接', 1, NULL, 36, 3, 50),
+(153, 'search_option', '搜索选项', 1, NULL, 30, 3, 50),
+(154, 'brand_jz', '品牌机种', 1, NULL, 30, 3, 50);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_sys_role`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_sys_role` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `pid` smallint(6) DEFAULT NULL,
+  `status` tinyint(1) unsigned DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `statususe` varchar(255) NOT NULL COMMENT '导航权限',
+  `statuslook` varchar(255) NOT NULL COMMENT '查看权限',
+  `statusdown` varchar(255) NOT NULL COMMENT '下载权限',
+  PRIMARY KEY (`id`),
+  KEY `pid` (`pid`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- 导出表中的数据 `smart_sys_role`
+--
+
+INSERT INTO `smart_sys_role` (`id`, `name`, `pid`, `status`, `remark`, `statususe`, `statuslook`, `statusdown`) VALUES
+(1, '管理员', NULL, NULL, '', '', '', ''),
+(2, '普通会员', NULL, 1, NULL, '', '', ''),
+(3, '高级会员', NULL, NULL, '', '', '', ''),
+(4, 'VIP会员', NULL, NULL, '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_sys_role_user`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_sys_role_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` mediumint(9) unsigned DEFAULT NULL,
+  `user_id` char(32) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `group_id` (`role_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `smart_sys_role_user`
+--
+
+INSERT INTO `smart_sys_role_user` (`id`, `role_id`, `user_id`) VALUES
+(1, 1, '1'),
+(2, 2, '2');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_sys_user`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_sys_user` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `addtime` int(10) unsigned DEFAULT NULL,
+  `r_id` tinyint(4) NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `smart_sys_user`
+--
+
+INSERT INTO `smart_sys_user` (`uid`, `username`, `password`, `addtime`, `r_id`) VALUES
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_tuihuo`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_tuihuo` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(10) unsigned DEFAULT NULL,
+  `orderid` int(10) unsigned DEFAULT '0',
+  `typeid` tinyint(3) unsigned DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `addtime` int(10) unsigned DEFAULT NULL,
+  `isshouli` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_tuihuo`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_tuihuo_prolist`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_tuihuo_prolist` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(11) unsigned DEFAULT NULL,
+  `tuihuoid` int(10) unsigned DEFAULT '0',
+  `productsid` int(10) unsigned DEFAULT NULL,
+  `tuinum` int(11) DEFAULT '0',
+  `goumaijia` float(9,2) DEFAULT '0.00',
+  `photo` varchar(255) DEFAULT NULL,
+  `productsname` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_tuihuo_prolist`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `smart_user_view_products`
+--
+
+CREATE TABLE IF NOT EXISTS `smart_user_view_products` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `userid` int(10) unsigned DEFAULT NULL,
+  `productsid` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `smart_user_view_products`
+--
+

@@ -1,0 +1,141 @@
+<div id="contentBox">
+
+<div>
+<div class="left">
+<form action="{:U()}" method="get">
+<input type="hidden" value="{:ACTION_NAME}" name="a" />
+<input type="hidden" value="{:MODULE_NAME}" name="m" />
+<table border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>订单编号</td>
+    <td><label>
+      <input name="keyword" type="text" id="keyword" value="{$_GET['keyword']}" />
+    </label></td>
+    <td><label>
+      <input type="submit" name="button" id="button" value="搜索" />
+    </label></td>
+  </tr>
+</table>
+
+</form>
+</div>
+<div class="page right">
+{$page}
+</div>
+<div class="clear"></div>
+
+</div>
+
+
+
+
+<foreach name="list" item="vo">
+<eq name="vo['id']" value="$_GET['tid']">
+    <form action="{:U('order_price_update')}" method="post">
+    <input name="id" type="hidden" value="{$vo['id']}" />
+    <input name="p" type="hidden" value="{$_GET['p']}" />
+    
+    <div class="orderlist">
+<div class="title">
+        <div class="left">订单编号：{$vo['id']} &nbsp;  成交时间：{$vo['addtime']|date="Y-m-d H:m:s",###}<a name="order"></a></div>
+        <div class="right"><a href="{:U('orderview',array('tid'=>$vo['id']))}">查看详情</a></div>
+        <div class="clear"></div>
+    </div>    
+    
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="t1">
+      <tr>
+        <td>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t2">
+    <foreach name="vo.Ordercart" item="vo2">
+      <tr>
+        <td width="50"><img src="__UPLOADS__/pro/thumb/thumb_100_{$vo2['photo']}" alt="" /></td>
+        <td><a href="{:U('Product/view',array('tid'=>$vo2['productsid']))}" target="_blank">{$vo2['productsname']}&nbsp;</a></td>
+        <td width="30">{$vo2['price']}&nbsp;</td>
+        <td width="20">{$vo2['productsnum']}&nbsp;</td>
+        <td width="30" align="center">{$vo2['price']*$vo2['productsnum']}&nbsp;</td>
+        </tr>
+    </foreach>
+    </table>	</td>
+        <td width="150">商品金额：<input name="proprice" type="text" value="{$vo['proprice']}" size="5" />
+
+          <br />
+          {$vo['freight']}：<input name="freightprice" type="text" value="{$vo['freightprice']}" size="5" />
+        <td width="100">
+          <eq name="vo['isfahuo']" value="0"><a href="{:U('fahuo',array('tid'=>$vo['id']))}">未发货<br />(点击发货)</a><else /><a href="{:U('fahuoinfo',array('tid'=>$vo['fahuoid']))}">已发货<br />(查看发货记录)</a></eq>
+          &nbsp;</td>
+        <td width="90" align="center"><input value="修改订单" type="submit" /> <br />
+          
+          <a href="{:U('index',array('p'=>$_GET['p']))}">取消修改</a></td>
+      </tr>
+    </table>
+    </div>
+    
+    
+    
+    
+    
+    </form>
+<else />
+    <div class="orderlist">
+    <div class="title">
+        <div class="left">订单编号：{$vo['id']} &nbsp;  成交时间：{$vo['addtime']|date="Y-m-d H:m:s",###}</div>
+        <div class="right"><a href="{:U('orderview',array('tid'=>$vo['id']))}">查看详情</a></div>
+        <div class="clear"></div>
+    </div>
+    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="t1">
+      <tr>
+        <td>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t2">
+    <foreach name="vo.Ordercart" item="vo2">
+      <tr>
+        <td width="50"><img src="__UPLOADS__/pro/thumb/thumb_100_{$vo2['photo']}" alt="" /></td>
+        <td><a href="{:U('Product/view',array('tid'=>$vo2['productsid']))}" target="_blank">{$vo2['productsname']}&nbsp;</a></td>
+        <td width="30">{$vo2['price']}&nbsp;</td>
+        <td width="20">{$vo2['productsnum']}&nbsp;</td>
+        <td width="30" align="center">{$vo2['price']*$vo2['productsnum']}&nbsp;</td>
+        </tr>
+    </foreach>
+    </table>	</td>
+        <td width="150">商品金额：{$vo['proprice']}
+          <br />
+          {$vo['freight']}：{$vo['freightprice']}<br />
+<br />
+<eq name="vo['isfukuan']" value="1"><span class="green">已付款</span><else /><span class="red">未付款</span></eq>
+
+        <td width="100">
+          <eq name="vo['isfahuo']" value="0"><a href="{:U('fahuo',array('tid'=>$vo['id']))}">未发货<br />(点击发货)</a><else /><a href="{:U('fahuoinfo',array('tid'=>$vo['fahuoid']))}">已发货<br />(查看发货记录)</a></eq>
+          &nbsp;</td>
+        <td width="90" align="center">
+          
+          <a href="{:U('index',array('tid'=>$vo['id']))}#order">修改金额</a>
+          |
+          <a href="{:U('del',array('tid'=>$vo['id']))}" onclick="return delone()">删除</a>
+          
+          
+        </td>
+      </tr>
+    </table>
+    </div>
+
+</eq>
+
+
+
+
+</foreach>
+
+
+
+<div class="page">
+{$page}
+</div>
+</div>
+
+<script language="javascript">
+function delone() {
+if(confirm("是否将此此订单删除?")){
+return true;
+}else return false;
+}
+</script>
+

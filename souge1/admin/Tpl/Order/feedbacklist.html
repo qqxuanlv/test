@@ -1,0 +1,23 @@
+<div id="contentBox">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th>ID</th>
+        <th>标题</th>
+        <th>内容</th>
+        <th>反馈时间</th>
+        <th>联系方式</th>
+        <th>受理</th>
+      </tr>
+	  <foreach name="list" item="vo">
+      <tr>
+        <td>{$vo['id']}&nbsp;</td>
+        <td>{$vo['title']}&nbsp;</td>
+        <td>{$vo['content']}&nbsp;</td>
+        <td>{$vo['addtime']|date='Y-m-d H:m:s',###}&nbsp;</td>
+        <td>{$vo['email']}&nbsp;</td>
+        <td><eq name="vo['isshouli']" value="1">已受理<else /><a href="{:U('feed_shouli',array('tid'=>$vo['id']))}">暂未受理</a></eq>&nbsp;</td>
+      </tr>
+	  </foreach>
+    </table>
+
+</div>

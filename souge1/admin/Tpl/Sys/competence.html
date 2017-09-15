@@ -1,0 +1,70 @@
+<div id="contentBox"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="contentTable">
+  <tr>
+    <th>ID</th>
+    <th>模块名</th>
+    <th>模块标题</th>
+    <th>排序</th>
+    <th>是否启用</th>
+    <th>是否显示</th>
+    <th width="100">操作</th>
+  </tr>
+  <foreach name="_all_node" item="item">
+
+
+  
+  <tr class="sort1">
+    <td>{$item['id']}</td>
+    <td>{$item['name']}</td>
+    <td> {$item['title']}</td>
+    <td align="center">{$item['orderby']}</td>
+    <td align="center">{$item['status']}&nbsp;</td>
+    <td align="center">{$item['is_show']}&nbsp;</td>
+    <td align="center"><eq name="item['_access']" value="0"><img src="__PUBLIC__/ico/delete_16x16.gif" class="user_role_access" data="{$item['_access']}" id="{$item['id']}" uid="{$_GET['tid']}" /><else /><img src="__PUBLIC__/ico/ok_16x16.gif" class="user_role_access" data="{$item['_access']}" id="{$item['id']}" uid="{$_GET['tid']}" /></eq></td>
+  </tr>
+  
+
+  
+<foreach name="item['_child']" item="item2">
+
+  <tr>
+    <td>{$item2['id']}</td>
+    <td>{$item2['name']}</td>
+    <td> {$item2['title']}</td>
+    <td align="center">{$item2['orderby']}</td>
+    <td align="center">{$item2['status']}&nbsp;</td>
+    <td align="center">{$item2['is_show']}&nbsp;</td>
+    <td align="center"><eq name="item2['_access']" value="0"><img src="__PUBLIC__/ico/delete_16x16.gif" class="user_role_access" data="{$item2['_access']}" id="{$item2['id']}" uid="{$_GET['tid']}" /><else /><img src="__PUBLIC__/ico/ok_16x16.gif" class="user_role_access" data="{$item2['_access']}" id="{$item2['id']}" uid="{$_GET['tid']}" /></eq></td>
+  </tr>
+  
+
+  
+</foreach>
+  
+  
+  
+  
+  </foreach>
+</table>
+<script type="text/javascript" src="__PUBLIC__/admin/js/jquery.js" ></script>
+<script type="text/javascript" src="__PUBLIC__/admin/js/table_hover.js" ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.user_role_access').click(		
+		function(){
+			var img_data=$(this).attr('data');
+			var uid=$(this).attr('uid');
+			var id=$(this).attr('id');
+			if(img_data>0){
+				$(this).attr({src:'__PUBLIC__/ico/delete_16x16.gif',data:'0'});
+				$.post("{:U('competence_user_ajax')}",{uid:uid,id:id,action:'del'});
+				
+			}else{
+				$(this).attr({src:'__PUBLIC__/ico/ok_16x16.gif',data:'1'});
+				$.post("{:U('competence_user_ajax')}",{uid:uid,id:id,action:'add'});
+			}
+		}
+		
+	);		   
+});
+</script>
+</div>

@@ -1,0 +1,52 @@
+<div id="contentBox">
+<form action="{:U('messageeditupdate')}" method="post">
+<input name="tid" type="hidden" value="{$_GET['tid']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>发件人<span class="red">*</span></th>
+    <td><input name="add_uid" type="text" id="username"  value="<?php if($list['add_uid']==0){echo "管理员";}else{echo $list2['username'];}?>"  /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>收件人<span class="red">*</span></th>
+    <td><input name="to_uid" type="text" id="username"  value="<?php if($list['to_uid']==0){echo "管理员";}else{echo $list3['username'];}?>"  /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+    <tr>
+    <th>标题<span class="red">*</span></th>
+    <td><input name="title" type="text" id="username"  value="{$list['title']}"  /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+      <tr>
+    <th>内容<span class="red">*</span></th>
+    <td><input name="content" type="text" id="username"  value="{$list['content']}"  /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+       <tr>
+    <th>是否系统发送<span class="red">*</span></th>
+    <td>
+    <select name="is_sys">
+    <option  value="0" <?php if($list['is_sys']==0){  echo "selected='selected'";} ?>>否</option>
+    <option value="1" <?php if($list['is_sys']==1){  echo "selected='selected'";} ?>>是</option>
+    </select>
+</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+        <tr>
+    <th>是否已读<span class="red">*</span></th>
+    <td>
+    <select name="is_read">
+    <option  value="0" <?php if($list['is_read']==0){  echo "selected='selected'";} ?>>未读</option>
+    <option value="1" <?php if($list['is_read']==1){  echo "selected='selected'";} ?>>已读</option>
+    </select></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr> 	
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

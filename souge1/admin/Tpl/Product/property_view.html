@@ -1,0 +1,122 @@
+<div id="contentBox">
+<div class="title1">当前产品分类：{$sortinfo['title']}</div>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th width="100">ID</th>
+    <th>名称</th>
+    <th>&nbsp;</th>
+    <th>操作</th>
+  </tr>
+
+
+
+<foreach name="list" item="vo">
+  <tr class="t1">
+    <td width="100">{$vo['id']}&nbsp;</td>
+    <td><eq name="vo['id']" value="$_GET['id']">
+<form action="{:U('property_update')}" method="post" >
+<input type="hidden" name="id" value="{$vo['id']}" />
+<input type="text" name="title" value="{$vo['title']}" />
+<input type="submit" value="修改" /> <a href="{:U('',array('tid'=>$_GET['tid']))}">退出修改</a>
+</form>
+    <else />{$vo['title']}</eq>
+    
+<div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<foreach name="vo['_child']" item="item2">
+<eq name="item2['id']" value="$_GET['vid']">
+<form action="{:U('property_value_edit_update')}" method="post" enctype="multipart/form-data">
+<input type="hidden" name="id" value="{$item2['id']}" />
+<tr>
+    <th>├─属性值</th>
+    <td>
+<input name="title" type="text" value="{$item2['title']}" size="10" />
+    </td>
+    <th>上传图片</th>
+    <td><neq name="item2['photo']" value=""><img src="__UPLOADS__/proproperty/thumb/thumb_100_{$item2['photo']}" /><br/></neq><input name="filename" type="file" size="10" /></td>
+    <td><input type="submit" value="修改" /> </td>
+    <td><a href="{:U('',array('tid'=>$_GET['tid']))}">退出修改</a></td>
+</tr>
+</form>
+<else />
+
+
+<!--修改属性值-->
+<tr>
+    <td>├─属性值</td>
+    <td>{$item2['title']}</td>
+    <td>图片</td>
+    <td><neq name="item2['photo']" value=""><img src="__UPLOADS__/proproperty/thumb/thumb_100_{$item2['photo']}" /></neq></td>
+    <td><a href="{:U('',array('tid'=>$_GET['tid'],'vid'=>$item2['id']))}">编辑</a></td>
+    <td><a href="{:U('property_value_del',array('id'=>$item2['id']))}">删除</a></td>
+</tr>
+<!--end-->
+
+
+</eq>
+</foreach>
+</table>
+</div>
+
+    
+    
+    
+<div class="form_{$vo['id']} yincang">
+<form action="{:U('property_value_update')}" method="post" enctype="multipart/form-data">
+<input type="hidden" name="sortid" value="{$vo['id']}" />
+<div id="value_box_{$vo['id']}">
+</div>
+<input type="submit" value="提交" />
+</form>
+</div>
+
+    
+
+    </td>
+    <td><a href="javascript:add_value({$vo['id']});">添加属性值</a></td>
+    <td>
+      <a href="{:U('',array('tid'=>$_GET['tid'],'id'=>$vo['id']))}">编辑属性</a>
+      |
+      <a href="{:U('property_del',array('id'=>$vo['id']))}">删除属性</a>
+      </td>
+  </tr>
+  
+  
+</foreach>
+</table>
+
+<div class="title1">添加属性</div>
+<form action="{:U('property_update')}" method="post" >
+<input type="hidden" name="product_sortid" value="{$sortinfo['id']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th width="120">属性类目</th>
+    <td><label>
+      <input type="text" name="title" id="title" />
+    </label></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><label>
+      <input type="submit" name="button" id="button" value="提交" />
+    </label></td>
+  </tr>
+</table>
+</form>
+
+
+
+</div>
+
+<script language="javascript">
+function add_value(sortid){
+	$('.form_'+sortid).removeClass('yincang');
+	$('#value_box_'+sortid).append('<div><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><th>├─属性值</th><td><input type="text" name="title[]" /></td><th>图片</th><td><input type="file" name="filename[]" /></td></tr></table></div>');
+}
+
+jQuery(document).ready(function($){
+		
+});
+</script>

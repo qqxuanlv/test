@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101113680","appkey":"2dc4e969af2c823a8a885414228350b4","callback":"http://www.58zmkm.com/index.php?app=qq_login","scope":"get_user_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

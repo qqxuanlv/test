@@ -1,0 +1,64 @@
+<div id="contentBox">
+<div class="title1">{$typetitle}</div>
+
+<ul class="ul1">
+	<li><span class="btn1"><a href="{:U('sortadd',array('type'=>$_GET['type']))}">添加分类</a></span> <!--<span class="btn2"><a href="{:U('sorttype')}">返回重新选择</a></span>-->
+    
+    </li>
+
+</ul>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th width="100">ID</th>
+    <th>名称</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>操作</th>
+  </tr>
+
+
+
+<volist name="alist" id="vo">
+  <tr class="t1">
+    <td width="100">{$vo['id']}&nbsp;</td>
+    <td>{$vo['title']}&nbsp;</td>
+    <td><neq name="vo['photo']" value=""><img src="__UPLOADS__/prosort/{$vo['photo']}" width="100" /></neq></td>
+    <td width="100">
+    
+
+    <eq name="_GET['type']" value="2"><a href="{:U('sortphotoadd',array('tid'=>$vo['id'],'type'=>$_GET['type']))}">上传图片</a></eq>
+    
+    
+    
+    </td>
+    <td width="100"><a href="{:U('sortedit',array('tid'=>$vo['id'],'type'=>$_GET['type'],'language'=>$vo['language']))}">编辑</a> | <a href="{:U('sortdel',array('tid'=>$vo['id']))}">删除</a></td>
+  </tr>
+	<volist name="vo._child" id="vo2">
+	  <tr>
+		<td>{$vo2['id']}&nbsp;</td>
+		<td>┠{$vo2['title']}&nbsp;</td>
+		<td>&nbsp;</td>
+
+		<td width="100"><a href="{:U('sortedit',array('tid'=>$vo2['id'],'type'=>$_GET['type'],'language'=>$vo2['language']))}">编辑</a> | <a href="{:U('sortdel',array('tid'=>$vo2['id']))}">删除</a></td>
+	  </tr>
+		<volist name="vo2._child" id="vo3">
+		  <tr>
+			<td>{$vo3['id']}&nbsp;</td>
+			<td>┠──{$vo3['title']}&nbsp;</td>
+			<td>&nbsp;</td>
+
+			<td width="100"><a href="{:U('sortedit',array('tid'=>$vo3['id'],'type'=>$_GET['type'],'language'=>$vo3['language']))}">编辑</a> | <a href="{:U('sortdel',array('tid'=>$vo3['id']))}">删除</a></td>
+		  </tr>
+		  	<foreach name="vo3._child" item="vo4">
+						<tr>
+						<td>{$vo4['id']}&nbsp;</td>
+						<td>┠─────{$vo4['title']}&nbsp;</td>
+						<td align="center">&nbsp;</td>
+						<td width="100"><a href="{:U('sortedit',array('tid'=>$vo4['id'],'type'=>$_GET['type']))}">编辑</a> | <a href="{:U('sortdel',array('tid'=>$vo4['id']))}">删除</a></td>
+					  </tr>
+			</foreach>
+		</volist>
+	</volist>
+</volist>
+</table>
+</div>

@@ -1,0 +1,90 @@
+ 
+ 
+ 
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>客房新增</title>
+	<link rel="stylesheet" type="text/css" href="../../styles/formui.css" />
+	<link rel="stylesheet" type="text/css" href="../../styles/base.css"/>
+	<link rel="stylesheet" type="text/css" href="../../styles/admin-all.css" />
+	<link rel="stylesheet" type="text/css" href="../../styles/themes/gray/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../styles/ui-lightness/jquery-ui-1.8.22.custom.css" /> 
+	<link rel="stylesheet" type="text/css" href="../../styles/themes/icon.css"/>
+	<script type="text/javascript" src="../../scripts/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../../scripts/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../scripts/jquery-ui-1.8.22.custom.min.js"></script>
+	<script type="text/javascript" src="../../scripts/tb.js"></script>
+	<script type="text/javascript" src="../../scripts/acc.js"></script>
+</head>
+<body>
+	<div class="alert alert-info"><b>当前位置<b class="tip"></b>客房信息<b class="tip"></b>客房新增</b></div>
+	<form action="notices.html" method="post">
+		<table class="tbform" id="list">
+			<tbody>
+				<tr>
+					<td class="tdl">客房号<font color="red">（*）</font></td>
+					<td><input type="text"  style="width:200px" name="roomNo"/></td>
+					<td class="tdl">客房楼层<font color="red">（*）</font></td>
+					<td><input type="text" name="roomFloor" style="width:200px"/></td>
+				</tr>
+				<tr>
+					<td class="tdl">客房类型<font color="red">（*）</font></td>
+					<td>
+							<select  name="roomType" style="width:200px;">
+								
+								<option value="1">单人间</option>
+								
+								<option value="2">标准间</option>
+								
+								<option value="3">商务间</option>
+								
+								<option value="4">豪华间</option>
+								
+						</select>
+					</td>
+					<td class="tdl">客房定价(元/日)<font color="red">（*）</font></td>
+					<td><input type="text"  style="width:200px" name="roomPrice"/></td>
+				</tr>
+				<tr>
+					<td class="tdl">客房状态<font color="red">（*）</font></td>
+				    <td>
+						<select  name="roomStatus" style="width:200px;">
+							
+							<option value="2">可入住</option>
+							
+							<option value="1">未打扫</option>
+							
+							<option value="3">已入住</option>
+							
+						</select>
+					</td>
+					<td class="tdl">启用状态<font color="red">（*）</font></td>
+				    <td>
+						<select  name="isUsed" style="width:200px;">
+							
+							<option value="1">启用</option>
+							
+							<option value="2">禁用</option>
+							
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="tdl">备注</td>
+					<td colspan="3"><input type="text" name="remark" style="width:790px"/></td>
+				</tr>
+			</tbody>
+		</table>
+		<table width="100%">
+			<tr align="center">
+				<td><input type="submit" class="btn"  value="保存"/></td>
+				<td><input type="reset" class="btn"  value="重置"/></td>
+				<td><a href="roomManage.html" class="btn"  >取消</a></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

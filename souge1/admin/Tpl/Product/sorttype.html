@@ -1,0 +1,17 @@
+<div id="contentBox">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <td width="80">ID</td>
+    <td>分类模式</td>
+    <td width="100">操作</td>
+  </tr>
+<volist name="list" id="vo">
+  <tr>
+    <td>{$vo['id']}&nbsp;</td>
+    <td>{$vo['title']}&nbsp;</td>
+    <td width="100"><a href="{:U('sort',array('type'=>$vo['id']))}">进入管理</a></td>
+  </tr>
+</volist>
+</table>
+
+</div>

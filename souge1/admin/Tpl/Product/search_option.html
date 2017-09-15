@@ -1,0 +1,47 @@
+<div id="contentBox">
+<div class="title1">{$typetitle}</div>
+
+<ul class="ul1">
+	<li><span class="btn1"><a href="{:U('s_o_edit')}">添加选项</a></span>
+    </li>
+
+</ul>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th width="100">ID</th>
+    <th>名称</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>操作</th>
+  </tr>
+
+
+
+<volist name="list" id="vo">
+  <tr class="t1">
+    <td width="100">{$vo['id']}&nbsp;</td>
+    <td>{$vo['title']}&nbsp;</td>
+    <td></td>
+    <td width="100">
+    </td>
+    <td width="100"></td>
+  </tr>
+	<volist name="vo._child" id="vo2">
+	  <tr>
+		<td></td>
+		<td>┠{$vo2['name']}&nbsp;</td>
+		<td>&nbsp;</td>
+		<td width="100"><a href="{:U('s_o_edit',array('id'=>$vo2['id']))}">编辑</a> | <a href="{:U('s_o_del',array('id'=>$vo2['id']))}">删除</a></td>
+	  </tr>
+          <volist name="vo2._child" id="vo3">
+          <tr>
+            <td></td>
+            <td>┠──{$vo3['name']}&nbsp;</td>
+            <td>&nbsp;</td>
+            <td width="100"><a href="{:U('s_o_edit',array('id'=>$vo3['id']))}">编辑</a> | <a href="{:U('s_o_del',array('id'=>$vo3['id']))}">删除</a></td>
+          </tr>
+        </volist>
+	</volist>
+</volist>
+</table>
+</div>

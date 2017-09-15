@@ -1,0 +1,34 @@
+<div id="contentBox">
+<div class="title1">属性设置</div>
+<div>说明：本页面可设置产品常用分类、产品扩展属性</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th width="100">ID</th>
+    <th>名称</th>
+    <th>常用分类</th>
+    <th width="200">操作</th>
+  </tr>
+
+
+
+<foreach name="list" item="item">
+  <tr class="t1">
+    <td width="100">{$item['id']}&nbsp;</td>
+    <td>{$item['title']}&nbsp;</td>
+    <td>
+    
+    <eq name="item['is_changyong']" value="1">
+    <a href="{:U('sort_status',array('tid'=>$item['id'],'f'=>'is_changyong','v'=>0))}">是</a>
+    <else />
+    <a href="{:U('sort_status',array('tid'=>$item['id'],'f'=>'is_changyong','v'=>1))}">否</a>
+    </eq>    
+        
+    </td>
+    <td>
+      <a href="{:U('property_view',array('tid'=>$item['id'],'type'=>$_GET['type']))}">查看属性</a>
+      </td>
+  </tr>
+</foreach>
+</table>
+</div>

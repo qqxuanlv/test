@@ -1,0 +1,41 @@
+<div id="contentBox">
+<form action="{:U('fahuoupdate')}" method="post"  name="example">
+<input name="id" type="hidden" value="{$_GET['tid']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  
+  <tr>
+    <th>发货人<span class="red">*</span></th>
+    <td><input name="fahuoren" type="text" id="fahuoren" value="{$show['fahuoren']}" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <th>快递方式</th>
+    <td><span>
+      <input name="kuaidi" type="text" id="kuaidi" value="{$show['kuaidi']}" />
+    </span></td>
+    <td>填写快递方式，如顺风</td>
+  </tr>
+  <tr>
+    <th>快递单号</th>
+    <td><span>
+      <input name="danhao" type="text" id="danhao" value="{$show['danhao']}" />
+    </span></td>
+    <td>填写快递单号，可选</td>
+  </tr>
+  <tr>
+    <th>发货时间</th>
+    <td><span>
+      <input name="shijian" type="text" id="shijian" value="{$show['shijian']}" />
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="button" class="btn1" value="更新记录" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

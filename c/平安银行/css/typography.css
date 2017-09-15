@@ -1,0 +1,84 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+body{ font-size:12px; color:#666666; line-height:24px; font-family:"微软雅黑"; background:#f5f5f5}
+
+a { color:#666666; text-decoration:none; }
+
+a:hover { text-decoration:none;}
+
+.sider{width:285px; float:left;}
+.containter{float:right; width:655px;}
+
+.clear_cs{height:0px;font-size:0px; line-height:0px;clear:both;over-flow:hidden;}
+
+
+/******************header css***************/
+.nav{width:640px; margin:auto;}
+.header{background:#f5f5f5; padding:10px 3%;}
+.logo{width:30%; float:left}
+.logo img{width:100%; max-width:162px;}
+.head_right{width:30%; text-align:right; float:right}
+.head_right span{ color:#f16202; font-size:14px; border-left:1px solid #ccc; padding-left:5%}
+.head_right img{vertical-align:middle; margin-right:5%}
+
+.tab { width:100%; height:40px; margin-top:-40px; position:relative; z-index:99999}
+
+.tab li {width:50%; float:left; text-align:center; font-size:18px; height:40px; line-height:40px;}
+.tab li a {text-decoration:none; display:block; color:#fff}
+.tab li a.tabactive { border-bottom:5px solid #edb13f; color:#edb13f; position:relative;}
+
+.biao{width:80%; margin:30px auto;}
+.text{width:100%; height:45px; border:1px solid #ccc; padding-left:10px; font-size:14px;}
+.biao tr{height:60px;}
+.select{width:102%; height:45px; border:1px solid #ccc; font-size:14px; color:#999}
+.area{width:100%; border:1px solid #ccc; height:100px; font-size:14px; color:#999; padding:1%;}
+.btn{color:#fff; font-size:16px; background:#fc8d48; border:none; border-radius:30px; width:80%; height:40px; line-height:40px;}
+
+.gg{margin-top:15px; border-top:15px solid #f5f5f5; border-bottom:15px solid #f5f5f5;}
+.foot_link {padding:20px 0; text-align:center; background:#fff;}
+.foot_link a{padding:0 15px;}
+
+.footer{border-top:15px solid #f5f5f5; background:#e1600f; text-align:center; color:#fff; padding:20px 0; font-size:16px;}
+
+
+/*******会员页***********/
+.info{background:#ededed; font-size:16px; padding:30px 0; text-align:center}
+.info img{vertical-align:middle;}
+.info span{color:#e1600f; margin:0 10px;}
+.menu_list ul li{ border-bottom:1px solid #ccc; height:55px; line-height:55px; padding-left:5%; background-image:url(../images/jt.jpg); background-repeat:no-repeat; background-color:#fff; background-position:  95%; font-size:14px;}
+.menu_list ul li img{vertical-align:middle; margin-right:10px;}
+
+/*******列表页***********/
+.list_box{background:#fff; padding:10px; margin-top:20px;}
+.title{border-bottom:1px solid #ccc; height:44px; margin-top:10px;}
+.title span{ background:#cf5f17; color:#fff; font-size:16px; border-top-left-radius:15px; border-top-right-radius:15px; padding:10px 20px; float:left;}
+.t_r{float:right; width:40%; margin-top:7px;}
+.lt_list{margin:10px 5%;}
+.lt_list ul li{border-bottom:1px dashed #ccc; padding:5px 0}
+.lt_list ul li.tu{background:url(../images/tu.jpg) no-repeat 0 5px ; height:56px; padding-left:57px;
+}
+.lt_title{ font-size:16px;}
+.lt_list ul li.list2{background:url(../images/icon6.jpg) no-repeat 0 5px; height:46px; padding-left:37px;
+}
+
+.cont{ padding:20px 5%;}
+.titled{font-size:18px; margin-bottom:20px; text-align:center}
+.one_left span{color:#cf5f17; font-size:16px;}
+.one_left{font-size:14px; float:left; width:50%;}
+.one_right{text-align:right; font-size:14px; width:50%; float:right;}
+.one_right a{color:#cf5f17;}
+.one{margin-bottom:10px;}
+.two{border-bottom:1px solid #ccc;}
+.pl{border-bottom:1px solid #ccc; padding:10px 0;}
+.pl_memo{font-size:14px;}
+
+.lc_title{background:#cf5f17; color:#fff; font-size:16px; border-top-left-radius:15px; border-top-right-radius:15px; padding:10px 20px; float:left;}
+.more1{ float:right; background:url(../images/icon67.jpg) no-repeat; width:34px; height:34px; display:block;}
+
+.liucheng{ margin:10px 0; background:#fff; padding:2%}
+.list3 li{border-bottom:1px dashed #ccc; height:40px; line-height:40px; margin:0 3%}
+.list3 li a{float:left; font-size:14px;}
+.list3 li span{float:right; background:#cf5f17; border-radius:50%; color:#fff; width:30px; height:30px; text-align:center; line-height:30px; margin-top:5px; display:block}
+.lc_suo{border-bottom:1px solid #ccc;}
+.lc_cont{display:none;}

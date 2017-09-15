@@ -1,0 +1,83 @@
+<div id="contentBox">
+<form action="{:U('freight_city_rule_update')}" method="post">
+<input name="freight_id" value="{$_GET['tid']}" type="hidden" />
+<input name="rule_id" value="{$_GET['id']}" type="hidden" />
+<div class="title1">定义规则</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+
+  <tr>
+    <th>规则名称</th>
+    <td><input name="title" type="text" size="30" value="{$rule_show['title']}"/></td>
+  </tr>
+  <tr>
+    <th>默认运费</th>
+    <td><input name="moren_weight" type="text" value="{$rule_show['moren_weight']}" size="30" />
+      Kg以内，
+      <input name="moren_price" type="text" value="{$rule_show['moren_price']}" size="30" />
+      元 </td>
+  </tr>
+  <tr>
+    <th>续重</th>
+    <td>每增加
+      <input name="xuzhong_weight" type="text" value="{$rule_show['xuzhong_weight']}" size="30" />
+      Kg, 增加运费
+      <input name="xuzhong_price" type="text" value="{$rule_show['xuzhong_price']}" size="30" />
+      元</td>
+  </tr>
+</table>
+<div class="title1">请选择城市</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="city_table" class="table table-hover">
+<foreach name="page_list" item="item">
+  <tr>
+    <th width="150">{$item['title']}
+    <div id="select_all_{$item['id']}" class="font_12 font_normal"><a href="javascript:select_all({$item['id']})">[全选]</a></div>
+    </th>
+    <td>
+    <div id="child_{$item['id']}">
+    <foreach name="item['_child']" item="item2">
+    	<input name="city_id[]" type="checkbox" value="{$item2['id']}" />{$item2['title']} &nbsp; 
+    </foreach>
+    </div>
+    </td>
+  </tr>
+</foreach>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td><label>
+      <input type="submit" class="btn" id="button" value="提交" />
+    </label></td>
+  </tr>
+
+
+</table>
+</form>
+</div>
+<script language="javascript">
+function select_all(id){
+	$('#child_'+id+' input[type="checkbox"]').attr('checked',true);
+	$('#select_all_'+id).html('<a href="javascript:select_no('+id+')">[取消全选]</a>');
+}
+function select_no(id){
+	$('#child_'+id+' input[type="checkbox"]').attr('checked',false);
+	$('#select_all_'+id).html('<a href="javascript:select_all('+id+')">[全选]</a>');
+}
+
+
+jQuery(document).ready(function($){
+<php>
+
+foreach($disabled_list as $v){
+	echo "$('#city_table input[type=\"checkbox\"][value=".$v['city_id']."]').attr({'checked':true,'disabled':true});";
+}
+
+foreach($selected_list as $v){
+	echo "$('#city_table input[type=\"checkbox\"][value=".$v['city_id']."]').attr('checked',true);";
+}
+
+</php>
+	
+});
+</script>
+
+

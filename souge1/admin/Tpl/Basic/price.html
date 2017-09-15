@@ -1,0 +1,63 @@
+<div id="contentBox">
+<div class="title1">价格区间</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>起始价格(含)</th>
+    <th>截止价格(含)</th>
+    <th>操作</th>
+  </tr>
+<foreach name="list" item="vo">
+
+
+<eq name="vo['id']" value="$_GET['tid']">
+<form action="{:U('freight_update')}" method="post">
+  <tr align="center">
+    <td>{$vo['id']}<input name="id" type="hidden" value="{$vo['id']}" /></td>
+    <td><input name="min" type="text" value="{$vo['min']}" /></td>
+    <td><input name="max" type="text" value="{$vo['max']}" /></td>
+    <td><input value="修改" type="submit" /><a href="{:U('')}">取消</a></td>
+  </tr>
+</form>
+<else />
+  <tr align="center">
+    <td>{$vo['id']}</td>
+    <td>{$vo['min']}</td>
+    <td>{$vo['max']}</td>
+    <td><a href="{:U('',array('tid'=>$vo['id']))}">编辑</a> | <a href="{:U('freight_del',array('tid'=>$vo['id']))}">删除</a></td>
+  </tr>
+</eq>
+</foreach>
+
+</table>
+
+<div class="title1">新增价格区间</div>
+<form action="{:U('price_update')}" method="post"  name="example">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  
+  <tr>
+    <th>起始价格(含)</th>
+    <td><span>
+      <input name="min" type="text" id="min"  value="0" size="30" />
+      </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <th>截止价格(含)</th>
+    <td><span>
+      <input name="max" type="text" id="max"  value="0" size="30" />
+    </span></td>
+    <td>请输入数字</td>
+  </tr>
+  
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+</div>
+</div>

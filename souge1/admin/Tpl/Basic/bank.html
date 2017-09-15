@@ -1,0 +1,59 @@
+<div id="contentBox">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>开户行</th>
+    <th>账号</th>
+    <th>户名</th>
+    <th width="100">操作</th>
+  </tr>
+  <foreach name="list" item="item">
+  <eq name="item['id']" value="$_GET['tid']">
+  <form action="{:U('bank_update')}" method="post">
+  <tr>
+    <td>{$item['id']}<input type="hidden" name="id" value="{$item['id']}" /></td>
+    <td><input name="bank" type="text" value="{$item['bank']}" size="40" /></td>
+    <td><input name="account" type="text" value="{$item['account']}" size="40" /></td>
+    <td><input type="text" name="name" value="{$item['name']}" /></td>
+    <td width="100"><input type="submit" value="提交" /><a href="{:U('')}">取消</a></td>
+  </tr>
+  </form>
+  <else />
+  <tr>
+    <td>{$item['id']}&nbsp;</td>
+    <td>{$item['bank']}&nbsp;</td>
+    <td>{$item['account']}&nbsp;</td>
+    <td>{$item['name']}&nbsp;</td>
+    <td width="100"><a href="{:U('',array('tid'=>$item['id']))}">编辑</a> | <a href="{:U('bank_del',array('tid'=>$item['id']))}">删除</a></td>
+  </tr>
+  </eq>
+  </foreach>
+</table>
+<form action="{:U('bank_update')}" method="post">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  
+  <tr>
+    <th width="100">开户行<span class="red">*</span></th>
+    <td><input name="bank" type="text" value="{$show['bank']}" size="50" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <th>账号<span class="red">*</span></th>
+    <td><input name="account" type="text" size="50"  /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>户名<span class="red">*</span></th>
+    <td><input name="name" type="text" id="title3"   /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

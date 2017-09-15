@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <%
+ 	String qx =request.getParameter("qx");
+ if(qx.equals("1"))
+ {
+	 qx="管理员";
+ }
+ else
+ {
+	 qx="普通员工";
+ }
+ %>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="../../styles/admin-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../styles/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../styles/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../styles/ui-lightness/jquery-ui-1.8.22.custom.css" />
+    <script type="text/javascript" src="../../scripts/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../../easyloader.js"></script>
+    <script type="text/javascript" src="../../scripts/jquery-ui-1.8.22.custom.min.js"></script>
+    <script type="text/javascript" src="../../scripts/index.js"></script>
+</head>
+<body>
+    <div class="warp">
+        <!--头部开始-->
+        <div class="top_c">
+            <div class="top-menu">
+                <ul class="top-menu-nav">
+                    <li><a href="../../login.html">切换账号</a></li>
+					<li><a href="#" onclick="window.close()">安全退出</a></li>
+                </ul>
+            </div>
+            <div class="top-nav">欢迎您~<%=qx %></div>
+        </div>
+        <!--头部结束-->
+        <!--左边菜单开始-->
+        <div class="left_c left">
+            <div align="center"><h1>后台管理菜单</h1></div>
+            <div class="acc">
+            	
+                <div align="center">
+                    <a class="one">客房信息</a>
+                    <ul class="kid">
+                    	
+                        <li><a target="Conframe" href="urlTemp.html">基本信息</a></li>
+                        
+                        <li><a target="Conframe" href="urlTemp.html">客房入住</a></li>
+                        
+                        <li><a target="Conframe" href="roomManage.html">客房管理</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div align="center">
+                    <a class="one">会员信息</a>
+                    <ul class="kid">
+                    	
+                        <li><a target="Conframe" href="urlTemp.html">基本信息</a></li>
+                        
+                        <li><a target="Conframe" href="urlTemp.html">会员管理</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        <!--左边菜单结束-->
+        <!--右边框架开始-->
+        <div class="right_c">
+            <div class="nav-tip" onclick="javascript:void(0)">&nbsp;</div>
+        </div>
+        <div class="Conframe">
+            <iframe name="Conframe" id="Conframe"></iframe>
+        </div>
+        <!--右边框架结束-->
+        <!--底部开始-->
+        <div class="bottom_c">Copyright &copy;2015 </div>
+        <!--底部结束-->
+    </div>
+</body>
+</html>
+

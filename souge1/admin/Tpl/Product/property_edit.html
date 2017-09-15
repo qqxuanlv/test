@@ -1,0 +1,41 @@
+<div id="contentBox">
+
+
+<div class="title1">{$page_show['name']}</div>
+<div class="title2">
+<span>您可以选择：</span>
+<a href="{:U('Product/edit',array('tid'=>$_GET['tid']))}">修改该产品</a> | 
+
+<a href="{:U('Product/attedit',array('tid'=>$_GET['tid']))}">管理附图</a> | 
+<a href="{:U('Product/modeledit',array('tid'=>$_GET['tid']))}">管理规格</a> | 
+<a href="{:U('Product/property_edit',array('tid'=>$_GET['tid']))}">管理标签</a> | 
+
+<a href="{:U('Product/index')}">返回产品列表</a>
+
+</div>
+
+<form action="{:U('property_edit_update')}" method="post" >
+<input name="productsid" type="hidden" value="{$_GET['tid']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable2" class="table table-hover">
+<foreach name="page_list" item="item">
+  <tr>
+    <th>{$item['title']}<input type="hidden" name="id[]" value="{$item['id']}" /></th>
+    <td><select name="value[]" id="select_{$item['id']}">
+    <foreach name="item['_child']" item="item2">
+      <option value="{$item2['id']}">{$item2['title']}</option>
+    </foreach>
+    </select></td>
+    <td>&nbsp;</td>
+  </tr>
+</foreach>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" value="提交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+
+</table>
+</form>
+
+</div>

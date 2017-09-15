@@ -1,0 +1,53 @@
+<div id="contentBox">
+
+<foreach name="list" item="vo">
+<div class="smart_orderlist">
+<div class="title">订单编号：{$vo['orderid']} &nbsp;  成交时间：{$vo['addtime']|date="Y-m-d H:m:s",###} &nbsp;&nbsp;</div>
+<table width="100%" border="0" cellspacing="1" cellpadding="0" class="t1">
+  <tr>
+    <td>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="t2">
+  <tr>
+    <td width="60">图片</td>
+    <td>产品名</td>
+    <td>购买价格</td>
+    <td>退换数量</td>
+    </tr>
+
+<foreach name="vo.Products" item="vo2">
+  <tr>
+    <td width="60"><a href="__APP__/Products-show-{$vo2['productsid']}.html" target="_blank"><img src="__UPLOADS__/pro/thumb/thumb_100_{$vo2['photo']}" alt="" /></a></td>
+    <td><a href="__APP__/Products-show-{$vo2['productsid']}.html" target="_blank">{$vo2['productsname']}&nbsp;</a></td>
+    <td>{$vo2['goumaijia']}&nbsp;</td>
+    <td>{$vo2['tuinum']}&nbsp;</td>
+    </tr>
+</foreach>
+</table>	</td>
+    <td width="150">
+	<a href="{:U('Order/orderview',array('tid'=>$vo['orderid']))}" target="_blank">订单信息</a><br />
+<br />
+退换类型：
+	<eq name="vo['typeid']" value="1">退货</eq>
+	<eq name="vo['typeid']" value="2">换货</eq>
+	<eq name="vo['typeid']" value="3">返修</eq>
+    <td width="100">
+	<eq name="vo['isshouli']" value="0"><a href="__URL__-tuihuoshouli-tid-{$vo['id']}">未受理</a> <br />
+	</eq>
+	<eq name="vo['isshouli']" value="1">已受理</eq>	</td>
+    <td width="100"><a href="__URL__-deltuihuo-tid-{$vo['id']}">删除</a></td>
+  </tr>
+</table>
+<!--href="javascript:;"-->
+</div>
+</foreach>
+
+
+
+<div class="page">
+{$page}
+</div>
+
+
+
+
+</div>

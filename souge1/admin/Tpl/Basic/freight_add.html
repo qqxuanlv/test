@@ -1,0 +1,45 @@
+<div id="contentBox">
+
+<form action="{:U('freight_update')}" method="post"  name="example">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  
+  <tr>
+    <th width="150">快递方式</th>
+    <td><span>
+      <input name="title" type="text" id="title"  value="" size="30" />
+      </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <th>默认运费</th>
+    <td><input name="moren_weight" type="text" value="0" size="30" />Kg以内，
+      <input name="moren_price" type="text" value="0" size="30" />元
+     </td>
+    <td>请输入数字</td>
+  </tr>
+  
+  <tr>
+    <th>续重</th>
+    <td>每增加<input name="xuzhong_weight" type="text" value="0" size="30" />Kg, 增加运费<input name="xuzhong_price" type="text" value="0" size="30" />元</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>官方网站URL</th>
+    <td><input name="url" type="text" id="url"  value="" size="60" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>快递查询URL</th>
+    <td><input name="query_url" type="text" id="query_url"  value="" size="60" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+</div>

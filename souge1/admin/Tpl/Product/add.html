@@ -1,0 +1,280 @@
+<include file="Public:_editor3" />
+<script language="javascript" type="text/javascript" src="__PUBLIC__/My97DatePicker/WdatePicker.js"></script>
+<script>
+function getbrand(){
+	var sortid=$("#sortid").val();
+	var url="{:U('Product/ajax_brand')}";
+	$.post(url, { sortid: sortid}, function(data) {
+		data=eval(data);
+		var _html = "<option value='0'>未选择</option>";
+			$("#brand_jz_id").html(_html);
+		if(data[0] &&　data[0]!=0){
+				for(var i = 0; i <data[0].length; i ++){
+					_html=_html+"<option value='"+data[0][i].id+"'>"+data[0][i].name+"</option>";
+				}
+			$("#brand_jz_id").html(_html);
+		}
+		
+			var _html = "<option value='0'>未选择</option>";
+			$("#brandid").html(_html);
+		if(data[2] &&　data[2]!=0){
+				for(var i = 0; i <data[2].length; i ++){
+					_html=_html+"<option value='"+data[2][i].id+"'>"+data[2][i].name+"</option>";
+				}
+			$("#brandid").html(_html);
+		}
+		$(".dai_option").html("");
+		if(data[3] &&　data[3]!=0){
+				for(var i = 0; i <data[3].length; i ++){
+					var option=option+'<tr><th>'+data[3][i].name+'</th><td><select name="search[]">';
+					option=option+'<option value="0">未选择</option>';
+					if(data[3][i]['child'] &&　data[3][i]['child']!=0){
+						for(var j = 0;j<data[3][i]['child'].length; j ++){
+						option=option+'<option value="'+data[3][i].child[j].id+'">'+data[3][i].child[j].name+'</option>';
+						}
+					}
+					option=option+'</select></td><td class="td3">&nbsp;</td></tr>';
+				}
+		}
+		$(".dai_option").html(option);
+		
+	});
+}
+function getbrand2(){
+	var sortid=$("#dai_sortid").val();
+	var url="{:U('Product/ajax_brand')}";
+	$.post(url, { sortid: sortid}, function(data) {
+		data=eval(data);
+
+		
+			var _html = "<option value='0'>未选择</option>";
+			$("#sortid_two").html(_html);
+		if(data[1] &&　data[1]!=0){
+				for(var i = 0; i <data[1].length; i ++){
+					_html=_html+"<option value='"+data[1][i].id+"'>"+data[1][i].name+"</option>";
+				}
+			$("#sortid_two").html(_html);
+		}
+
+		
+	});
+}
+$(function(){
+	if($("#sortid").val()!=0){
+		getbrand();
+	}
+	if($("#dai_sortid").val()!=0){
+		getbrand2();
+	}
+})
+</script>
+<div id="contentBox">
+<form action="{:U('addupdate')}" method="post" id="add"  name="example" enctype="multipart/form-data" onsubmit="return form_check()">
+<input name="id" type="hidden" value="{$show['id']}" />
+<input name="otherid" id="check_car_id" type="hidden" value="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>名称<span class="red">*</span></th>
+    <td><input name="name" type="text" id="name"  value="{$show['name']}" size="80" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>请选择类别</th>
+    <td><select name="sortid" id="sortid" onchange="getbrand();">
+    <option value="0">未选择</option>
+      <foreach name="prosort" item="vo">
+        <optgroup label="{$vo['title']}">
+          <volist name="vo['_child']" id="vo2">
+          <optgroup label="{$vo2['title']}" ></optgroup>
+          	  <volist name="vo2['_child']" id="vo3">
+              <option value="{$vo3['id']}" <eq name="vo3['id']" value="$show['sortid']">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp; {$vo3['title']}</option>
+              		<volist name="vo3['_child']" id="vo4">
+                  	<option value="{$vo4['id']}" <eq name="vo4['id']" value="$show['sortid']">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {$vo4['title']}</option>
+                  	</volist>
+              </volist>
+          </optgroup>
+          </volist>
+          </optgroup>
+        </foreach>
+      </select>
+      </td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>按功能类型</th>
+    <td><select name="dai_sortid" id="dai_sortid" onchange="getbrand2();">
+    <option value="0">未选择</option>
+      <foreach name="prosort" item="vo">
+        <optgroup label="{$vo['title']}">
+          <volist name="vo['_child']" id="vo2">
+          <optgroup label="{$vo2['title']}" ></optgroup>
+          	  <volist name="vo2['_child']" id="vo3">
+              <option value="{$vo3['id']}" <eq name="vo3['id']" value="$show['dai_sortid']">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp; {$vo3['title']}</option>
+              		<volist name="vo3['_child']" id="vo4">
+                  	<option value="{$vo4['id']}" <eq name="vo4['id']" value="$show['dai_sortid']">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {$vo4['title']}</option>
+                  	</volist>
+              </volist>
+          </optgroup>
+          </volist>
+          </optgroup>
+        </foreach>
+      </select>
+      <select name="sortid_two" id="sortid_two">
+    <option value="0">未选择</option>
+      </select></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+  <th>请选择品牌</th>
+  <td><select name="brandid" id="brandid">
+  <option value="0">未选择</option>
+  </select></td>
+  <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+  <th>请选择品牌机种</th>
+  <td><select name="brand_jz_id" id="brand_jz_id">
+  <option value="0">未选择</option>
+  </select></td>
+  <td class="td3">&nbsp;</td>
+  </tr>
+  <tbody class="dai_option">
+  </tbody>
+    <tr>
+    <th>商品编号<span class="red">*</span></th>
+    <td><input name="size" type="text" id="size"  value="{$show['size']}" size="80" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>价格</th>
+    <td><input name="price" type="text" id="price"  value="{$show['price']}" size="30" /></td>
+    <td>请输入数字，小数点后可以保留2位</td>
+  </tr>
+  <tr>
+    <th>创体价</th>
+    <td><input name="vipprice" type="text" id="vipprice"  value="{$show['vipprice']}" size="30" /></td>
+    <td>请输入数字，小数点后可以保留2位</td>
+  </tr>
+  <tr>
+    <th>库存数</th>
+    <td><input name="stock" type="text" id="stock"  value="{$show['stock']}" size="30" /></td>
+    <td>请输入数字，正整数</td>
+  </tr>
+  <tr>
+    <th>重量</th>
+    <td><input name="weight" type="text"  value="{$show['weight']}" size="30" />
+      Kg</td>
+    <td>前台不显示，用于计算运费</td>
+  </tr>
+    <tr>
+    <th>产品主图<span class="red">*</span></th>
+    <td><input type="file" name="filename[]" /></td>
+    <td>必填</td>
+  </tr>
+  <tr>
+    <th>产品附图</th>
+    <td>
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" /><br />
+	<input type="file" name="filename[]" />
+&nbsp;</td>
+    <td>附图数量不设限制，如需更多，请在所有产品处上传</td>
+  </tr>
+
+  <tr>
+    <th>商品简介</th>
+    <td><textarea name="content2" style="width:700px;height:200px;visibility:hidden;">{$show['content2']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>商品详情</th>
+    <td><textarea name="content3" style="width:700px;height:200px;visibility:hidden;">{$show['content3']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>详细参数</th>
+    <td><textarea name="content4" style="width:700px;height:200px;visibility:hidden;">{$show['content4']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>售后服务</th>
+    <td><textarea name="content1" style="width:700px;height:200px;visibility:hidden;">{$show['content1']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>活动</th>
+    <td>
+     <input name="activity" type="radio" value="1" <if condition="$show['activity'] eq 1">checked="checked"</if> />开启活动<br>
+     <input name="activity" type="radio" value="0" <if condition="$show['activity'] eq 0">checked="checked"</if> />关闭活动
+    </td>
+    <td>&nbsp;</td>
+  </tr>  
+  <tr>
+    <th>活动价</th>
+    <td>
+     <input name="hdprice" type="text" id="title"  value="{$show['hdprice']}" size="80" />
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>截至日期</th>
+    <td>
+	<input name="endtime" value="{$show['endtime']|date='Y-m-d H:i:s',###}" class="Wdate" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>活动描述</th>
+    <td>
+<textarea name="content6">{$show['content6']|stripslashes}</textarea>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>排序</th>
+    <td>
+<input name="orderby">{$show['orderby']}</input>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>title</th>
+    <td><span>
+      <input name="title" type="text" id="title"  value="{$show['title']}" size="80" />
+      </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th> keywords </th>
+    <td><span>
+      <input name="keywords" type="text" id="keywords"  value="{$show['keywords']}" size="80" />
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th> description </th>
+    <td><span>
+      <input name="description" type="text" id="description"  value="{$show['description']}" size="80" />
+    </span></td>
+    <td>&nbsp;</td>
+  </tr>
+   <tr>
+    <th> 关联产品的ID </th>
+    <td><span>
+      <input name="jbid" type="text" id="description"  value="{$show['jbid']}" size="80" />
+    </span></td>
+    <td>&nbsp;和翻译有关 可不填</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit"  class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+</div>

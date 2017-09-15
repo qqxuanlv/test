@@ -1,0 +1,92 @@
+<script>
+function getbrand(){
+	var sortid=$("#sortid").val();
+	var url="{:U('Product/ajax_search')}";
+	$.post(url, { sortid: sortid}, function(data) {
+		data=eval(data);
+					if("{$show['pid']}"==0){
+						_html=_html+"<option value='0' selected='selected'>根目录</option>";
+					}else{
+						var _html = "<option value='0'>根目录</option>";
+					}
+			$("#search_id").html(_html);
+		if(data &&　data!=0){
+				for(var i = 0; i <data.length; i ++){
+					if(data[i].id=="{$show['pid']}"){
+						_html=_html+"<option value='"+data[i].id+"' selected='selected'>"+data[i].name+"</option>";
+					}else{
+						_html=_html+"<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+					}
+				}
+			$("#search_id").html(_html);
+		}
+		
+		
+	});
+}
+$(function(){
+	if($("#sortid").val()!=0){
+		getbrand();
+	}
+})
+</script> 
+<div id="contentBox">
+<div class="title1">{$typetitle}</div>
+<ul class="ul1">
+	<li><span class="btn1"><a href="{:U('sortadd',array('type'=>$_GET['type']))}">添加分类</a></span></li>
+</ul>
+
+<form action="{:U('s_o_update')}" method="POST">
+<input name="id" type="hidden" value="{$show['id']}" />
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+
+  <tr>
+    <td>请选择产品类别<span class="red">*</span></td>
+    <td>
+<select name="sortid" size="10" onchange="getbrand()" id="sortid">
+			<option value="0" <eq name="show['sortid']" value="0">selected="selected"</eq>>未选择</option>
+			<foreach name="sortlist" item="vo">
+			<option value="{$vo['id']}" <eq name="show['sortid']" value="$vo['id']">selected="selected"</eq> >{$vo['title']}</option>
+			</foreach>
+
+</select>
+	
+	</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+    <tr>
+    <td>请选择父级<span class="red">*</span></td>
+    <td>
+<select name="pid" size="10" id="search_id">
+			<option value="0" <eq name="show['pid']" value="0">selected="selected"</eq>>根目录</option>
+			<foreach name="s_o_list" item="vo">
+			<option value="{$vo['id']}" <eq name="show['pid']" value="$vo['id']">selected="selected"</eq> >{$vo['name']}</option>
+			</foreach>
+
+</select>
+	
+	</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>修改名称</td>
+    <td><input name="name" type="text" id="name" value="{$show['name']}"></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+
+</form>
+
+</div>

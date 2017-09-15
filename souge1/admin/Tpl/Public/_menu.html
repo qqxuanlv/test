@@ -1,0 +1,15 @@
+<div id="menu">
+<div id="left">
+<ul id="menuList">
+
+<volist id="item" name="menu" >
+<eq name="navinfo['name']" value="$item['name']"><li class="link1"><else/><li class="link2"></eq>
+	<a href="{:U($item['name'].'/index')}">{$item['title']}</a></li>
+</volist>
+
+</ul>
+</div>	
+<div id="right">您好, <strong>{$Think.session.username}</strong> [ <a href="{:U('Public/logout')}">登出</a> ]</div>	
+</div>
+
+<div id="clear"></div>

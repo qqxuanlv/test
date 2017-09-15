@@ -1,0 +1,43 @@
+<div id="contentBox">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>名称</th>
+    <th width="100">操作</th>
+  </tr>
+  <volist name="list" id="item">
+  <eq name="item['id']" value="$_GET['tid']">
+  <form action="{:U('package_update')}" method="post">
+  <tr>
+    <td>{$item['id']}<input type="hidden" name="id" value="{$item['id']}" /></td>
+    <td><input type="text" name="title" value="{$item['title']}" /></td>
+    <td width="100"><input type="submit" value="修改" /><a href="{:U('')}">取消</td>
+  </tr>
+  </form>
+  <else />
+  <tr>
+    <td>{$item['id']}&nbsp;</td>
+    <td>{$item['title']}&nbsp;</td>
+    <td width="100"><a href="{:U('',array('tid'=>$item['id']))}">编辑</a> | <a href="{:U('package_del',array('tid'=>$item['id']))}">删除</a></td>
+  </tr>
+  </eq>
+  
+  </volist>
+</table>
+<form action="{:U('package_update')}" method="post">
+<input name="id" type="hidden" value="{$show['id']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <td>名称<span class="red">*</span></td>
+    <td><input name="title" type="text" id="title"  value="{$show['title']}" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

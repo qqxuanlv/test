@@ -1,0 +1,66 @@
+<script>
+function  shua(){
+	var l=$("#language").find('option:selected').val();
+	//alert(l);
+	
+	//return false;
+	if(l=='cn'){
+	window.location.href="{:U('Product/sortadd',array('language'=>'cn','type'=>1))}";
+	}else{
+	window.location.href="{:U('Product/sortadd',array('language'=>'en','type'=>1))}";
+	}
+	}
+</script>  
+<div id="contentBox">
+<div class="title1">{$typetitle}</div>
+<form action="{:U('sortaddupdate')}" method="POST">
+<input name="typeid" type="hidden" value="{$_GET['type']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+
+  <tr>
+    <td>请选择父级<span class="red">*</span></td>
+    <td>
+<select name="pid" size="20">
+			<option value="0">根栏目</option>
+			<foreach name="alist" item="vo">
+			<option value="{$vo['id']}">{$vo['title']}</option>
+                <foreach name="vo['_child']" item="vo2">
+            	<option value="{$vo2['id']}">&nbsp;&nbsp;&nbsp;{$vo2['title']}</option>
+                
+                    <foreach name="vo2['_child']" item="vo3">
+                    <option value="{$vo3['id']}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo3['title']}</option>
+                    </foreach>
+                
+                
+                </foreach>
+			</foreach>
+
+</select>
+	
+	</td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>新增名称</td>
+    <td><input name="title" type="text" id="title"></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>排序</td>
+    <td><input name="orderby" type="text" id="orderby"></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+
+</form>
+
+</div>

@@ -1,0 +1,44 @@
+<div id="contentBox">
+<div class="title1">{$page_show['name']}</div>
+<div class="title2">
+<span>您可以选择：</span>
+
+<!--<a href="{:U('Product/edit',array('tid'=>$_GET['tid']))}">修改该产品</a> | -->
+
+<a href="{:U('Product/attedit',array('tid'=>$_GET['tid']))}">管理附图</a> | 
+<a href="{:U('Product/modeledit',array('tid'=>$_GET['tid']))}">管理规格</a> | 
+<a href="{:U('Product/property_edit',array('tid'=>$_GET['tid']))}">管理属性</a> | 
+
+<a href="{:U('Product/index')}">返回产品列表</a>
+
+</div>
+<form action="{:U('attupdate')}" method="post"  name="example" enctype="multipart/form-data">
+<input name="productsid" type="hidden" value="{$_GET['tid']}" />
+<div class="title1">目前已有的附图</div>
+<ul class="attul">
+<volist name="list" id="item">
+	<li>
+	<div class="pic"><a href="__UPLOADS__/pro/{$item['photo']}" target="_blank"><img src="__UPLOADS__/pro/thumb/thumb_100_{$item['photo']}" /></a></div>
+	<div id="clear"><a href="{:U(attdel,array('tid'=>$item['id']))}">删除</a></div>
+	</li>
+</volist>
+</ul>
+<div id="clear" class="tips">提示：如需删除老的，请直接点击图片下面的删除</div>
+<div class="title1">增加附图</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <td>新增产品附图</td>
+    <td>
+	<input type="file" name="filename" /><br />
+&nbsp;</td>
+    <td>附图数量不设限制，如需更多，请在产品列表处上传</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit"  class="btn1" value="提 交" /></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>

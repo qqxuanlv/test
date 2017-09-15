@@ -1,0 +1,97 @@
+<include file="Public:_editor" />
+<div id="contentBox">
+<form action="{:U('update')}" method="post"  name="example" enctype="multipart/form-data">
+<input name="id" type="hidden" value="{$show['id']}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="contentTable" class="table table-hover">
+  <tr>
+    <th>请选择类别</th>
+    <td><select name="sortid" id="sortid">
+      <volist name="list" id="vo">
+      <option value="{$vo['id']}" <eq name="vo['id']" value="$show['sortid']">selected="selected"</eq> >{$vo['title']}</option>
+          <volist name="vo['_child']" id="vo2">
+          <option value="{$vo2['id']}" <eq name="vo2['id']" value="$show['sortid']">selected="selected"</eq> > &nbsp;&nbsp; {$vo2['title']}</option>
+              <volist name="vo2['_child']" id="vo3">
+              <option value="{$vo3['id']}" <eq name="vo3['id']" value="$show['sortid']">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp; {$vo3['title']}</option>
+              </volist>
+          </volist>
+      </volist>
+    </select></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>标题<span class="red">*</span></th>
+    <td><input name="title" type="text" id="title"  value="{$show['title']}" size="80" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+  <tr>
+    <th>标题图片</th>
+    <td><input name="photo" type="file" id="photo"  size="80" /></td>
+    <td class="td3">&nbsp;</td>
+  </tr>
+
+ <!--  <tr>
+    <th>附件</th>
+    <td><input type="file" name="filename2" /><br />
+<a href="__UPLOADS__/news/{$show['fujian']}" target="_blank">{$show['fujian']}</a></td>
+    <td>&nbsp;</td>
+  </tr> -->
+  <tr>
+    <th>内容<span class="red">*</span></th>
+    <td>
+    
+		<textarea name="content" style="width:700px;height:200px;visibility:hidden;">{$show['content']|stripslashes}</textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>简介</th>
+    <td><label>
+      <textarea name="description" cols="80" rows="6" id="description">{$show['description']}</textarea>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>排序</th>
+    <td><label>
+      <input name="orderby" id="orderby" value="{$show['orderby']}" />
+    </label></td>
+    <td>&nbsp;总左往右依次 1-6 </td>
+  </tr>
+   <tr>
+    <th>是否首页</th>
+    <td><label>
+     <select name="is_first" id="is_first">
+      <option value="0" <eq name="show['is_first']" value="0">selected="selected"</eq> >否</option>
+      <option value="1" <eq name="show['is_first']" value="1">selected="selected"</eq> >是</option>
+    </select>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+<!--     <tr>
+    <th>是否热点</th>
+    <td><label>
+     <select name="is_hot" id="is_hot">
+      <option value="0" <eq name="show['is_hot']" value="0">selected="selected"</eq> >否</option>
+      <option value="1" <eq name="show['is_hot']" value="1">selected="selected"</eq> >是</option>
+    </select>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>
+     <tr>
+    <th>是否幻灯片</th>
+    <td><label>
+     <select name="is_huan" id="is_huan">
+      <option value="0" <eq name="show['is_huan']" value="0">selected="selected"</eq> >否</option>
+      <option value="1" <eq name="show['is_huan']" value="1">selected="selected"</eq> >是</option>
+    </select>
+    </label></td>
+    <td>&nbsp;</td>
+  </tr>-->
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="button" class="btn1" value="提 交" />(提交快捷键: Ctrl + Enter)</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+</div>
